@@ -1,0 +1,185 @@
+include ../components/mixins/head.pug
+include ../components/mixins/nav.pug
+include ../components/mixins/phones.pug
+include ../components/mixins/button.pug
+include ../components/mixins/button-new.pug
+include ../components/mixins/logo.pug
+include ../components/mixins/burger.pug
+include ../components/mixins/socials.pug
+include ../components/mixins/modal.pug
+include ../components/mixins/intro.pug
+include ../components/mixins/section.pug
+include ../components/mixins/card.pug
+include ../components/mixins/txt.pug
+include ../components/mixins/gallery.pug
+include ../components/mixins/gallery-mosaic.pug
+include ../components/mixins/reviews.pug
+include ../components/mixins/stars.pug
+include ../components/mixins/events.pug
+include ../components/mixins/breadcrumbs.pug
+include ../components/mixins/seo.pug
+include ../components/mixins/pagination.pug
+include ../components/mixins/accordion.pug
+include ../components/mixins/link.pug
+include ../components/mixins/vigoda.pug
+include ../components/mixins/table.pug
+include ../components/mixins/order.pug
+include ../components/mixins/select.pug
+include ../components/mixins/counter.pug
+include ../components/mixins/hero.pug
+include ../components/mixins/partners.pug
+include ../components/mixins/online.pug
+include ../components/mixins/cb.pug
+include ../components/mixins/filters.pug
+include ../components/mixins/adventages.pug
+include ../components/mixins/features.pug
+include ../components/mixins/tabs.pug
+include ../components/mixins/price-table.pug
+include ../components/mixins/menu.pug
+include ../components/mixins/frame.pug
+include ../components/mixins/recvizity.pug
+include ../components/mixins/palaces.pug
+include ../components/mixins/rooms.pug
+include ../components/sections/rituals.pug
+include ../components/mixins/spa.pug
+
+
+doctype html
+html(lang="ru")
+  // page — объект из templateParameters (см. webpack.config.js)
+  +Head(page)
+
+  body.body
+
+    // Modal Mobile Menu
+    +Modal('mobile-menu')(class='modal--mobile')
+      +NavMobile({items: [
+        {
+          link: 'Общественная баня',
+          href: 'movnya.html',
+          submenu: []
+        },
+        {
+          link: 'Индивидуальная баня',
+          href: 'tsarpalata.html',
+          submenu: []
+        },
+        {
+          link: 'Скрытое меню',
+          href: '',
+          submenu: [
+            {
+              link: 'Прайс',
+              href: 'price.html',
+            },
+            {
+              link: 'Акции',
+              href: 'promotions.html',
+            },
+            {
+              link: 'Спа программы',
+              href: 'tsarpalata.html#spa',
+            },
+            {
+              link: 'Расписание паров',
+              href: 'tsarpalata.html',
+            },
+            {
+              link: 'Система лояльности',
+              href: 'certificate.html',
+            },
+            {
+              link: 'Ресторан',
+              href: 'rest.html',
+            },
+          ]
+        },
+        {
+          link: 'Спа программы',
+          href: 'tsarpalata.html#spa',
+          submenu: []
+        },
+        {
+          link: 'Расписание паров',
+          href: 'tsarpalata.html',
+          submenu: []
+        },
+        {
+          link: 'Акции',
+          href: 'promotions.html',
+          submenu: []
+        },
+        {
+          link: 'Сертификаты',
+          href: 'certificate.html',
+          submenu: []
+        },
+        {
+          link: 'Мероприятия',
+          href: 'events.html',
+          submenu: []
+        },
+        {
+          link: 'Еще скрытое меню',
+          href: '',
+          submenu: [
+            {
+              link: 'Прайс',
+              href: 'price.html',
+            },
+            {
+              link: 'Акции',
+              href: 'promotions.html',
+            },
+            {
+              link: 'Спа программы',
+              href: 'tsarpalata.html#spa',
+            },
+          ]
+        },
+        {
+          link: 'Система лояльности',
+          href: 'certificate.html',
+          submenu: []
+        },
+        {
+          link: 'Ресторан',
+          href: 'rest.html',
+          submenu: []
+        },
+        {
+          link: 'Массажи',
+          href: 'certificate.html',
+          submenu: []
+        },
+        {
+          link: 'Скрабы',
+          href: 'certificate.html',
+          submenu: []
+        },
+        {
+          link: 'Контакты',
+          href: 'contacts.html',
+          submenu: []
+        },
+      ]})
+    
+    // Modal Video Player (для страницы комнаты и карточек с видео)
+    +ModalVideoPlayer()
+
+    // Bottom Nav
+    +NavBottom({items: [
+      {icon: 'tg', text: 'Telegram'},
+      {icon: 'wa', text: 'WhatsApp'},
+      {icon: 'calendar', text: 'Забронировать'},
+      {icon: 'pin', text: 'Навигатор'},
+    ]})
+
+    // Scroll to top (миксин Button с иконкой, вид как у кнопки навигации свайпера)
+    +Button('Наверх', ['nav', 'primary', 'lg'], { icon: 'assets/img/arrow_right.svg', iconOnly: true })(class='scroll-to-top' type='button' aria-label='Наверх')
+
+    .page(class=`${page.page_class ? 'page--' + page.page_class : ''}`)
+      include ../components/sections/header.pug
+      main.main(class=`${page.page_class ? 'main--' + page.page_class : ''}`)
+        block content
+      include ../components/sections/footer.pug

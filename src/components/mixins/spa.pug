@@ -1,0 +1,25 @@
+//- Миксин секции СПА программ
+//- @param {string} title - заголовок секции
+//- @param {array} items - массив СПА программ
+mixin Spa(props = {})
+  - const {title = 'СПА ПРОГРАММЫ', items = []} = props
+  
+  section.section.section--spa#spa
+    .container.section_container
+      +SectionTitle({
+        title: title,
+        size: 'lg',
+        type: 'center'
+      })
+      .spa_content
+        if items && items.length > 0
+          .spa_list
+            each item in items
+              .spa_item
+                +SpaCard(item)
+          .spa_slider
+            .spa_slider-wrapper
+              .spa_items
+                each item in items
+                  .spa_item
+                    +SpaCard(item)

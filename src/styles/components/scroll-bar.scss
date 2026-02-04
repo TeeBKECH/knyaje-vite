@@ -1,0 +1,98 @@
+/* Скрываем нативный скролл у целевого контейнера */
+.u-hide-native-scroll {
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge Legacy */
+}
+.u-hide-native-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Горизонтальный скролл */
+.u-hide-native-scroll-x {
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge Legacy */
+}
+.u-hide-native-scroll-x::-webkit-scrollbar {
+  display: none;
+}
+
+/* Позиционирующая обёртка для вычисления offest-а */
+.cs {
+  &-wrap {
+    position: relative;
+    width: 100%;
+
+    @include respond-to(md) {
+      padding-right: 10px !important;
+    }
+  }
+  &-scroll {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    pointer-events: none; /* включим на внутренних */
+  }
+  &-track {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    pointer-events: auto;
+    transform: translateX(-50%);
+  }
+  &-thumb {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 0;
+    cursor: grab;
+    pointer-events: auto;
+    touch-action: none;
+    /* размеры/цвета задаём через style из JS, чтобы было удобно конфигурировать */
+
+    &.is-dragging {
+      cursor: grabbing;
+    }
+  }
+}
+
+/* === Горизонтальный скролл (overflow-x) === */
+.cs-wrap--horizontal {
+  padding-right: 0 !important;
+  padding-bottom: 0;
+}
+
+.cs-scroll--horizontal {
+  top: 100%;
+  left: 0;
+  right: 0;
+  bottom: auto;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+
+.cs-track--horizontal {
+  top: 50%;
+  left: 0;
+  right: 0;
+  bottom: auto;
+  width: 100%;
+  height: auto;
+  transform: translateY(-50%);
+  pointer-events: auto;
+}
+
+.cs-thumb--horizontal {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: auto;
+  pointer-events: auto;
+  border-radius: 0;
+
+  &.is-dragging {
+    cursor: grabbing;
+  }
+}

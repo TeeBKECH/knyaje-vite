@@ -1,0 +1,49 @@
+// About
+section.section.section--about(data-aos="fade-up", data-aos-duration="1000")
+  .container.section_container
+    +SectionTitle({
+      title: 'О компании',
+      subtitle: 'Как провал обернулся успехом',
+      size: 'sm',
+      type: 'left'
+    })
+    .about_content
+      .about_img
+        img(src="assets/img/new/about.jpg", alt="Axenov")
+      .about_body
+        .about_text-wrapper
+          .about_text
+            p Идея создать «Аксенов Сервис» возникла у меня в 2014 году после неудачного ремонта моей первой квартиры. Как и многие, первый раз делая ремонт я допустил самую большую оплошность – нанял непроверенную бригаду непрофессионалов. Разочарованию моему не было предела. К тому же, как мужчина, я не готов был смириться с провалом.
+        .counters
+          .counters_item--devider
+          .counters_item
+            p.counters_item-label Проектов
+              br
+              | выполнено
+            p.counters_item-value 570+
+          .counters_item
+            p.counters_item-label Работаем
+              br
+              | с 2014 г.
+            p.counters_item-value 15 лет
+          .counters_item--devider
+          .counters_item
+            p.counters_item-label Нас
+             br 
+             | рекомендуют
+            p.counters_item-value 98%
+          .counters_item
+            p.counters_item-label Постоянных
+              br
+              | клиентов
+            p.counters_item-value 34
+          .counters_item--devider
+    if (page.page_class !== 'about')
+      +SectionFooter({
+        prefix: 'about',
+        container: false,
+        button: {
+          text: 'Подробнее о компании',
+          styles: ['default', 'lg', 'arrow-right']
+        }
+      })

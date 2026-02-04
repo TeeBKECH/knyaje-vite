@@ -1,0 +1,40 @@
+mixin ReviewsItem(props)
+  - const {name, title, text, rating, social = 'tg', video = null} = props
+  .reviews_item
+    .reviews_item_top
+      .reviews_item_name
+        p.reviews_item_name-label= name
+        .reviews_item_name-social
+          img(src=`assets/img/new/${social}-reviews.svg`, alt=`reviews icon ${social}`)
+      .reviews_item_rating
+        +Stars({
+          count: rating,
+        })(class='reviews_item_stars')
+      .reviews_item_project
+        p.reviews_item_project-label Проект:
+        a.reviews_item_project-link(href='project.html') Шелепихинская набережная 34
+    .reviews_item_body
+      p.reviews_item_title.title.title-h3!= title
+    if (video)
+      +CardVideoReview({
+        url: 'https://rutube.ru/play/embed/3acad476a73429c9525f3e0c3c153534',
+        preview: 'assets/img/new/video-preview-1.jpg',
+        previewVideo: 'assets/video/video-preview-1.mp4'
+      })(class='project-video-review', data-modal='video-player-modal')
+    .reviews_item_content
+      .reviews_item_text
+        if (text && text.length > 0)
+          each t in text
+            p= t
+
+mixin ReviewsService(props)
+  - const {logo, rating, total} = props
+  .reviews_service
+    .reviews_service_logo
+      img(src=logo, alt="Service Logo")
+    +Stars({
+      count: 5,
+      text: rating,
+      size: 'sm'
+    })(class='reviews_service_rating')
+    a.reviews_service_total(href='#')= `более ${total} отзывов`

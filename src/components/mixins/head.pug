@@ -1,0 +1,8 @@
+mixin Head(props)
+  head
+    link(rel="icon", href='assets/img/new/logo-main.svg', sizes="32x32")
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    if props && props.description
+      meta(name="description" content=props.description)
+    title #{(props && props.title) ? props.title : 'Мой проект'}

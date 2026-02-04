@@ -1,0 +1,119 @@
+.main {
+  display: flex;
+  flex-direction: column;
+
+  &--index {
+  }
+
+  &--events {
+    .section--events {
+      padding: 20px 0 40px;
+
+      @include respond-to(lg) {
+        padding: 20px 0 20px;
+      }
+    }
+  }
+
+  &--event {
+    .section--event {
+      padding: 20px 0 80px;
+
+      @include respond-to(lg) {
+        padding: 10px 0 40px;
+      }
+    }
+  }
+
+  &--promotion {
+    .section--promotion {
+      padding: 20px 0 80px;
+
+      @include respond-to(lg) {
+        padding: 10px 0 40px;
+      }
+    }
+
+    .section--other-promotions {
+      padding: 0 0 80px;
+
+      @include respond-to(lg) {
+        padding: 0 0 40px;
+      }
+    }
+  }
+
+  &--contacts {
+    .section--contacts {
+      padding: 20px 0 80px;
+
+      @include respond-to(lg) {
+        padding: 10px 0 40px;
+      }
+    }
+  }
+
+  &--tsarpalata {
+    .section--palaces,
+    .section--rituals,
+    .section--spa,
+    .section--rental,
+    .section--eastern-spa,
+    .section--additional-rituals {
+      padding: 60px 0 80px;
+
+      @include respond-to(lg) {
+        padding: 40px 0 60px;
+      }
+
+      @include respond-to(md) {
+        padding: 30px 0 40px;
+      }
+    }
+  }
+
+  &--certificate {
+    .section--certificate {
+      @include respond-to(lg) {
+      }
+    }
+  }
+
+  &--movnya {
+    .section--movnya {
+      padding: 60px 0 80px;
+
+      @include respond-to(lg) {
+        padding: 40px 0 60px;
+      }
+    }
+
+    .section--palaces,
+    .section--spa,
+    .section--prices {
+      padding: 0 0 80px;
+
+      @include respond-to(lg) {
+        padding: 0 0 40px;
+      }
+    }
+
+    .section--spa {
+      padding: 60px 0 80px;
+
+      @include respond-to(lg) {
+        padding: 40px 0 60px;
+      }
+    }
+  }
+
+  &--room {
+    .section--room {
+      padding: 0 0 80px;
+
+      @include respond-to(lg) {
+        padding: 0 0 60px;
+      }
+    }
+  }
+}

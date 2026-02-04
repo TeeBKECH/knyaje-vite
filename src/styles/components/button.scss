@@ -1,0 +1,235 @@
+.button {
+  $button: &;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: $font-main;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  width: fit-content;
+  flex: none;
+
+  &_text {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+    position: relative;
+    z-index: 2;
+  }
+
+  &_icon {
+    display: block;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &--icon {
+    gap: 8px;
+  }
+
+  &--icon-only {
+    padding: 0;
+
+    #{$button}_text {
+      display: none;
+    }
+  }
+
+  // Круглая кнопка-навигация (как у swiper: иконка, светлый круг)
+  &--nav {
+    @include onlyDescHover() {
+      &:hover {
+        background: rgba($prime, 0.4);
+      }
+    }
+
+    #{$button}_icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    &#{$button}--lg {
+      width: 60px;
+      height: 60px;
+
+      @include respond-to(lg) {
+        width: 40px;
+        height: 40px;
+      }
+
+      #{$button}_icon {
+        @include respond-to(lg) {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+  }
+
+  // Primary кнопка (для темного фона)
+  &--primary {
+    font-weight: 500;
+    border-radius: 6px;
+    background: linear-gradient(
+      180deg,
+      rgba($prime, 0.25) 0%,
+      rgba($prime, 0.15) 50%,
+      rgba($prime, 0.15) 50%,
+      rgba($prime, 0.05) 100%
+    );
+    background-size: 100% 200%;
+    background-position: 0% 100%;
+    color: $prime;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition:
+      background-position 0.4s ease,
+      box-shadow 0.3s ease,
+      transform 0.2s ease;
+
+    &:hover {
+      background-position: 0% 0%;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    &:active {
+      transform: scale(0.95);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  // Third кнопка (для светлого фона)
+  &--third {
+    font-weight: 500;
+    border-radius: 6px;
+    background: linear-gradient(
+      180deg,
+      rgba($prime, 0.25) 0%,
+      rgba($prime, 0.15) 50%,
+      rgba($prime, 0.15) 50%,
+      rgba($prime, 0.05) 100%
+    );
+    background-size: 100% 200%;
+    background-position: 0% 100%;
+    color: $dark-gold;
+    border: 1px solid rgba($dark-gold, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition:
+      background-position 0.4s ease,
+      box-shadow 0.3s ease,
+      transform 0.2s ease,
+      border-color 0.3s ease;
+
+    &:hover {
+      background-position: 0% 0%;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      border-color: rgba($dark-gold, 0.4);
+    }
+
+    &:active {
+      transform: scale(0.95);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  // Secondary кнопка
+  &--secondary {
+    font-weight: 700;
+    border-radius: 6px;
+    background: linear-gradient(135deg, rgba(175, 146, 71, 0.9) 0%, rgba(214, 182, 101, 0.9) 100%);
+    color: $prime;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 40%;
+      width: 40px;
+      height: 300px;
+      background: linear-gradient(
+        45deg,
+        transparent 25%,
+        rgba(255, 255, 255, 0.5) 80%,
+        transparent 100%
+      );
+      transform: rotate(-45deg);
+      transition: left 0.6s ease;
+      z-index: 1;
+    }
+
+    @include onlyDescHover() {
+      &:hover {
+        &::after {
+          left: 200%;
+        }
+      }
+    }
+
+    &:active {
+      transform: scale(0.95);
+      &::after {
+        left: 200%;
+      }
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  // Размеры кнопок
+  &--sm {
+    height: 44px;
+    padding: 0 20px;
+    font-size: 14px;
+  }
+
+  &--md {
+    height: 48px;
+    padding: 0 24px;
+    font-size: 15px;
+  }
+
+  &--lg {
+    height: 52px;
+    padding: 0 30px;
+    font-size: 16px;
+  }
+
+  &--xl {
+    height: 60px;
+    padding: 0 36px;
+    font-size: 18px;
+  }
+
+  // Полная ширина
+  &--fw {
+    width: 100%;
+  }
+}

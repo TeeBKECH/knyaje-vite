@@ -1,0 +1,104 @@
+.accordion {
+  $accordion: &;
+
+  &_item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(#bfbfbf, 0.4);
+
+    &_head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4px;
+      padding: 28px 0;
+      cursor: pointer;
+    }
+
+    &_icon {
+      flex: none;
+      transition: all 0.2s linear;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(#bfbfbf, 0.2);
+
+      @include respond-to(md) {
+        width: 52px;
+        height: 52px;
+      }
+
+      &::after {
+        content: '';
+        display: block;
+        width: 24px;
+        height: 24px;
+        background: center / auto no-repeat;
+        background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.0002 3.375C12.6476 3.375 13.1721 3.89953 13.1721 4.54688V10.8267H19.4519C20.0992 10.8267 20.6238 11.3512 20.6238 11.9985C20.6238 12.6459 20.0992 13.1704 19.4519 13.1704H13.1721V19.4509C13.1721 20.0983 12.6476 20.6228 12.0002 20.6228C11.3529 20.6228 10.8284 20.0983 10.8284 19.4509V13.1704H4.54785C3.90051 13.1704 3.37598 12.6459 3.37598 11.9985C3.37598 11.3512 3.90051 10.8267 4.54785 10.8267H10.8284V4.54688C10.8284 3.89953 11.3529 3.375 12.0002 3.375Z' fill='%231A1A1A'/%3E%3C/svg%3E");
+      }
+
+      &:hover {
+        background: rgba(#bfbfbf, 0.36);
+      }
+    }
+
+    &_title {
+      font-size: 24px;
+      color: $prime;
+      line-height: calc(32 / 24);
+      font-weight: 550;
+
+      @include respond-to(md) {
+        font-size: 16px;
+        line-height: calc(24 / 16);
+      }
+    }
+
+    &_body {
+      padding: 0 24px 0 0;
+      transition: all 0.4s ease-in-out;
+      /* Изменено на ease-in-out для более плавного эффекта */
+      will-change: max-height, opacity;
+      /* Оптимизация для анимации */
+      max-height: 0;
+      /* Изменено с height на max-height */
+      overflow: hidden;
+      /* Скрываем содержимое при сворачивании */
+      opacity: 0;
+      visibility: hidden;
+
+      p {
+        color: $prime;
+        font-family: $font-secondary;
+
+        @include respond-to(md) {
+          font-size: 16px;
+          font-weight: 450;
+          line-height: 1.5;
+          color: $prime;
+        }
+      }
+    }
+
+    &.open {
+      #{$accordion}_item {
+        &_icon {
+          transform: rotate(-45deg);
+        }
+
+        &_body {
+          padding: 8px 24px 16px 0;
+          max-height: 2000px;
+          /* Достаточно большое значение для вмещения контента */
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
+  }
+}

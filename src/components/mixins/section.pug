@@ -1,0 +1,29 @@
+mixin SectionTitle(props)
+  - const {type = 'main', title = '', subtitle = '', size = 'md'} = props
+  .section_title(class=`section_title--${type} section_title--${size}`)
+    h2.title.title-h2.section_title-h2!= title
+    if (subtitle)
+      p.section_subtitle(class=`section_subtitle--${type}`)!= subtitle
+
+mixin SectionFooter(props)
+  - const {prefix = '', container = false, containerAlt = false, button = null, navigation = false} = props
+  - const footerClass = prefix ? `${prefix}_footer section_footer` : 'section_footer'
+  - const containerClasses = []
+  - if (container) containerClasses.push('container')
+  - if (containerAlt) containerClasses.push('container--alt')
+  - const allClasses = containerClasses.length ? `${footerClass} ${containerClasses.join(' ')}` : footerClass
+  div(class=allClasses)
+    div(class=`${prefix}_footer-action`)
+      if (button)
+        +Button(button.text, button.styles)
+    if (navigation && navigation.iconLeft && navigation.iconRight)
+      div(class=`${prefix}_footer-nav`)
+        .swiper_nav
+          +BtnIcon({
+            icon: navigation.iconLeft,
+            styles: navigation.styles || []
+          })(class=`swiper_nav_item-prev ${navigation.prefix}_nav-prev`)
+          +BtnIcon({
+            icon: navigation.iconRight,
+            styles: navigation.styles || []
+          })(class=`swiper_nav_item-next ${navigation.prefix}_nav-next`)

@@ -1,0 +1,43 @@
+//- Counter(options)
+//- options: {
+//-   id, name, value=1, min=0, max=null, step=1,
+//-   useInput=false (true => вместо span будет input[type=number])
+//- }
+mixin Counter(options)
+  -
+    const {
+      id = '',
+      name = id || 'counter',
+      value = 1,
+      min = 0,
+      max = null,
+      step = 1,
+      useInput = true
+    } = options || {}
+
+  .counter(
+    id=id
+    data-component="counter"
+    data-name=name
+    data-min=min
+    data-max=(max !== null ? max : undefined)
+    data-step=step
+  )
+    button.counter__btn.counter__btn--minus(type='button' aria-label='Уменьшить')
+    if useInput
+      //- Режим с видимым полем ввода (form будет отправлять это поле)
+      input.counter__value(
+        type="number"
+        data-ref="value-input"
+        name=name
+        value=value
+        min=min
+        step=step
+        max=(max !== null ? max : undefined)
+        inputmode="numeric"
+      )
+    else
+      //- Режим со span (значение уходит в скрытый hidden input)
+      span.counter__value(data-ref="value")= value
+      input(type="hidden" data-ref="hidden" name=name value=value)
+    button.counter__btn.counter__btn--plus(type='button' aria-label='Увеличить')

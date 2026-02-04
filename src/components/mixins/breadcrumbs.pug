@@ -1,0 +1,8 @@
+mixin BreadCrumbs(props)
+  .breadcrumbs
+    .breadcrumbs_items
+      a.breadcrumbs_item.breadcrumbs_item--link(href='/') Главная
+      if (props.items.length > 0)
+        each item in props.items
+          span.breadcrumbs_item.breadcrumbs_item--sep /
+          span.breadcrumbs_item.breadcrumbs_item--current= item

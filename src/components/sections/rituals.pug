@@ -1,0 +1,44 @@
+//- Миксин секции обрядов/программ
+//- @param {string} title - заголовок секции
+//- @param {array} items - массив обрядов/программ (первый будет подробным, остальные в слайдере)
+//- @param {string} cardMixin - название миксина для карточки ('RitualCard' или 'SpaCard')
+mixin RitualsSection(props)
+  - const {title = '', items = [], cardMixin = 'RitualCard'} = props
+  - const firstItem = items[0]
+  - const restItems = items.slice(1)
+  
+  section.section.section--rituals
+    .container.section_container
+      +SectionTitle({
+        title: title,
+        size: 'lg',
+        type: 'center'
+      })
+      .rituals_content
+        if firstItem
+          .rituals_featured
+            if cardMixin === 'RitualCard'
+              - const featuredItem = Object.assign({}, firstItem, {featured: true})
+              +RitualCard(featuredItem)
+            else if cardMixin === 'SpaCard'
+              +SpaCard(firstItem)
+        
+        if restItems && restItems.length > 0
+          .rituals_slider
+            .rituals_slider-wrapper
+              .rituals_items
+                each item in restItems
+                  .rituals_item
+                    if cardMixin === 'RitualCard'
+                      +RitualCard(item)
+                    else if cardMixin === 'SpaCard'
+                      +SpaCard(item)
+              .swiper_nav.rituals_nav
+                +BtnIcon({
+                  icon: 'assets/img/arrow_left.svg',
+                  styles: ['swiper_nav--light', 'lg']
+                })(class=`swiper_nav_item-prev rituals_nav-prev`)
+                +BtnIcon({
+                  icon: 'assets/img/arrow_right.svg',
+                  styles: ['swiper_nav--light', 'lg']
+                })(class=`swiper_nav_item-next rituals_nav-next`)

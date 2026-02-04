@@ -1,0 +1,23 @@
+.breadcrumbs {
+  &_items {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &_item {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    color: $prime;
+
+    &--link {
+      color: $light-gold;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

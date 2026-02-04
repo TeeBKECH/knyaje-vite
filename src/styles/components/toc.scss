@@ -1,0 +1,55 @@
+.toc {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  @include respond-to(xl) {
+    // padding: 24px;
+  }
+
+  &-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    @include respond-to(lg) {
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__link {
+    font-size: 16px;
+    line-height: 1.2;
+    color: $prime;
+    font-weight: 600;
+  }
+
+  &-sub {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @include respond-to(lg) {
+      gap: 8px;
+    }
+
+    &:empty {
+      display: none;
+    }
+
+    &__item {
+    }
+
+    &__link {
+      font-size: 16px;
+      line-height: 1;
+      color: $prime;
+      font-weight: 400;
+    }
+  }
+}

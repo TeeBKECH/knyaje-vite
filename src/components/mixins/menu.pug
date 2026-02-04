@@ -1,0 +1,47 @@
+//- Миксин для отображения одного блюда в меню
+//- @param {Object} props - Параметры блюда
+//- @param {string} props.name - Название блюда
+//- @param {string} props.description - Описание блюда (опционально)
+//- @param {string} props.price - Цена блюда (опционально)
+//- @param {string} props.weight - Вес/порция (опционально)
+mixin MenuDish(props = {})
+  - const { name = '', description = '', price = '', weight = '' } = props
+  .menu-dish
+    .menu-dish_img(data-fancybox="dish-image", data-src="assets/img/placeholder.png")
+      img(src="assets/img/placeholder.png", alt=name)
+    .menu-dish_info
+      .menu-dish_name
+        span= name
+      if description
+        .menu-dish_description
+          p= description
+    if price || weight
+      .menu-dish_meta
+        if price
+          .menu-dish_price
+            span= price
+        if weight
+          .menu-dish_weight
+            span= `(${weight} г.)`
+
+//- Миксин для отображения категории меню с блюдами
+//- @param {Object} props - Параметры категории
+//- @param {string} props.category - Название категории
+//- @param {Array} props.dishes - Массив блюд в категории
+mixin MenuCategory(props = {})
+  - const { category = '', dishes = [] } = props
+  .menu-category
+    if category
+      p.menu-category_title.title.title-h3= category
+    if dishes && dishes.length > 0
+      .menu-category_dishes
+        each dish in dishes
+          +MenuDish(dish)
+
+//- Миксин для отображения всех категорий меню (для первой вкладки "Все")
+//- @param {Object} props - Параметры
+//- @param {Array} props.categories - Массив категорий с блюдами
+mixin MenuAllCategories(props = {})
+  - const { categories = [] } = props
+    each categoryData in categories
+      +MenuCategory(categoryData)

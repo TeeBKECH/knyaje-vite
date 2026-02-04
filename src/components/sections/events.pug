@@ -1,0 +1,43 @@
+//- Секция "Льготы честному люду"
+section.section.section--events(data-aos="fade-up", data-aos-duration="1000")
+  .container.section_container
+    +SectionTitle({
+      title: 'Мероприятия в Княже',
+      size: 'lg',
+      type: 'center'
+    })
+  .events_content.container
+    .events_items
+      +CardEvent({
+        title: 'ВОЛШЕБНАЯ БАНЯ в «Княже» — портал в мир гармонии и очищения!',
+        img: 'assets/img/benefits-1.webp',
+        text: 'Среди суеты будней — оазис тишины и преображения. Здесь пар, звук и движение сплетаются в древний танец очищения души и тела',
+        label: '3 декабря с 18:00 до 23:00'
+      })(class='events_item')
+      +CardEvent({
+        title: 'ВОЛШЕБНАЯ БАНЯ в «Княже» — портал в мир гармонии и очищения!',
+        img: 'assets/img/benefits-2.webp',
+        text: 'Среди суеты будней — оазис тишины и преображения. Здесь пар, звук и движение сплетаются в древний танец очищения души и тела',
+        label: '3 декабря с 18:00 до 23:00'
+      })(class='events_item')
+      +CardEvent({
+        title: 'ВОЛШЕБНАЯ БАНЯ в «Княже» — портал в мир гармонии и очищения!',
+        img: 'assets/img/benefits-1.webp',
+        text: 'Среди суеты будней — оазис тишины и преображения. Здесь пар, звук и движение сплетаются в древний танец очищения души и тела',
+        label: '3 декабря с 18:00 до 23:00'
+      })(class='events_item')
+      +CardEvent({
+        title: 'ВОЛШЕБНАЯ БАНЯ в «Княже» — портал в мир гармонии и очищения!',
+        img: 'assets/img/benefits-2.webp',
+        text: 'Среди суеты будней — оазис тишины и преображения. Здесь пар, звук и движение сплетаются в древний танец очищения души и тела',
+        label: '3 декабря с 18:00 до 23:00'
+      })(class='events_item')
+    .swiper_nav.events_nav
+      +BtnIcon({
+        icon: 'assets/img/arrow_left.svg',
+        styles: ['swiper_nav--light', 'lg']
+      })(class=`swiper_nav_item-prev events_nav-prev`)
+      +BtnIcon({
+        icon: 'assets/img/arrow_right.svg',
+        styles: ['swiper_nav--light', 'lg']
+      })(class=`swiper_nav_item-next events_nav-next`)

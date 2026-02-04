@@ -1,0 +1,350 @@
+.menu {
+  width: 100%;
+  display: flex;
+  gap: 24px;
+  $menu: &;
+
+  @include respond-to(xl-2) {
+    gap: 16px;
+  }
+
+  @include respond-to(xl) {
+    gap: 8px;
+  }
+
+  @include respond-to(lg) {
+    flex-direction: column;
+  }
+
+  &_item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+
+    &_link {
+      color: $prime;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1;
+      cursor: pointer;
+      font-family: $font-main;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      transition: all 0.2s linear;
+      white-space: nowrap;
+
+      @include respond-to(xl-2) {
+        font-size: 13px;
+      }
+
+      &:hover {
+        color: #fff;
+      }
+    }
+
+    &--glass {
+      #{$menu}_item_link {
+        background: rgba(#faf7f0, 0.2);
+        backdrop-filter: blur(20px);
+        color: $second;
+        padding: 0 18px;
+        height: 44px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 32px;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        font-family: $font-main;
+        transition: all 0.2s linear;
+
+        &:hover {
+          background: rgba(#faf7f0, 0.4);
+        }
+      }
+    }
+  }
+
+  &--mobile {
+    width: 100%;
+    // border-top: 1px solid $second;
+    border-bottom: 1px solid $second;
+
+    #{$menu}_item {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      border-bottom: 1px solid rgba($prime, 0.2);
+
+      &_link {
+        gap: 12px;
+        padding: 12px 16px;
+        flex: 1 1 auto;
+        min-width: 0;
+        font-family: $font-main;
+        font-size: 20px;
+        font-weight: 500;
+        color: $prime;
+      }
+
+      &_text {
+        color: $prime;
+      }
+
+      // Кнопка раскрытия подменю (иконка-шеврон)
+      &_icon {
+        flex: 0 0 auto;
+        order: 1;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        color: $light-gold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-tap-highlight-color: transparent;
+        transition:
+          transform 0.2s ease,
+          color 0.2s ease;
+
+        &::after {
+          content: '';
+          width: 10px;
+          height: 10px;
+          border-right: 2px solid currentColor;
+          border-bottom: 2px solid currentColor;
+          transform: rotate(45deg);
+          margin-bottom: 4px;
+        }
+
+        &:hover {
+          color: $light-gold;
+        }
+      }
+
+      // Выпадающий список (подменю)
+      .menu-drop {
+        $menu_drop: &;
+        order: 2;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        border-bottom: 1px solid $second;
+        transition: max-height 0.25s ease;
+
+        &__item {
+          margin: 0;
+          // border-bottom: 1px solid rgba($prime, 0.2);
+        }
+
+        &__link {
+          display: block;
+          padding: 10px 16px 10px 32px;
+          font-family: $font-main;
+          font-size: 16px;
+          font-weight: 500;
+          color: $prime;
+        }
+      }
+
+      &--has-drop {
+        #{$menu}_item_link {
+          // border-right: 1px solid rgba($prime, 0.2);
+        }
+
+        &.is-open {
+          .menu-drop {
+            max-height: 80vh;
+          }
+
+          #{$menu}_item_icon {
+            transform: rotate(180deg);
+
+            &::after {
+              margin-bottom: -4px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &-dish {
+    display: grid;
+    grid-template-columns: 150px 1fr 150px;
+    align-items: center;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba($light-gold, 0.2);
+
+    @include respond-to(md) {
+      grid-template-columns: 70px 1fr 70px;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    @include respond-to(sm) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding-top: 0;
+    }
+
+    &:last-child {
+      border-bottom: none;
+
+      @include respond-to(sm) {
+        border-bottom: 1px solid rgba($light-gold, 0.2);
+      }
+    }
+
+    &_img {
+      width: 100%;
+      aspect-ratio: 1.5 / 1;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &_info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      @include respond-to(md) {
+        gap: 4px;
+      }
+    }
+
+    &_name {
+      font-size: 18px;
+      font-weight: 600;
+      color: $light-gold;
+      font-family: $font-main;
+
+      @include respond-to(md) {
+        font-size: 16px;
+      }
+
+      @include respond-to(sm) {
+        font-size: 14px;
+      }
+
+      span {
+        display: block;
+      }
+    }
+
+    &_description {
+      font-size: 14px;
+      line-height: 1.5;
+      color: rgba($second, 0.8);
+      font-family: $font-main;
+
+      p {
+        margin: 0;
+
+        @include respond-to(md) {
+          font-size: 13px;
+        }
+
+        @include respond-to(sm) {
+          font-size: 11px;
+          line-height: 1.1;
+        }
+      }
+    }
+
+    &_meta {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+
+      @include respond-to(md) {
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+      }
+    }
+
+    &_weight {
+      font-size: 14px;
+      color: rgba($prime, 0.6);
+      font-family: $font-main;
+
+      @include respond-to(md) {
+        font-size: 13px;
+      }
+    }
+
+    &_price {
+      font-size: 20px;
+      font-weight: 600;
+      color: $light-gold;
+      font-family: $font-main;
+      white-space: nowrap;
+
+      @include respond-to(md) {
+        font-size: 18px;
+      }
+    }
+  }
+
+  &-category {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+
+    @include respond-to(md) {
+    }
+
+    &:last-child {
+    }
+
+    &_title {
+      text-align: center;
+      color: $prime;
+
+      @include respond-to(md) {
+      }
+    }
+
+    &_dishes {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+      @include respond-to(sm) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+    }
+  }
+
+  &-categories {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+}

@@ -1,0 +1,64 @@
+.title {
+  font-family: $font-secondary;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 3px;
+
+  &-h1 {
+    font-size: 80px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+
+    @include respond-to(xl) {
+      font-size: 64px;
+    }
+
+    @include respond-to(lg) {
+      font-size: 48px;
+    }
+
+    @include respond-to(md) {
+      font-size: 42px;
+    }
+
+    @include respond-to(sm) {
+      font-size: 36px;
+    }
+  }
+
+  &-h2 {
+    font-size: 48px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: $prime;
+
+    @include respond-to(lg) {
+      font-size: 40px;
+    }
+
+    @include respond-to(md) {
+      font-size: 32px;
+    }
+
+    @include respond-to(sm) {
+      font-size: 24px;
+    }
+  }
+
+  &-h3 {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: 3px;
+
+    @include respond-to(md) {
+      font-size: 24px;
+    }
+
+    @include respond-to(sm) {
+      font-size: 20px;
+    }
+  }
+}

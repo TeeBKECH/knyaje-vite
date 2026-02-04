@@ -1,0 +1,181 @@
+.price-table {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 48px;
+
+  @include respond-to(lg) {
+    gap: 40px;
+  }
+
+  @include respond-to(md) {
+    gap: 32px;
+  }
+
+  &_category {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    @include respond-to(md) {
+      gap: 32px;
+    }
+  }
+
+  &_category-title {
+    text-align: left;
+    color: $light-gold;
+    text-transform: uppercase;
+    font-size: 28px;
+    margin-bottom: 0;
+    text-align: center;
+
+    @include respond-to(md) {
+      font-size: 24px;
+    }
+  }
+
+  &_section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @include respond-to(md) {
+      gap: 20px;
+    }
+  }
+
+  &_title {
+    text-align: left;
+    color: $prime;
+    text-transform: uppercase;
+    font-size: 24px;
+
+    @include respond-to(md) {
+      font-size: 20px;
+    }
+  }
+
+  &_subtitle {
+    font-size: 16px;
+    color: rgba($prime, 0.8);
+    line-height: 1.5;
+  }
+
+  &_wrap {
+    width: 100%;
+    max-width: 900px;
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid rgba($prime, 0.15);
+
+    @include respond-to(md) {
+      border-radius: 8px;
+      border-left: none;
+      border-right: none;
+    }
+  }
+
+  &_table {
+    width: 100%;
+    min-width: 500px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    font-size: 16px;
+
+    @include respond-to(md) {
+      font-size: 14px;
+    }
+  }
+
+  &_head {
+    background: rgba($light-gold, 0.12);
+
+    th:not(:first-child) {
+      text-align: right;
+    }
+  }
+
+  &_body {
+    tr {
+      transition: background 0.2s ease;
+
+      &:nth-child(even) {
+        background: rgba($prime, 0.03);
+      }
+
+      &:hover {
+        background: rgba($light-gold, 0.06);
+      }
+    }
+  }
+
+  &_row {
+    border-bottom: 1px solid rgba($prime, 0.1);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &_cell {
+    padding: 16px 20px;
+    text-align: left;
+    vertical-align: middle;
+    color: $prime;
+
+    @include respond-to(md) {
+      padding: 12px 16px;
+    }
+
+    &--head {
+      font-weight: 600;
+      color: $prime;
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 0.02em;
+
+      @include respond-to(md) {
+        font-size: 12px;
+        padding: 12px 16px;
+      }
+    }
+
+    &--name {
+      font-weight: 500;
+      color: $prime;
+    }
+
+    &:not(&--name):not(&--head) {
+      text-align: right;
+      font-weight: 600;
+      color: $light-gold;
+    }
+  }
+
+  &_note {
+    font-size: 13px;
+    color: rgba($prime, 0.6);
+    line-height: 1.5;
+    margin: 0;
+
+    @include respond-to(md) {
+      font-size: 12px;
+    }
+  }
+}
+
+.section--price-tables {
+  padding: 40px 0 80px;
+
+  @include respond-to(lg) {
+    padding: 20px 0 40px;
+  }
+
+  .section_container {
+    align-items: flex-start;
+  }
+}

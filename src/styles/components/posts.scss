@@ -1,0 +1,33 @@
+.posts {
+  &-swiper {
+    &_wrapper {
+      padding: 0 calc(40px - 16px);
+      @include respond-to(lg) {
+        padding: 0;
+      }
+    }
+  }
+
+  &-more {
+    &_container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &_title {
+      color: $prime;
+    }
+
+    &_nav {
+      @include respond-to(lg) {
+        display: none;
+      }
+    }
+
+    .swiper-wrapper {
+      padding: 0 0 16px;
+    }
+  }
+}

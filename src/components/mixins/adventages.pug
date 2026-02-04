@@ -1,0 +1,6 @@
+mixin AdventagesItem(props)
+  - const {text = '', icon = 'placeholder'} = props
+  .adventages_item
+    .adventages_item-icon
+      img(src=`assets/img/new/adventages-${icon}.svg`, alt=text)
+    p.adventages_item-text= text

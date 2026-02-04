@@ -1,0 +1,9 @@
+mixin CB(props)
+  - const {icon = 'assets/img/new/comment.svg', href = '#', text = 'Связаться с менеджером'} = props
+  .cb&attributes(attributes)
+    img.cb_icon(src=icon, alt="CB Icon")
+    if (href)
+      a.cb_text(href=href)= text
+    else
+      span.cb_text= text
+      

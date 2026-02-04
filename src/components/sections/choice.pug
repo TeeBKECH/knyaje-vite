@@ -1,0 +1,56 @@
+//- Секция выбора между Царской палатой и Мовней
+section.section.section--choice(data-aos="fade-up", data-aos-duration="1000")
+  .container.section_container
+    +SectionTitle({
+      title: 'ПО-БОЯРСКИ В СЬЮТЕ ИЛИ <br />С ЧЕСТНЫМ ЛЮДОМ В МОВНЕ',
+      subtitle: ' - ВЫБИРАЙТЕ, СУДАРЬ',
+      size: 'lg',
+      type: 'center'
+    })
+    .choice_content
+      .choice_cards
+        // Царская палата
+        .choice_card.choice_card--suite
+          .choice_card_gallery
+            +Gallery({
+              items: [
+                'assets/img/ch-1.webp',
+                'assets/img/ch-2.jpg',
+                'assets/img/ch-3.jpg',
+                'assets/img/ch-4.jpg',
+              ],
+              galleryId: 'choice-gallery'
+            })
+          +Frame()
+            .choice_card_content
+              .choice_card_title ЦАРСКАЯ ПАЛАТА
+              ul.choice_card_list
+                li.choice_card_item 2 атмосферных сьюта 
+                li.choice_card_item Глиняная парная
+                li.choice_card_item Комната диковин
+                li.choice_card_item 3D-хаммам
+                li.choice_card_item Сеновал
+              .choice_card_action
+                +Button('Забронировать Царский Сьют', ['primary', 'lg'])
+        
+        // Мовня
+        .choice_card.choice_card--public
+          +Frame()
+            .choice_card_content
+              .choice_card_title МОВНЯ
+              ul.choice_card_list
+                li.choice_card_item КЕДРОВАЯ ПАРНАЯ ДО 60 ГОСТЕЙ
+                li.choice_card_item ПРАЗДНИЧНЫЕ И ЛЕДЯНЫЕ КУПЕЛИ
+                li.choice_card_item ВЕДРА ИВЕНЬ
+                li.choice_card_item ГРАНД-КИТЕЛ - САМАЯ БОЛЬШАЯ В МОСКВЕ
+              .choice_card_action
+                +Button('ЗАБРОНИРОВАТЬ', ['primary', 'lg'])
+          .choice_card_gallery
+            +Gallery({
+              items: [
+                'assets/img/ch-alt-1.webp',
+                'assets/img/ch-alt2.webp',
+                'assets/img/ch-alt-3.jpg',
+              ],
+              galleryId: 'choice-gallery-2'
+            })

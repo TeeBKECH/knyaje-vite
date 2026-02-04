@@ -1,0 +1,15 @@
+mixin Pagination({current = 1, total = 5})
+  .pagination 
+    .pagination_more
+      +Button('загрузить еще', ['primary', 'md'])
+    .pagination_list
+      .pagination_list_item
+        +Button('Назад', ['primary', 'md'])(href='#' class='pagination_list_link pagination_list_link--prev')
+      - for (let i = 1; i <= total; i++)
+        .pagination_list_item
+          - const isActive = i === current
+          - const buttonStyles = isActive ? ['secondary', 'md'] : ['primary', 'md']
+          - const linkClass = isActive ? 'pagination_list_link pagination_list_link--active' : 'pagination_list_link'
+          +Button(i.toString(), buttonStyles)(href='#' class=linkClass)
+      .pagination_list_item
+        +Button('Вперед', ['primary', 'md'])(href='#' class='pagination_list_link pagination_list_link--next')

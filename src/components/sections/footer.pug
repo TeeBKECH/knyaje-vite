@@ -1,0 +1,75 @@
+footer.footer
+  .container.footer_container
+    .footer_block
+      .footer_col.footer_col--logo
+        +Logo({type: 'footer'})
+        .footer_copy
+          p Все права защищены 
+            span &copy; 
+            | 2025
+          p ООО "Комплекс 888"
+    .footer_block.footer_block--alt
+      .footer_row.footer_row--menu
+        span.footer_title Навигация
+        ul.footer_list
+          li.footer_list_item
+            a.footer_list_link(href='rates.html') Общественная баня
+          li.footer_list_item
+            a.footer_list_link(href='promotions.html')  Индивидуальная баня
+          li.footer_list_item
+            a.footer_list_link(href='spa-programs.html') Спа программы
+          li.footer_list_item
+            a.footer_list_link(href='restaurant.html') Массажи
+          li.footer_list_item
+            a.footer_list_link(href='events.html') Диковины
+          li.footer_list_item
+            a.footer_list_link(href='certificates.html') Скрабы
+          li.footer_list_item
+            a.footer_list_link(href='certificates.html') Акции
+        ul.footer_list
+          li.footer_list_item
+            a.footer_list_link(href='rates.html') Подарочный сертификат
+          li.footer_list_item
+            a.footer_list_link(href='promotions.html') Система лояльности
+          li.footer_list_item
+            a.footer_list_link(href='spa-programs.html') Мероприятия
+          li.footer_list_item
+            a.footer_list_link(href='restaurant.html') Ресторан
+          li.footer_list_item
+            a.footer_list_link(href='events.html') Расписание паров
+          li.footer_list_item
+            a.footer_list_link(href='certificates.html') Отдых за городом
+      .footer_row.footer_row--contacts
+        span.footer_title Контакты
+        ul.footer_list
+          li.footer_list_item
+            a.footer_list_link.footer_list_link--alt(href='tel:+74996476888') +7 (499) 647-68-88
+          li.footer_list_item
+            p.footer_list_text 123317, Россия, Москва, Шмитовский проезд 27с1
+          li.footer_list_item
+            p.footer_list_text Ежедневно с 10:00 до 23:00
+          li.footer_list_item
+            p.footer_list_text Рядом с комплексом есть бесплатные и платные парковки.
+      .footer_row.footer_row--socials
+        span.footer_title Социальные сети
+        +SocialsGold([
+          {
+            icon: 'tg',
+            text: 'Telegram'
+          },
+          {
+            icon: 'vk',
+            text: 'VK'
+          },
+          {
+            icon: 'wa',
+            text: 'WhatsApp'
+          }
+        ])
+      .footer_copy.footer_copy--alt
+        p 
+          span &copy; 
+          | 2025 Все права защищены 
+        p ООО "Комплекс 888"
+  .footer_ornament
+    img(src="assets/img/footer-ornament.svg", alt="Ornament")

@@ -1,0 +1,58 @@
+//- @title: Ресторан
+//- @description: Описание страницы Ресторана
+//- @page_class: rest
+extends ../layouts/default.pug
+
+block content
+  +IntroLabeled({
+    bgImg: 'assets/img/rest-bg.webp',
+    label: 'МЕНЮ',
+    title: 'ТРАДИЦИОННАЯ РУССКАЯ КУХНЯ<br />ОТ КНЯЖЕ',
+  })
+
+  -
+    // Данные меню - пример структуры
+    const menuCategories = [
+      {
+        category: 'Салаты',
+        dishes: [
+          { name: 'САЛАТ С ХРУСТЯЩИМИ БАКЛАЖАНАМИ', description: '(Свёкла печёная, баклажан, шпинат, помидоры, медово-имбирная заправка)', price: '700 ₽', weight: '200'},
+          { name: 'САЛАТ ЗАМОРСКИЙ С РАКОВЫМИ ШЕЙКАМИ', description: '(Картофель, морковь, огурец свежий, корнишоны, горошек консер.,микс салатов,майонез, раковые шейки, икра красная, сельдерей стебель)', price: '850 ₽'},
+          { name: 'САЛАТ ГРЕЧЕСКИЙ', description: '(Сезонные овощи, сертаки)', price: '600 ₽'},
+        ]
+      },
+      {
+        category: 'Супы',
+        dishes: [
+          { name: 'КУРИНАЯ ПОХЛЕБКА', description: '(Куриный бульон, мясо курицы, яйцо перепёлки, лапша)', price: '450 ₽'},
+          { name: 'ПОХЛЕБКА ИЗ СИБИРСКИХ ГРИБОВ', description: '(Грибы белые, вешенки конфи, шампиньоны, зелень)', price: '650 ₽'},
+        ]
+      },
+      {
+        category: 'Десерты',
+        dishes: [
+          { name: 'ЯГОДНЫЙ ДЕСЕРТ "КНЯЖЕ"', description: '', price: '500 ₽'},
+        ]
+      }
+    ]
+
+    // Формируем массив табов: первая вкладка "Все" + категории
+    const tabsItems = [
+      {
+        title: 'Все',
+        contentMixin: 'MenuAllCategories',
+        contentMixinProps: { categories: menuCategories }
+      },
+      ...menuCategories.map(cat => ({
+        title: cat.category,
+        contentMixin: 'MenuCategory',
+        contentMixinProps: { category: cat.category, dishes: cat.dishes }
+      }))
+    ]
+
+  section.section.section--rest
+    .container.section_container
+      .section_content
+        +Tabs({
+          items: tabsItems
+        })

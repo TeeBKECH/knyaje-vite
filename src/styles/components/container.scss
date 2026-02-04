@@ -1,0 +1,14 @@
+.container {
+  width: 100%;
+  max-width: $container-width;
+  margin: 0 auto;
+  padding: 0 $spacing-unit;
+
+  @include respond-to(lg) {
+    padding: 0 16px;
+  }
+
+  &--alt {
+    max-width: unset;
+  }
+}

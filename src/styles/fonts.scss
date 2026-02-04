@@ -1,0 +1,98 @@
+/* FONTS - Akrobat
+ * Основной шрифт для текста
+ * License: EULA Free Font License Ver. 2.0
+ * License file: ../assets/fonts/Acrobat/EULA Free Font License Ver. 2.0.pdf
+ */
+@font-face {
+  font-family: 'Akrobat';
+  src:
+    url('../assets/fonts/Acrobat/Akrobat-Thin.woff2') format('woff2'),
+    url('../assets/fonts/Acrobat/Akrobat-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Akrobat';
+  src:
+    url('../assets/fonts/Acrobat/Akrobat-ExtraLight.woff2') format('woff2'),
+    url('../assets/fonts/Acrobat/Akrobat-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Akrobat';
+  src:
+    url('../assets/fonts/Acrobat/Akrobat-Light.woff2') format('woff2'),
+    url('../assets/fonts/Acrobat/Akrobat-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Akrobat';
+  src:
+    url('../assets/fonts/Acrobat/Akrobat-Regular.woff2') format('woff2'),
+    url('../assets/fonts/Acrobat/Akrobat-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Akrobat';
+  src:
+    url('../assets/fonts/Acrobat/Akrobat-SemiBold.woff2') format('woff2'),
+    url('../assets/fonts/Acrobat/Akrobat-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Akrobat';
+  src:
+    url('../assets/fonts/Acrobat/Akrobat-Bold.woff2') format('woff2'),
+    url('../assets/fonts/Acrobat/Akrobat-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Akrobat';
+  src:
+    url('../assets/fonts/Acrobat/Akrobat-ExtraBold.woff2') format('woff2'),
+    url('../assets/fonts/Acrobat/Akrobat-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Akrobat';
+  src:
+    url('../assets/fonts/Acrobat/Akrobat-Black.woff2') format('woff2'),
+    url('../assets/fonts/Acrobat/Akrobat-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* FONTS - ALaRuss
+ * Вторичный шрифт для заголовков
+ */
+@font-face {
+  font-family: 'ALaRuss';
+  src:
+    url('../assets/fonts/Alaruss/ALaRuss.woff2') format('woff2'),
+    url('../assets/fonts/Alaruss/alaruss.ttf') format('truetype'),
+    url('../assets/fonts/Alaruss/ALaRuss.eot') format('embedded-opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

@@ -1,0 +1,55 @@
+//- Миксин галереи с поддержкой фото и видео
+//- props: { items: [], galleryId: string }
+//- items может содержать:
+//-   - строки (пути к изображениям): 'assets/img/photo.jpg'
+//-   - объекты для изображений: { type: 'image', src: 'assets/img/photo.jpg', alt: '...', caption: '...' }
+//-   - объекты для видео: { type: 'video', url: '...', preview: '...', previewVideo: '...' }
+//- galleryId - уникальный ID для группировки fancybox (обязателен, если на странице несколько галерей)
+//-
+//- Пример использования:
+//-   +Gallery({
+//-     items: [
+//-       'assets/img/photo1.jpg',
+//-       { type: 'image', src: 'assets/img/photo2.jpg', alt: 'Описание', caption: 'Подпись' },
+//-       { type: 'video', url: 'https://rutube.ru/play/embed/...', preview: 'assets/img/video-preview.jpg', previewVideo: 'assets/video/preview.mp4' }
+//-     ],
+//-     galleryId: 'project-gallery'
+//-   })
+mixin Gallery(props)
+  - const {items = [], galleryId = null} = props
+  - const uniqueId = galleryId || 'gallery-default'
+  - const fancyboxGroup = uniqueId
+  
+  .gallery(data-gallery-id=uniqueId)
+    .gallery_swiper.gallery-swiper
+      .gallery_swiper-wrapper.swiper-wrapper
+        each item, index in items
+          - const isString = typeof item === 'string'
+          - const itemType = isString ? 'image' : (item.type || 'image')
+          - const itemSrc = isString ? item : (item.src || item.url || item.preview || '')
+          
+          .gallery_slide.swiper-slide
+            if itemType === 'video'
+              - const videoUrl = item.url || item.src || ''
+              - const preview = item.preview || itemSrc
+              - const previewVideo = item.previewVideo || ''
+              +CardVideoReview({
+                url: videoUrl,
+                preview: preview,
+                previewVideo: previewVideo
+              })(class='gallery_item gallery_item--video', data-modal='video-player-modal')
+            else
+              a.gallery_item.gallery_item--image(href=itemSrc, data-fancybox=fancyboxGroup, data-caption=item.caption || '')
+                img.gallery_item-img(src=itemSrc, alt=item.alt || `Gallery image ${index + 1}`, loading="lazy")
+    
+    // Навигация для swiper
+    .gallery_nav
+      .swiper_nav
+        +BtnIcon({
+          icon: 'assets/img/arrow_left.svg',
+          styles: ['swiper_nav--light', 'lg']
+        })(class='swiper_nav_item-prev gallery_nav-prev')
+        +BtnIcon({
+          icon: 'assets/img/arrow_right.svg',
+          styles: ['swiper_nav--light', 'lg']
+        })(class='swiper_nav_item-next gallery_nav-next')

@@ -1,0 +1,31 @@
+$block: 'recvizity';
+
+.#{$block} {
+  width: 100%;
+
+  &_items {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid $prime;
+  }
+
+  &_item {
+    display: table-row;
+
+    &_label,
+    &_value {
+      display: table-cell;
+      padding: 7px 10px;
+      border: 1px solid $prime;
+      vertical-align: top;
+    }
+
+    &_label {
+      font-weight: 500;
+    }
+
+    &_value {
+    }
+  }
+}

@@ -1,0 +1,279 @@
+//- Карточка комнаты (вертикальная): фото, название, описание, параметры, кнопка
+//- @param {object} room - { title, description, img, imgAlt, params: [{ icon, text }], link }
+mixin RoomCard(room)
+  article.room-card
+    .room-card_img
+      a.room-card_img-link(href=room.link)
+        img(src=room.img, alt=room.imgAlt || room.title)
+    .room-card_content
+      h2.room-card_title
+        a.room-card_title-link(href=room.link)= room.title
+      if room.description
+        p.room-card_description= room.description
+      if room.params && room.params.length
+        ul.room-card_params
+          each param in room.params
+            li.room-card_param
+              if param.icon
+                img.room-card_param-icon(src=param.icon, alt="")
+              span.room-card_param-text= param.text
+      .room-card_actions
+        +Button('Подробнее', ['primary', 'md'])(href=room.link)
+
+//- Карточка комнаты (горизонтальная, альт): медиа слева, контент справа
+//- @param {object} room - тот же формат, что и у RoomCard
+mixin RoomCardAlt(room)
+  article.room-card-alt
+    .room-card-alt_media
+      a.room-card-alt_media-link(href=room.link)
+        img.room-card-alt_media-img(src=room.img, alt=room.imgAlt || room.title)
+    .room-card-alt_body
+      .room-card-alt_main
+        h2.room-card-alt_title
+          a.room-card-alt_title-link(href=room.link)= room.title
+        if room.description
+          p.room-card-alt_description= room.description
+      .room-card-alt_aside
+        if room.params && room.params.length
+          ul.room-card-alt_params
+            each param in room.params
+              li.room-card-alt_param
+                if param.icon
+                  img.room-card-alt_param-icon(src=param.icon, alt="")
+                span.room-card-alt_param-text= param.text
+        .room-card-alt_actions
+          +Button('Подробнее', ['secondary', 'md'])(href=room.link)
+
+//- Миксин секции «Хоромы» — разводящая страница по комнатам
+//- @param {array} items - массив комнат: { title, description, img, imgAlt, params: [{ icon, text }], link }
+mixin Rooms(props = {})
+  -
+    const defaultItems = [
+      {
+        title: 'Кедровая парная',
+        description: 'Общая баня с кедровой отделкой и мягким паром. Идеально для компании друзей.',
+        img: 'assets/img/ch-1.webp',
+        imgAlt: 'Кедровая парная',
+        params: [
+          { icon: 'assets/img/location.svg', text: 'Общая баня' },
+          { icon: 'assets/img/calendar.svg', text: 'до 8 гостей' }
+        ],
+        link: '#'
+      },
+      {
+        title: 'Глиняная парная',
+        description: 'Индивидуальная баня с глиняными стенами и особым микроклиматом.',
+        img: 'assets/img/ch-2.jpg',
+        imgAlt: 'Глиняная парная',
+        params: [
+          { icon: 'assets/img/location.svg', text: 'Индивидуальная баня' },
+          { icon: 'assets/img/calendar.svg', text: 'до 4 гостей' }
+        ],
+        link: '#'
+      },
+      {
+        title: 'СЬЮТ «СИЛА»',
+        description: 'Просторный сьют с собственной парной и зоной отдыха для приватного отдыха.',
+        img: 'assets/img/ch-3.jpg',
+        imgAlt: 'СЬЮТ «СИЛА»',
+        params: [
+          { icon: 'assets/img/location.svg', text: 'Индивидуальная баня' },
+          { icon: 'assets/img/calendar.svg', text: 'до 6 гостей' }
+        ],
+        link: '#'
+      },
+      {
+        title: 'Сеновал',
+        description: 'Уютная баня в духе русской деревни с ароматом сена и натуральными материалами.',
+        img: 'assets/img/ch-4.jpg',
+        imgAlt: 'Сеновал',
+        params: [
+          { icon: 'assets/img/location.svg', text: 'Индивидуальная баня' },
+          { icon: 'assets/img/calendar.svg', text: 'до 4 гостей' }
+        ],
+        link: '#'
+      },
+      {
+        title: '3D-хаммам',
+        description: 'Современный хаммам с объёмной подсветкой и мозаикой для полного релакса.',
+        img: 'assets/img/ch-alt-1.webp',
+        imgAlt: '3D-хаммам',
+        params: [
+          { icon: 'assets/img/location.svg', text: 'Индивидуальная баня' },
+          { icon: 'assets/img/calendar.svg', text: 'до 4 гостей' }
+        ],
+        link: '#'
+      },
+      {
+        title: 'Комната диковин',
+        description: 'Необычное пространство с коллекцией редкостей и атмосферой путешествий.',
+        img: 'assets/img/ch-alt-2.webp',
+        imgAlt: 'Комната диковин',
+        params: [
+          { icon: 'assets/img/location.svg', text: 'Индивидуальная баня' },
+          { icon: 'assets/img/calendar.svg', text: 'до 4 гостей' }
+        ],
+        link: '#'
+      },
+      {
+        title: 'Купель',
+        description: 'Общая зона с купелью для охлаждения после парной и общения.',
+        img: 'assets/img/ch-alt-3.jpg',
+        imgAlt: 'Купель',
+        params: [
+          { icon: 'assets/img/location.svg', text: 'Общая баня' },
+          { icon: 'assets/img/calendar.svg', text: 'без ограничений' }
+        ],
+        link: '#'
+      },
+      {
+        title: 'Традиционная русская кухня',
+        description: 'Ресторан с блюдами русской кухни и уютной атмосферой хором.',
+        img: 'assets/img/rest-bg.webp',
+        imgAlt: 'Традиционная русская кухня',
+        params: [
+          { icon: 'assets/img/location.svg', text: 'Ресторан' },
+          { icon: 'assets/img/calendar.svg', text: 'бронирование столов' }
+        ],
+        link: '#'
+      }
+    ];
+    const items = props.items !== undefined ? props.items : defaultItems;
+
+  .rooms
+    ul.rooms_list
+      each room in items
+        li.rooms_item
+          +RoomCard(room)
+
+//- Альтернативный вариант секции «Хоромы» — горизонтальные карточки (медиа слева, контент справа)
+//- @param {array} items - массив комнат (тот же формат, что и у Rooms)
+mixin RoomsAlt(props = {})
+  -
+    const defaultItemsAlt = [
+      {
+        title: 'Кедровая парная',
+        description: 'Общая баня с кедровой отделкой и мягким паром. Идеально для компании друзей.',
+        img: 'assets/img/ch-1.webp',
+        imgAlt: 'Кедровая парная',
+        params: [
+          { icon: 'assets/img/location.svg', text: 'Общая баня' },
+          { icon: 'assets/img/calendar.svg', text: 'до 8 гостей' }
+        ],
+        link: '#'
+      },
+      {
+        title: 'Глиняная парная',
+        description: 'Индивидуальная баня с глиняными стенами и особым микроклиматом.',
+        img: 'assets/img/ch-2.jpg',
+        imgAlt: 'Глиняная парная',
+        params: [
+          { icon: 'assets/img/location.svg', text: 'Индивидуальная баня' },
+          { icon: 'assets/img/calendar.svg', text: 'до 4 гостей' }
+        ],
+        link: '#'
+      },
+      {
+        title: 'СЬЮТ «СИЛА»',
+        description: 'Просторный сьют с собственной парной и зоной отдыха для приватного отдыха.',
+        img: 'assets/img/ch-3.jpg',
+        imgAlt: 'СЬЮТ «СИЛА»',
+        params: [
+          { icon: 'assets/img/location.svg', text: 'Индивидуальная баня' },
+          { icon: 'assets/img/calendar.svg', text: 'до 6 гостей' }
+        ],
+        link: '#'
+      },
+      {
+        title: 'Сеновал',
+        description: 'Уютная баня в духе русской деревни с ароматом сена и натуральными материалами.',
+        img: 'assets/img/ch-4.jpg',
+        imgAlt: 'Сеновал',
+        params: [
+          { icon: 'assets/img/location.svg', text: 'Индивидуальная баня' },
+          { icon: 'assets/img/calendar.svg', text: 'до 4 гостей' }
+        ],
+        link: '#'
+      },
+      {
+        title: '3D-хаммам',
+        description: 'Современный хаммам с объёмной подсветкой и мозаикой для полного релакса.',
+        img: 'assets/img/ch-alt-1.webp',
+        imgAlt: '3D-хаммам',
+        params: [
+          { icon: 'assets/img/location.svg', text: 'Индивидуальная баня' },
+          { icon: 'assets/img/calendar.svg', text: 'до 4 гостей' }
+        ],
+        link: '#'
+      },
+      {
+        title: 'Комната диковин',
+        description: 'Необычное пространство с коллекцией редкостей и атмосферой путешествий.',
+        img: 'assets/img/ch-alt-2.webp',
+        imgAlt: 'Комната диковин',
+        params: [
+          { icon: 'assets/img/location.svg', text: 'Индивидуальная баня' },
+          { icon: 'assets/img/calendar.svg', text: 'до 4 гостей' }
+        ],
+        link: '#'
+      },
+      {
+        title: 'Купель',
+        description: 'Общая зона с купелью для охлаждения после парной и общения.',
+        img: 'assets/img/ch-alt-3.jpg',
+        imgAlt: 'Купель',
+        params: [
+          { icon: 'assets/img/location.svg', text: 'Общая баня' },
+          { icon: 'assets/img/calendar.svg', text: 'без ограничений' }
+        ],
+        link: '#'
+      },
+      {
+        title: 'Традиционная русская кухня',
+        description: 'Ресторан с блюдами русской кухни и уютной атмосферой хором.',
+        img: 'assets/img/rest-bg.webp',
+        imgAlt: 'Традиционная русская кухня',
+        params: [
+          { icon: 'assets/img/location.svg', text: 'Ресторан' },
+          { icon: 'assets/img/calendar.svg', text: 'бронирование столов' }
+        ],
+        link: '#'
+      }
+    ];
+    const itemsAlt = props.items !== undefined ? props.items : defaultItemsAlt;
+
+  .rooms.rooms--alt
+    ul.rooms-alt_list
+      each room in itemsAlt
+        li.rooms-alt_item
+          +RoomCardAlt(room)
+
+//- Секция «Другие хоромы» — свайпер с карточками комнат (для страницы одной комнаты)
+//- @param {array} items - массив комнат (тот же формат, что и у RoomCard)
+//- @param {string} title - заголовок секции
+mixin RoomsSwiper(props = {})
+  -
+    const items = props.items || [];
+    const title = props.title || 'Другие хоромы';
+  if items.length
+    section.section.section--room-other(data-aos="fade-up", data-aos-duration="1000")
+      .container.section_container
+        +SectionTitle({
+          title,
+          size: 'lg',
+          type: 'center'
+        })
+      .room-other_content.container
+        .room-other_items
+          each room in items
+            .room-other_item
+              +RoomCard(room)
+        .swiper_nav.room-other_nav
+          +BtnIcon({
+            icon: 'assets/img/arrow_left.svg',
+            styles: ['swiper_nav--light', 'lg']
+          })(class='swiper_nav_item-prev room-other_nav-prev')
+          +BtnIcon({
+            icon: 'assets/img/arrow_right.svg',
+            styles: ['swiper_nav--light', 'lg']
+          })(class='swiper_nav_item-next room-other_nav-next')

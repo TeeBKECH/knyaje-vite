@@ -1,0 +1,29 @@
+// CTA Form
+section.cta(class=page.page_class === 'contacts' ? 'cta--contacts' : '', data-aos="fade-up", data-aos-duration="1000")
+  if (page.page_class !== 'contacts')
+    .cta_bg
+      img(src='assets/img/cta-bg.webp', alt='CTA')
+      .cta_bg_overlay
+  .container.cta_container
+    .cta_content
+      if (page.page_class === 'contacts')
+        h2.cta_title.title.title-h2 Форма обратной связи
+      else
+        h2.cta_title.title.title-h2 Закрытие комплекса<br />под ваше мероприятие
+    .cta_form
+      form.form(action="#")
+        .form_controls
+          .form_control
+            input.form_input(type='text', name='name', placeholder='Ваше имя...', )
+          .form_control
+            input.form_input.form_input-tel(type='tel', name='tel', placeholder='+7 (___) ___-__-__',)
+          .form_control
+            +Button('Заказать Звонок', ['secondary', 'lg', 'fw'], 'submit')(class='form_submit')
+        .form_controls.form_controls--alt
+          .form_control
+            label.form_privacy
+              input.form_privacy-checkbox(type='checkbox', name='privacy', required)
+              span.form_privacy-text
+                | Я согласен(а) с 
+                a(href='privacy.html') политикой конфиденциальности
+                |  и даю согласие на обработку персональных данных

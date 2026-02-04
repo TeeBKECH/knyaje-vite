@@ -1,0 +1,601 @@
+.intro {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 140px 0 40px;
+  overflow: hidden; // Обрезаем фон, чтобы он не выходил за пределы интро блока
+  $intro: &;
+
+  @include respond-to(lg) {
+    padding: 72px 0 90px;
+    // Используем реальную высоту viewport вместо 100vh
+    min-height: calc(var(--vh, 1vh) * 100);
+  }
+
+  &_bg {
+    width: 100%;
+    height: 100%;
+    position: absolute; // Absolute позиционирование для правильной обрезки
+    left: 0;
+    top: 0;
+    z-index: 1;
+    overflow: hidden; // Обрезаем фон, чтобы он не выходил за пределы интро блока
+
+    &_img {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+      will-change: transform;
+
+      img {
+        width: 100%;
+        height: 120%; // Увеличиваем высоту для параллакс эффекта
+        object-fit: cover;
+        position: absolute;
+        top: -10%; // Центрируем увеличенное изображение
+        left: 0;
+      }
+
+      video {
+        position: absolute;
+        top: -10%; // Центрируем увеличенное видео
+        left: 0;
+        width: 100%;
+        height: 120%; // Увеличиваем высоту для параллакс эффекта
+        object-fit: cover;
+      }
+
+      iframe {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        min-width: 100%;
+        min-height: 100%;
+        transform: translate(-50%, -50%);
+        border: none;
+        pointer-events: none;
+      }
+    }
+
+    &_overlay {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+
+      &--radial {
+        background: radial-gradient(rgba($second, 0), rgba($second, 0.2));
+      }
+
+      &--fill {
+        background: rgba($second, 0.7);
+      }
+    }
+  }
+
+  &_container {
+    position: relative;
+    z-index: 10;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: space-between; // распределяем пространство
+    width: 100%;
+
+    @include respond-to(lg) {
+      gap: 32px;
+    }
+  }
+
+  &_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    width: 100%;
+    max-width: 1400px;
+    flex: 1;
+    text-align: center;
+    margin: auto 0;
+
+    @include respond-to(lg) {
+      max-width: unset;
+      gap: 20px;
+    }
+
+    @include respond-to(md) {
+      gap: 16px;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+
+      li {
+        font-size: 18px;
+        font-weight: 500;
+        color: $second;
+        line-height: 1.3;
+        padding-left: 20px;
+        position: relative;
+
+        &::before {
+          content: '';
+          display: block;
+          width: 8px;
+          height: 8px;
+          background: $dark-gold;
+          border-radius: 50%;
+          position: absolute;
+          top: 9px;
+          left: 0;
+        }
+      }
+    }
+
+    &--alt {
+      max-width: unset;
+    }
+  }
+
+  &_logo {
+    @include respond-to(lg) {
+      display: none;
+    }
+  }
+
+  &_title {
+    text-align: center;
+    margin-bottom: 0;
+
+    &-h1 {
+      letter-spacing: 2px;
+      font-size: 80px;
+      font-weight: 800;
+      line-height: 1.1;
+      color: $prime;
+
+      @include respond-to(xl) {
+        font-size: 64px;
+      }
+
+      @include respond-to(lg) {
+        font-size: 52px;
+      }
+
+      @include respond-to(md) {
+        font-size: 36px;
+        letter-spacing: 1px;
+      }
+    }
+
+    span {
+      opacity: 0.6;
+    }
+  }
+
+  &_text {
+    p {
+      font-size: 20px;
+      font-weight: 400;
+      color: rgba($second, 0.9);
+      text-transform: none;
+      line-height: 1.5;
+      text-align: center;
+      letter-spacing: 0.5px;
+      margin-top: -8px;
+
+      @include respond-to(md) {
+        font-size: 16px;
+        margin-top: -4px;
+      }
+    }
+  }
+
+  &_description {
+    font-size: 26px;
+    color: rgba($second, 0.9);
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-align: center;
+    margin-top: -8px;
+    line-height: 1.5;
+    font-family: $font-main;
+
+    @include respond-to(lg) {
+      font-size: 22px;
+    }
+
+    @include respond-to(md) {
+      font-size: 18px;
+      margin-top: -4px;
+    }
+  }
+
+  &_features {
+    width: 100%;
+    margin-top: 24px;
+
+    @include respond-to(lg) {
+      margin-top: 20px;
+    }
+
+    @include respond-to(md) {
+      margin-top: 16px;
+    }
+
+    &_list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+
+      @include respond-to(lg) {
+        gap: 20px;
+      }
+
+      @include respond-to(md) {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      @include respond-to(sm) {
+        gap: 8px;
+      }
+
+      // Если 4 элемента, используем 4 колонки
+      &:has(.intro_features_item:nth-child(4)) {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 1400px;
+
+        @include respond-to(lg) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include respond-to(md) {
+          grid-template-columns: 1fr;
+        }
+      }
+    }
+
+    &_item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 24px 20px;
+      background: rgba($prime, 0.05);
+      border: 1px solid rgba($prime, 0.15);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+
+      @include respond-to(lg) {
+        padding: 20px 16px;
+        border-radius: 12px;
+      }
+
+      @include respond-to(md) {
+        padding: 16px 12px;
+      }
+
+      @include respond-to(sm) {
+        padding: 12px 8px;
+        border-radius: 8px;
+      }
+
+      @include onlyDescHover() {
+        &:hover {
+          background: rgba($prime, 0.08);
+          border-color: rgba($light-gold, 0.3);
+          transform: translateY(-2px);
+        }
+      }
+    }
+
+    &_label {
+      color: $light-gold;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 1.3;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      width: 100%;
+
+      @include respond-to(lg) {
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+
+      @include respond-to(md) {
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+    }
+
+    &_value {
+      color: rgba($prime, 0.95);
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.6;
+      width: 100%;
+
+      @include respond-to(lg) {
+        font-size: 15px;
+        line-height: 1.5;
+      }
+
+      @include respond-to(md) {
+        font-size: 14px;
+      }
+    }
+  }
+
+  &_actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    margin-top: 20px;
+
+    @include respond-to(lg) {
+      margin-top: 24px;
+      gap: 12px;
+    }
+
+    &-group {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
+
+      @include respond-to(md) {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+      }
+
+      .button {
+        @include respond-to(md) {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  &_footer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 0;
+    padding-top: 20px;
+    flex-shrink: 0;
+
+    @include respond-to(lg) {
+      padding-top: 16px;
+    }
+
+    @include respond-to(md) {
+      padding-top: 12px;
+    }
+
+    &_left {
+      display: flex;
+      justify-content: center;
+    }
+
+    &_right {
+      display: none;
+    }
+  }
+
+  &--main {
+    #{$intro}_footer {
+      @include respond-to(lg) {
+        justify-content: center;
+      }
+    }
+
+    #{$intro}_actions {
+      @include respond-to(lg) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  &--alt {
+    min-height: 440px;
+
+    @include respond-to(md) {
+      padding-bottom: 32px;
+    }
+
+    #{$intro}_container {
+      gap: 32px;
+    }
+
+    #{$intro}_content {
+      align-items: flex-start;
+      max-width: unset;
+      padding-top: 24px;
+      gap: 32px;
+
+      @include respond-to(lg) {
+        justify-content: center;
+      }
+    }
+
+    #{$intro}_title {
+      text-align: left;
+    }
+
+    #{$intro}_footer {
+      @include respond-to(lg) {
+        justify-content: flex-start;
+      }
+    }
+  }
+
+  // Эффект дыма/пара
+  &_smoke-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+    overflow: hidden;
+  }
+
+  &_smoke-particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    will-change: transform, opacity, width, height;
+    mix-blend-mode: screen;
+
+    @media (prefers-reduced-motion: reduce) {
+      display: none;
+    }
+  }
+
+  // Интро с опциональным лейблом над заголовком
+  &--labeled {
+    #{$intro}_content {
+      gap: 24px;
+      justify-content: center;
+
+      @include respond-to(lg) {
+        gap: 20px;
+      }
+
+      @include respond-to(md) {
+        gap: 16px;
+      }
+    }
+
+    #{$intro}_label {
+      font-size: 18px;
+      font-weight: 500;
+      color: $prime;
+      text-transform: uppercase;
+
+      @include respond-to(lg) {
+      }
+
+      @include respond-to(md) {
+        font-size: 14px;
+      }
+    }
+
+    #{$intro}_title {
+      margin-bottom: 0;
+    }
+
+    #{$intro}_footer {
+      justify-content: center;
+    }
+
+    #{$intro}_arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      // background: rgba($prime, 0.1);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba($prime, 0.1);
+      color: $prime;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba($prime, 0.2);
+
+      @include respond-to(md) {
+        width: 50px;
+        height: 50px;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba($prime, 0.2);
+        transform: translate(-50%, -50%);
+        transition:
+          width 0.3s ease,
+          height 0.3s ease;
+      }
+
+      &:hover {
+        background: rgba($prime, 0.2);
+        border-color: rgba($prime, 0.4);
+        transform: translateY(4px);
+
+        &::before {
+          width: 100%;
+          height: 100%;
+        }
+
+        .intro_arrow-icon {
+          animation: none;
+          transform: translateY(4px);
+        }
+      }
+
+      &:active {
+        transform: translateY(2px);
+      }
+    }
+
+    #{$intro}_arrow-icon {
+      width: 32px;
+      height: 32px;
+      position: relative;
+      z-index: 1;
+      transition: transform 0.3s ease;
+      animation: arrowBounce 2s ease-in-out infinite;
+
+      @include respond-to(md) {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+}
+
+@keyframes arrowBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}

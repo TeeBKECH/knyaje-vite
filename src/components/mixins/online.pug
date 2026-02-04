@@ -1,0 +1,8 @@
+mixin OnlineRow(props)
+  - const {time, closed, choosen} = props
+  .online-grid__row
+    .online-grid__col.online-grid__col--time
+      span.online-grid__col-text= time
+    - for (let i = 1; i < 10; i++)
+      .online-grid__col(class=`${closed === i ? 'online-grid__col--closed' : choosen === i ? 'online-grid__col--choosen' : ''}`)
+        span.online-grid__col-text= i

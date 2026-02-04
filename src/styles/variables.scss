@@ -1,0 +1,24 @@
+// Цветовая схема банного комплекса "Княже"
+// Основные цвета
+$prime: #fcf5ed;
+$second: #101010;
+$dark-gold: #402e00;
+$light-gold: #b99b4f;
+
+// Размеры контейнеров и отступов
+$container-width: 1720px;
+$container-padding: 20px;
+$spacing-unit: 40px;
+
+// Breakpoints для адаптивности
+$breakpoint-xs: 400px;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-xl-2: 1400px;
+$breakpoint-xl-3: 1600px;
+
+// Шрифты
+$font-main: 'Akrobat', sans-serif;
+$font-secondary: 'ALaRuss', sans-serif;

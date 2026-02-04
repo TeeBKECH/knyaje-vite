@@ -1,0 +1,12 @@
+mixin Stars(props)
+  - const {type = '', text = '', count = 5, countTotal = 5, name = '', size = 'md'} = props
+  - let i = 0;
+  .stars(class=`stars--${size}${type === 'js' ? ' stars--js' : ''}`, data-review-stars=count)&attributes(attributes)
+    .stars_items
+      while i < countTotal
+        .stars_item(class=`stars_item-${count > i ? 'fill' : ''}`)
+        - i++
+    if (text)
+      p.stars_text= text
+  if (type === 'js')
+    input(type='hidden', name=name)

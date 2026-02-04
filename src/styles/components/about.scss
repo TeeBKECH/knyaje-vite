@@ -1,0 +1,102 @@
+.about {
+  $about: &;
+
+  &_content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+
+    @include respond-to(xl) {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    @include respond-to(lg) {
+      gap: 18px;
+    }
+  }
+
+  &_img {
+    aspect-ratio: 1.4 / 1;
+    overflow: hidden;
+    border-radius: 20px;
+    position: relative;
+
+    @include respond-to(xl) {
+      max-width: 550px;
+    }
+
+    // Первая обводка: градиент с прозрачного белого на белый сверху вниз (24% прозрачность)
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &_body {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    @include respond-to(lg) {
+      gap: 32px;
+    }
+  }
+
+  &_text {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    @include respond-to(md) {
+      gap: 12px;
+    }
+
+    &-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    &-more {
+      background: none;
+      width: fit-content;
+      outline: none;
+      border: none;
+      color: $prime;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: calc(32 / 18);
+      color: $prime;
+      font-family: $font-secondary;
+      font-weight: 450;
+
+      @include respond-to(md) {
+        font-size: 16px;
+        line-height: calc(24 / 16);
+      }
+    }
+  }
+
+  &_footer {
+    @include respond-to(lg) {
+      display: flex;
+    }
+
+    &-action {
+      @include respond-to(sm) {
+        width: 100%;
+      }
+      .btn {
+        @include respond-to(sm) {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

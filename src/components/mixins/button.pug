@@ -1,0 +1,19 @@
+mixin Btn(text = 'Текст кнопки', styles = ['default'], type = 'button')
+  - let classes = ''
+  each item in styles
+    - classes+= ` btn--${item}`
+  button(type=type, class=`btn${classes}`)&attributes(attributes)
+    span= text
+
+mixin BtnIcon(props)
+  - const {icon = '', type = 'button', styles = ['default']} = props
+  - let classes = ' btn--icon'
+  each item in styles
+    - classes+= ` btn--${item}`
+  button(type=type, class=`btn${classes}`)&attributes(attributes)
+    img(src=icon, alt="Btn Icon")
+
+mixin BtnQuiz(text = 'Текст кнопки', type = 'next')
+  button(type='button', class=`btn btn--${type === 'next' ? 'default' : 'outlined'} btn--${type === 'next' ? 'arrow-right' : 'arrow-left'} btn--md btn__quiz btn__quiz--${type}`)&attributes(attributes)
+    span= text
+      

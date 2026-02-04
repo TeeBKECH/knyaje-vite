@@ -1,0 +1,25 @@
+.txt {
+  $txt: &;
+
+  &_line {
+    flex-grow: 1; /* Линия занимает все доступное пространство */
+    height: 1px;
+    background: $second;
+    min-width: 10px; /* Минимальная ширина линии */
+
+    &_wrapper {
+      display: flex;
+      align-items: flex-end;
+      width: 100%;
+      gap: 8px;
+    }
+  }
+
+  &_left,
+  &_right {
+    white-space: nowrap; /* Запрещаем перенос текста */
+    flex-shrink: 0; /* Запрещаем сжатие текста */
+    line-height: 1;
+    color: $prime;
+  }
+}

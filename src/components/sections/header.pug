@@ -1,0 +1,35 @@
+header.header
+  .container.header_container
+    .header_mobile
+      .header_socials
+        +Socials([
+          {icon: 'tg', text: 'Telegram'},
+          {icon: 'vk', text: 'VK'},
+          {icon: 'wa', text: 'WhatsApp'},
+        ])(class='socials--header')
+    .header_left
+      +NavMain()
+    .header_center
+      +Logo({type: 'header'})
+    .header_right
+      .header_contacts
+        .header_contact-item
+          img.header_contact-icon(src="assets/img/location.svg", alt="Адрес")
+          span.header_contact-text Шмитовский проезд 27с1
+        a.header_contact-item(href="tel:+74996476888")
+          img.header_contact-icon(src="assets/img/phone.svg", alt="Телефон")
+          p.header_contact-text +7 (499) 647-68-88
+        .header_socials
+          +Socials([
+            {icon: 'tg', text: 'Telegram'},
+            {icon: 'vk', text: 'VK'},
+            {icon: 'wa', text: 'WhatsApp'}
+          ])(class='socials--header')
+    .header_mobile.header_mobile--right 
+      .header_socials
+        +Socials([
+          {icon: 'pin', text: 'Address'},
+          {icon: 'tel', text: 'Phone'},
+        ])(class='socials--header')
+      +Burger({fn: 'mobile-menu'})
+

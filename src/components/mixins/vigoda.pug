@@ -1,0 +1,56 @@
+mixin VigodaItem(props)
+  -
+    const {
+      title = '', 
+      icon = 'assets/img/svg/vigoda-icon.svg', 
+      commercial = false,
+      deposite = '',
+      discount = '',
+      discount2 = '',
+      postol = '',
+      rifle = '',
+      selfGun = '',
+      nsp = '',
+    } = props
+  .vigoda_item&attributes(attributes)
+    .vigoda_item_bg
+      img(src="assets/img/bg/vigoda-bg.png", alt=title)
+    if (commercial)
+      .vigoda_item_commercial
+        span Рекомендуем
+    .vigoda_item_head
+      img(src=icon, alt=title)
+      span= title
+    .vigoda_item_body
+      .vigoda_item_body_row
+        p Размер депозита:
+        span= deposite
+      .vigoda_item_body_row.vigoda_item_body_row--alt
+        p Скидка:
+        span= discount
+      .vigoda_item_body_row
+        p Сумма скидки:
+        span= discount2
+    .vigoda_item_footer
+      span.vigoda_item_footer_title что можно получить за счет скидки:
+      .vigoda_item_footer_row(class=`${postol ? ' vigoda_item_footer_row--alt' : ''}`)
+        p в патронах пистолетных
+        span= `${postol ? postol : '-'}`
+      p или
+      .vigoda_item_footer_row(class=`${rifle ? ' vigoda_item_footer_row--alt' : ''}`)
+        p в патронах длинноствольных
+        span= `${rifle ? rifle : '-'}`
+      p или
+      .vigoda_item_footer_row(class=`${selfGun ? ' vigoda_item_footer_row--alt' : ''}`)
+        p в посещениях со своим оружием 100 м
+        span= `${selfGun ? selfGun : '-'}`
+      p или
+      .vigoda_item_footer_row(class=`${nsp ? ' vigoda_item_footer_row--alt' : ''}`)
+        p в занятиях НСП
+        span= `${nsp ? nsp : '-'}`
+    .vigoda_item_actions
+      +Button('Подробнее', ['primary', 'md'])(class='vigoda_item-btn')
+      +BtnIcon({
+        icon: `assets/img/svg/icons/cart-2.svg`,
+        styles: ['dg', 'md']
+      })(class='vigoda_item-btn vigoda_item-btn--cart')

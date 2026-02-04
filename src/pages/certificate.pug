@@ -1,0 +1,16 @@
+//- @title: Подарочный сертификат
+//- @description: Подарочный сертификат описание
+//- @page_class: certificate
+extends ../layouts/default.pug
+
+block content
+  +IntroLabeled({
+    bgImg: 'assets/img/cert-bg.webp',
+    label: 'В ПЕРВЫЙ иммерсивный банный комплекс',
+    title: 'ПОДАРОЧНЫЙ СЕРТИФИКАТ',
+  })
+
+  section.section.section--certificate
+    .section_container
+      .section_content
+        #certificate_widget

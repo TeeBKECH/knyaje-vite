@@ -1,0 +1,17 @@
+mixin Socials(items)
+  .socials&attributes(attributes)
+    each item in items
+      - const {icon = '', text = ''} = item
+      a.socials_item(href='#', target='_blank', rel='noopener noreferrer nofollow')
+        .socials_icon
+          img(src=`assets/img/${icon}.svg`, alt=`${text} Icon`)
+        span.socials_text= text
+
+mixin SocialsGold(items)
+  .socials.socials--gold
+    each item in items
+      - const {icon = '', text = ''} = item
+      a.socials_item(href='#', target='_blank', rel='noopener noreferrer nofollow')
+        .socials_icon
+          img(src=`assets/img/${icon}-gold.svg`, alt=`${text} Icon`)
+        span.socials_text= text

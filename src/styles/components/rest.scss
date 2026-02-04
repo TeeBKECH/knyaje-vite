@@ -1,0 +1,7 @@
+.section--rest {
+  padding: 100px 0 120px;
+
+  @include respond-to(lg) {
+    padding: 60px 0 60px;
+  }
+}

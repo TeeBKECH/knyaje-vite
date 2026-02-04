@@ -1,0 +1,49 @@
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.2s ease;
+  $logo: &;
+
+  &_img {
+    width: 100%;
+  }
+
+  &--header {
+    width: 200px;
+
+    @include respond-to(xl-2) {
+      width: 160px;
+    }
+
+    @include respond-to(xl) {
+      width: 120px;
+    }
+
+    .header.scrolled & {
+      width: 80px;
+
+      // @include respond-to(xl) {
+      //   width: 64px;
+      // }
+    }
+  }
+
+  &--intro {
+    width: 300px;
+    @include respond-to(lg) {
+      opacity: 0.6;
+    }
+    img {
+      width: 100%;
+    }
+  }
+
+  &--footer {
+    width: 300px;
+    #{$logo}_img {
+    }
+    #{$logo}_text {
+    }
+  }
+}

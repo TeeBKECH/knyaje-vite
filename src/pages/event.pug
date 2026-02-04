@@ -1,0 +1,41 @@
+//- @title: Мероприятие
+//- @description: Описание страницы Мероприятие
+//- @page_class: event
+extends ../layouts/default.pug
+
+block content
+  +Intro({
+    title: 'ВОЛШЕБНАЯ БАНЯ в «Княже» — портал в мир гармонии и очищения!',
+    breadcrumbs: ['Мероприятия', 'ВОЛШЕБНАЯ БАНЯ в «Княже» — портал в мир гармонии и очищения!']
+  })
+
+  section.section.section--event
+    .container.section_container
+      .event_content
+        .event_img 
+          img(src='assets/img/event.webp', alt='ВОЛШЕБНАЯ БАНЯ в «Княже» — портал в мир гармонии и очищения!')
+        .event_body
+          +Frame()
+            .event_info 
+              .event_title
+                h2.title_h2 ВОЛШЕБНАЯ БАНЯ в «Княже» — портал в мир гармонии и очищения!
+              .event_info_list
+                .event_info_item
+                  span.event_info_item_label Дата:
+                  span.event_info_item_value 3 декабря с 18:00 до 23:00
+                .event_info_item
+                  span.event_info_item_label Место:
+                  span.event_info_item_value «Княже»
+                .event_info_item
+                  span.event_info_item_label Тип:
+                  span.event_info_item_value Волшебная баня
+                .event_info_item
+                  span.event_info_item_label Цена:
+                  span.event_info_item_value 1000 руб.
+              .event_text
+                p Среди суеты будней — оазис тишины и преображения. Здесь пар, звук и движение сплетаются в древний танец очищения души и телаСреди суеты будней — оазис тишины и преображения. Здесь пар, звук и движение сплетаются в древний танец
+                p Среди суеты будней — оазис тишины и преображения. Здесь пар, звук и движение сплетаются в древний танец очищения души и тела
+              .event_actions
+                +Button('Записаться', ['primary', 'lg'])
+                
+  include ../components/sections/events.pug

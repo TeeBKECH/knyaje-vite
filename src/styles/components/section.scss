@@ -1,0 +1,148 @@
+.section {
+  $section: &;
+
+  &_container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    @include respond-to(lg) {
+      gap: 24px;
+    }
+  }
+
+  &_title {
+    display: flex;
+    flex-direction: column;
+    $title: &;
+
+    &--main {
+      color: $prime;
+      text-align: center;
+    }
+
+    &--light {
+      color: $second;
+      text-align: center;
+    }
+
+    &--left {
+      color: $prime;
+    }
+
+    &--center {
+      text-align: center;
+      color: $second;
+    }
+
+    &--md {
+      gap: 11px;
+    }
+
+    &--lg {
+      gap: 16px;
+
+      @include respond-to(lg) {
+        gap: 8px;
+      }
+    }
+  }
+
+  &_subtitle {
+    font-size: 32px;
+    font-weight: 550;
+    font-family: $font-secondary;
+    color: rgba($prime, 0.5);
+
+    @include respond-to(lg) {
+      font-size: 16px;
+    }
+
+    @include respond-to(md) {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: calc(20 / 14);
+    }
+
+    &--main {
+      text-align: center;
+    }
+
+    &--light {
+      text-align: center;
+    }
+
+    &--left {
+    }
+
+    &--center {
+      text-align: center;
+    }
+  }
+
+  &_footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include respond-to(lg) {
+      // display: none;
+    }
+  }
+
+  &--intro {
+    padding: 140px 0 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    @include respond-to(lg) {
+      gap: 24px;
+      padding: 90px 0 30px;
+    }
+
+    #{$section}_title {
+      gap: 16px;
+    }
+  }
+
+  &--events {
+    @include respond-to(lg) {
+    }
+
+    #{$section}_content {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+  }
+
+  &--spa {
+    #{$section}_container {
+      @include respond-to(md) {
+        padding: 0;
+      }
+    }
+  }
+
+  &--benefits {
+    #{$section}_container {
+      @include respond-to(lg) {
+        padding: 0;
+      }
+    }
+  }
+
+  &--room {
+    &-other {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+
+      @include respond-to(lg) {
+        gap: 24px;
+      }
+    }
+  }
+}

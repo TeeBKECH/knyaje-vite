@@ -1,0 +1,16 @@
+mixin Modal(modalId = '', pos = 'top')
+  .modal(id=modalId, class=`modal-${pos}`)&attributes(attributes)
+    .modal_overlay(data-close='')
+    .modal_content
+      if (pos === 'form')
+        .modal_cls(data-close='')
+        block
+      else
+        block
+
+mixin ModalVideoPlayer(modalId = 'video-player-modal')
+  .modal(id=modalId, class='modal-top')&attributes(attributes)
+    .modal_overlay(data-close='')
+    .modal_content
+      .modal_cls(data-close='')
+      .video-player__container

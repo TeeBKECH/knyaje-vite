@@ -1,0 +1,16 @@
+.scroll-to-top {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  z-index: 110;
+  transition: opacity 0.3s ease;
+
+  .button_icon {
+    transform: rotate(-90deg); // стрелка вверх
+  }
+
+  &.hidden-by-scroll {
+    opacity: 0;
+    pointer-events: none;
+  }
+}

@@ -1,0 +1,114 @@
+-
+  const links = [
+    {
+      link: 'Прайс',
+      href: 'price.html',
+      submenu: []
+    },
+    {
+      link: 'Акции',
+      href: 'promotions.html',
+      submenu: []
+    },
+    {
+      link: 'Спа программы',
+      href: 'tsarpalata.html#spa',
+      submenu: []
+    },
+    {
+      link: 'Ресторан',
+      href: 'rest.html',
+      submenu: []
+    },
+    {
+      link: 'Мероприятия',
+      href: 'events.html',
+      submenu: []
+    },
+    {
+      link: 'Сертификаты',
+      href: 'certificate.html',
+      submenu: []
+    },
+  ]
+
+mixin MenuItem(props = {})
+  li.menu_item&attributes(attributes)
+    if (props.href)
+      a.menu_item_link(href=props.href)= props.link
+    else 
+      span.menu_item_link= props.link
+    if (props.submenu && props.submenu.length > 0)
+        span.menu_item_icon
+    if (props.submenu && props.submenu.length > 0)
+      ul.menu-drop
+        each subItem in props.submenu
+          li.menu-drop__item
+            a.menu-drop__link(href=subItem.href)= subItem.link
+
+mixin MenuItemMobile(props = {}, index = 0)
+  - const {link = '', href = '', submenu = []} = props || {}
+  - const hasDrop = submenu && submenu.length > 0
+  - const dropId = hasDrop ? `menu-drop-${index}` : ''
+  li.menu_item(class=hasDrop ? 'menu_item--has-drop' : '')&attributes(attributes)
+    if (href)
+      a.menu_item_link(href=href)= link
+    else
+      span.menu_item_link= link
+    if (hasDrop)
+      ul.menu-drop(id=dropId role="list")
+        each subItem in props.submenu
+          li.menu-drop__item
+            a.menu-drop__link(href=subItem.href)= subItem.link
+    if (hasDrop)
+      button.menu_item_icon(type="button" aria-expanded="false" aria-controls=dropId data-menu-drop-toggle aria-label="Открыть подменю")
+
+mixin NavMain(props = {})
+  - const {items = links} = props
+  nav.nav&attributes(attributes)
+    ul.menu
+      each item, index in items
+        +MenuItem(item)
+        
+mixin NavMobile(props = {})
+  - const {items = links} = props
+  nav.nav--mobile&attributes(attributes)
+    ul.menu--mobile
+      each item, index in items
+        +MenuItemMobile(item, index)
+    .nav_contacts
+      .nav_contacts-list
+        .nav_contacts-item
+          p.nav_contacts-text 123317, Россия, Москва, Шмитовский проезд 27с1
+        .nav_contacts-item
+          p.nav_contacts-text Ежедневно с 10:00 до 23:00
+        .nav_contacts-item
+          p.nav_contacts-text Рядом с комплексом есть бесплатные и платные парковки.
+      +Button('Забронировать', ['secondary', 'md', 'fw'])(data-modal="modal-form" data-modal-action="toggle")
+      +SocialsGold([
+        {
+          icon: 'tg',
+          text: 'Telegram'
+        },
+        {
+          icon: 'vk',
+          text: 'VK'
+        },
+        {
+          icon: 'wa',
+          text: 'WhatsApp'
+        }
+      ])(class='socials--mobile')
+
+mixin NavBottom(props = {})
+  - const {items = []} = props
+  nav.bottom-nav&attributes(attributes)
+    each item, index in items
+      +BottomNavItem(item)
+
+mixin BottomNavItem(props = {})
+  - const {icon = '', text = ''} = props
+  a.bottom-nav_item(href=props.href)
+    .bottom-nav_item-icon
+      img(src=`assets/img/${icon}.svg`, alt=`${text} Icon`)
+    span.bottom-nav_item-label= props.text

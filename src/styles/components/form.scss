@@ -1,0 +1,111 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  $form: &;
+
+  @include respond-to(md) {
+  }
+
+  &_footer {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+
+    @include respond-to(md) {
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+
+  &_privacy {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+
+    &-checkbox {
+      margin-top: 2px;
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      cursor: pointer;
+      accent-color: $second;
+      flex-shrink: 0;
+    }
+
+    &-text {
+      font-size: 14px;
+      font-weight: 350;
+      color: $prime;
+      line-height: 1.4;
+
+      @include respond-to(md) {
+        font-size: 12px;
+        text-align: left;
+      }
+    }
+
+    a {
+      display: inline-block;
+      border-bottom: 1px dotted $second;
+      line-height: 1;
+      color: $prime;
+    }
+  }
+
+  &_controls {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+
+    @include respond-to(md) {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    &--alt {
+      grid-template-columns: 1fr;
+    }
+  }
+  &_control {
+    &--fw {
+      grid-column: 1/3;
+
+      @include respond-to(md) {
+        grid-column: unset;
+      }
+    }
+  }
+  &_input {
+    width: 100%;
+    height: 72px;
+    padding: 17px;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    outline: none;
+    background: $prime;
+    color: $second;
+    font-family: $font-main;
+
+    &::placeholder {
+      color: rgba($second, 0.7);
+    }
+
+    &-text {
+      height: auto;
+      min-height: 120px;
+      resize: vertical;
+      padding: 17px;
+    }
+  }
+
+  &_submit {
+    height: 72px;
+    @include respond-to(md) {
+    }
+  }
+}

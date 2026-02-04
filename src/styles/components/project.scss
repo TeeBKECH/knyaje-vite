@@ -1,0 +1,152 @@
+.project {
+  &_items {
+    display: flex;
+    flex-direction: column;
+    gap: 160px;
+
+    @include respond-to(lg) {
+      gap: 40px;
+    }
+
+    @include respond-to(md) {
+      gap: 24px;
+    }
+  }
+
+  &-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 1fr;
+    gap: 40px;
+
+    @include respond-to(xl) {
+      gap: 24px;
+    }
+
+    @include respond-to(md) {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 16px;
+    }
+
+    &_gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+
+      @include respond-to(xl) {
+        gap: 24px;
+      }
+    }
+
+    &_body {
+      display: flex;
+      flex-direction: column;
+      gap: 80px;
+      padding-top: 24px;
+
+      @include respond-to(md) {
+        gap: 32px;
+      }
+    }
+
+    &_info {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+
+      @include respond-to(md) {
+        gap: 16px;
+      }
+    }
+
+    &_text {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      @include respond-to(md) {
+        gap: 8px;
+      }
+
+      p {
+        font-size: 18px;
+        line-height: calc(28 / 18);
+        color: rgba($light-text, 0.72);
+        font-family: $font-secondary;
+
+        @include respond-to(md) {
+          font-size: 16px;
+          color: $prime;
+          line-height: 1.5;
+          font-weight: 450;
+        }
+      }
+    }
+
+    &_actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+
+      .btn {
+        @include respond-to(md) {
+          width: 100%;
+        }
+      }
+    }
+
+    &_title {
+      color: $prime;
+    }
+
+    &_tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+
+      &_item {
+        display: inline-block;
+        font-size: 14px;
+        font-family: $font-secondary;
+        font-weight: 600;
+        color: $prime;
+        padding: 4px 12px;
+        border-radius: 30px;
+        border: 1px solid $second;
+      }
+    }
+  }
+
+  &-comment {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    @include respond-to(md) {
+      gap: 16px;
+    }
+
+    &_title {
+      color: $prime;
+      text-transform: uppercase;
+    }
+  }
+
+  &-video-review {
+    width: 100%;
+    max-width: 200px;
+
+    @include respond-to(sm) {
+      max-width: unset;
+    }
+
+    .play {
+      width: 60px;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,66 @@
+.faq {
+  display: flex;
+  align-items: center;
+  $faq: &;
+
+  &_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+
+    @include respond-to(xl) {
+      grid-template-columns: 1fr;
+    }
+
+    @include respond-to(lg) {
+      gap: 24px;
+    }
+  }
+
+  &_content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    @include respond-to(xl) {
+      gap: 24px;
+    }
+
+    @include respond-to(lg) {
+      gap: 16px;
+    }
+  }
+
+  &_items {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgba(#bfbfbf, 0.4);
+  }
+
+  &_title {
+    color: $prime;
+  }
+
+  &_text {
+    p {
+      font-size: 18px;
+      font-weight: 550;
+      line-height: calc(28 / 18);
+      color: $prime;
+      font-family: $font-secondary;
+
+      @include respond-to(md) {
+        font-size: 16px;
+        font-weight: 450;
+        line-height: 1.5;
+        color: $prime;
+      }
+
+      br {
+        @include respond-to(md) {
+          display: none;
+        }
+      }
+    }
+  }
+}

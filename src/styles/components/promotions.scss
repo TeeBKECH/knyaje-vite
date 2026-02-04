@@ -1,0 +1,35 @@
+.section--promotions {
+  padding: 0;
+  $section_promotions: &;
+
+  #{$section_promotions}_content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    @include respond-to(md) {
+      gap: 24px;
+    }
+  }
+
+  .promotions_grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    width: 100%;
+
+    @include respond-to(xl) {
+      gap: 32px;
+    }
+
+    @include respond-to(lg) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    @include respond-to(md) {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+}

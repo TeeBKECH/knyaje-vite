@@ -1,0 +1,23 @@
+.widget {
+  width: fit-content;
+  position: sticky;
+  top: 110px;
+  width: 100%;
+
+  @include respond-to(md) {
+  }
+
+  &-title {
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: $light-gold;
+    line-height: 1;
+    text-align: center;
+    margin-bottom: 12px;
+
+    @include respond-to(xl) {
+      font-size: 20px;
+    }
+  }
+}

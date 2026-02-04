@@ -1,0 +1,62 @@
+.tsarpalata {
+  &-intro {
+    &_content {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    &_text {
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    &_body {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      padding: 60px;
+
+      @include respond-to(lg) {
+        padding: 40px;
+        gap: 24px;
+      }
+
+      @include respond-to(md) {
+        padding: 32px 20px;
+        gap: 20px;
+      }
+    }
+
+    &_features {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      @include respond-to(md) {
+        gap: 12px;
+      }
+    }
+
+    &_feature {
+      font-size: 18px;
+      line-height: 1.6;
+      color: rgba($prime, 0.9);
+
+      @include respond-to(md) {
+        font-size: 16px;
+      }
+    }
+
+    &_actions {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+
+      @include respond-to(md) {
+        flex-direction: column;
+        gap: 16px;
+      }
+    }
+  }
+}

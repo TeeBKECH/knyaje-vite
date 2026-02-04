@@ -1,0 +1,49 @@
+//- @title: Страница Шаблонная
+//- @description: Страница Шаблонная описание
+//- @page_class: single
+extends ../layouts/default.pug
+
+block content
+  +Intro({
+    title: 'Страница Шаблонная',
+    breadcrumbs: ['Страница Шаблонная']
+  })
+
+  section.section.section--single
+    .container.single_container
+      .single_content
+        .single_preview
+          img(src="assets/img/rest-bg.webp", alt="Страница Шаблонная")
+        h2 Общие положения
+        p Настоящая политика обработки персональных данных составлена в соответствии с требованиями Федерального закона от 27.07.2006. № 152-ФЗ «О персональных данных» (далее — Закон о персональных данных) и определяет порядок обработки персональных данных и меры по обеспечению безопасности персональных данных, предпринимаемые Индивидуальный предприниматель Кострицкая Оксана Алексеевна (далее — Оператор).
+
+        +Frame()
+          .single_text
+            h2 Какой-то заголовок h2 в блоке текста с обрамлением
+            p Настоящая политика обработки персональных данных составлена в соответствии с требованиями Федерального закона от 27.07.2006. № 152-ФЗ «О персональных данных» (далее — Закон о персональных данных) и определяет порядок обработки персональных данных и меры по обеспечению безопасности персональных данных, предпринимаемые Индивидуальный предприниматель Кострицкая Оксана Алексеевна (далее — Оператор).
+        h2 Еще какой-то заголовок
+        p Lorem ipsum dolor sit amet 
+          a(href="#") consectetur adipisicing 
+          | elit. Delectus fuga facilis atque dolorum dolores modi alias pariatur beatae obcaecati perspiciatis. Excepturi exercitationem, optio iste minus, dignissimos quas consequatur consectetur beatae libero, eum nisi pariatur assumenda sit provident corrupti deleniti eius saepe odio suscipit modi ut!
+
+        .single_gallery
+          h2 Галерея изображений
+          .single_gallery-items
+            +Gallery({
+              items: [
+                'assets/img/ch-alt-1.webp',
+                'assets/img/ch-alt-2.webp',
+                'assets/img/ch-alt-3.jpg',
+              ],
+              galleryId: 'choice-gallery-2'
+            })
+        ul
+          li Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты. Они, за.
+          li Далеко-далеко за словесными горами в стране гласных
+          li Далеко-далеко за словесными горам и согласных живут рыбные тексты. Они, за.
+          li Далекои в стране гласных и согласных живут рыбные тексты. Они, за.
+      aside.single_sidebar
+        .widget
+          +Frame()
+            .widget-title Оглавление
+            ul.toc-list#toc-list

@@ -1,0 +1,44 @@
+//- Миксин мозаичной галереи (Masonry layout)
+//- props: { items: [], galleryId: string, columns: number }
+//- items может содержать:
+//-   - строки (пути к изображениям): 'assets/img/photo.jpg'
+//-   - объекты для изображений: { src: 'assets/img/photo.jpg', alt: '...', caption: '...' }
+//- galleryId - уникальный ID для группировки fancybox (обязателен, если на странице несколько галерей)
+//- columns - количество столбцов (опционально, по умолчанию: 3 на desktop, 2 на tablet, 1 на mobile)
+//-
+//- Пример использования:
+//-   +GalleryMosaic({
+//-     items: [
+//-       'assets/img/photo1.jpg',
+//-       { src: 'assets/img/photo2.jpg', alt: 'Описание', caption: 'Подпись' },
+//-       'assets/img/photo3.jpg',
+//-     ],
+//-     galleryId: 'project-mosaic',
+//-     columns: 3
+//-   })
+mixin GalleryMosaic(props)
+  - const {items = [], galleryId = null, columns = null} = props
+  - const uniqueId = galleryId || 'gallery-mosaic-default'
+  - const fancyboxGroup = uniqueId
+  
+  .gallery-mosaic(
+    data-gallery-id=uniqueId, 
+    data-gallery-mosaic='',
+    data-columns=columns || ''
+  )
+    each item, index in items
+      - const isString = typeof item === 'string'
+      - const itemSrc = isString ? item : (item.src || item.url || '')
+      - const itemAlt = isString ? `Gallery image ${index + 1}` : (item.alt || `Gallery image ${index + 1}`)
+      - const itemCaption = isString ? '' : (item.caption || '')
+      
+      a.gallery-mosaic_item(
+        href=itemSrc, 
+        data-fancybox=fancyboxGroup, 
+        data-caption=itemCaption
+      )
+        img.gallery-mosaic_item-img(
+          src=itemSrc, 
+          alt=itemAlt, 
+          loading="lazy"
+        )

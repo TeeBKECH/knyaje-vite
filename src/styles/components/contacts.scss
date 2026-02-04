@@ -1,0 +1,233 @@
+.section--contacts {
+  padding: 40px 0 80px;
+  $section_contacts: &;
+
+  @include respond-to(lg) {
+    padding: 20px 0 40px;
+  }
+
+  .contacts {
+    &_top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+
+      @include respond-to(lg) {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      @include respond-to(md) {
+        gap: 24px;
+      }
+    }
+
+    &_info {
+      // .frame {
+      //   --frame-thickness: 125px;
+      //   --frame-content-padding: 60px;
+
+      //   @include respond-to(lg) {
+      //     --frame-content-padding: 40px;
+      //   }
+
+      //   @include respond-to(sm) {
+      //     --frame-content-padding: 50px 20px;
+      //   }
+      // }
+    }
+
+    &_info_content {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+
+      @include respond-to(lg) {
+        gap: 32px;
+      }
+
+      @include respond-to(md) {
+        gap: 24px;
+      }
+    }
+
+    &_title {
+      text-align: center;
+
+      .title {
+        color: $prime;
+        text-transform: uppercase;
+      }
+    }
+
+    &_items {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+
+      @include respond-to(md) {
+        gap: 24px;
+      }
+    }
+
+    &_item {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+
+      @include respond-to(md) {
+        gap: 16px;
+      }
+
+      &-icon {
+        flex-shrink: 0;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba($prime, 0.1);
+        border-radius: 12px;
+
+        @include respond-to(md) {
+          width: 40px;
+          height: 40px;
+          border-radius: 8px;
+        }
+
+        img {
+          width: 24px;
+          height: 24px;
+          object-fit: contain;
+
+          @include respond-to(md) {
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+
+      &-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      &-label {
+        font-size: 14px;
+        color: rgba($prime, 0.7);
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        line-height: 1.2;
+
+        @include respond-to(md) {
+          font-size: 12px;
+        }
+      }
+
+      &-value {
+        font-size: 20px;
+        color: $prime;
+        font-weight: 600;
+        line-height: 1.4;
+
+        @include respond-to(md) {
+          font-size: 18px;
+        }
+
+        a {
+          color: inherit;
+          text-decoration: none;
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: $light-gold;
+          }
+        }
+      }
+    }
+
+    &_socials {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+
+      @include respond-to(md) {
+        gap: 12px;
+      }
+
+      &-title {
+        font-size: 18px;
+        color: $prime;
+        font-weight: 600;
+        text-transform: uppercase;
+        text-align: center;
+
+        @include respond-to(md) {
+          font-size: 16px;
+        }
+      }
+    }
+
+    &_map-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      height: 100%;
+
+      @include respond-to(lg) {
+        gap: 20px;
+      }
+
+      @include respond-to(md) {
+        gap: 16px;
+      }
+    }
+
+    &_map-title {
+      .title {
+        color: $prime;
+        text-transform: uppercase;
+      }
+    }
+
+    &_map {
+      width: 100%;
+      height: 100%;
+      min-height: 500px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 4px 32px rgba($prime, 0.1);
+
+      @include respond-to(lg) {
+        min-height: 400px;
+      }
+
+      @include respond-to(md) {
+        border-radius: 12px;
+        min-height: 350px;
+      }
+    }
+
+    &_map-iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 500px;
+      border: none;
+      display: block;
+
+      @include respond-to(lg) {
+        min-height: 400px;
+      }
+
+      @include respond-to(md) {
+        min-height: 350px;
+      }
+    }
+  }
+}

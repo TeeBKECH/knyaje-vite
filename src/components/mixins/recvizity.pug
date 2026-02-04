@@ -1,0 +1,35 @@
+-
+  const recvizityData = [
+    {label: 'Полное наименование предприятия', value: 'Индивидуальный предприниматель Кострицкая Оксана Алексеевна'},
+    {label: 'Юридический адрес', value: '675004, г. Благовещенск, ул. Ленина , д. 207/3, кв. 37'},
+    {label: 'Почтовый адрес', value: '123290, г. Москва, Шмитовский пр-д, д. 27, стр. 1'},
+    {label: 'Контактный телефон', value: '+7-914-551-1911, +7-962-284-5713'},
+    {label: 'Электронная почта', value: 'glbuhsvod@mail.ru'},
+    {label: 'ЕГРНИП', value: '325280000024861 от 11.07.2025'},
+    {label: 'ИНН', value: '280100174416'},
+    {label: 'ОКПО', value: '0146332644'},
+    {label: 'ОКАТО', value: '10249501000'},
+    {label: 'ОКТМО', value: '10649101'},
+    {label: 'ОКФС', value: '16'},
+    {label: 'ОКОГУ', value: '49015'},
+    {label: 'ОКВЭД', value: '96.09 «Предоставление прочих персональных услуг, не включенных в другие группировки»'},
+    {label: 'Расчетный счет', value: '40802 810 4 0710001241'},
+    {label: 'Корреспондентский счет', value: '30101 810 6 00000000608'},
+    {label: 'БИК', value: '040813608'},
+    {label: 'Наименование банка', value: 'ДАЛЬНЕВОСТОЧНЫЙ БАНК ПАО Сбербанк'}
+  ]
+
+mixin Recvizity(props)
+  - const {items = recvizityData} = props
+  .recvizity
+    .recvizity_items
+      each item in items
+        +RecItem(item)
+
+mixin RecItem(props)
+  - const {label = '', value = ''} = props
+  .recvizity_item
+    .recvizity_item_label
+      p= label
+    .recvizity_item_value
+      p= value

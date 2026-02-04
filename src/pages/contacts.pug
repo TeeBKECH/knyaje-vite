@@ -1,0 +1,58 @@
+//- @title: Контакты
+//- @description: Контакты банного комплекса «Княже» - адрес, телефон, форма обратной связи
+//- @page_class: contacts
+extends ../layouts/default.pug
+
+block content
+  +Intro({
+    title: 'Контакты',
+    breadcrumbs: ['Контакты']
+  })
+
+  section.section.section--contacts(data-aos="fade-up", data-aos-duration="1000")
+    .container.section_container
+      .contacts_top
+        .contacts_info
+          +Frame()
+            .contacts_info_content
+              .contacts_title
+                h2.title.title-h2 Свяжитесь с нами
+              .contacts_items
+                .contacts_item
+                  .contacts_item-icon
+                    img(src="assets/img/location.svg", alt="Адрес")
+                  .contacts_item-content
+                    .contacts_item-label Адрес
+                    .contacts_item-value 123317, Россия, Москва, Шмитовский проезд 27с1
+                .contacts_item
+                  .contacts_item-icon
+                    img(src="assets/img/phone.svg", alt="Телефон")
+                  .contacts_item-content
+                    .contacts_item-label Телефон
+                    a.contacts_item-value(href="tel:+74996476888") +7 (499) 647-68-88
+                .contacts_item
+                  .contacts_item-icon
+                    img(src="assets/img/location.svg", alt="Время работы")
+                  .contacts_item-content
+                    .contacts_item-label Время работы
+                    .contacts_item-value Ежедневно с 10:00 до 23:00
+              .contacts_socials
+                .contacts_socials-title Социальные сети
+                +SocialsGold([
+                  {icon: 'tg', text: 'Telegram'},
+                  {icon: 'vk', text: 'VK'},
+                  {icon: 'wa', text: 'WhatsApp'}
+                ])
+        .contacts_map-wrapper
+          .contacts_map
+            iframe.contacts_map-iframe(
+              src="https://yandex.ru/map-widget/v1/?ll=37.5451%2C55.7558&z=16&pt=37.5451%2C55.7558&l=map",
+              width="100%",
+              height="500",
+              frameborder="0",
+              allowfullscreen="true",
+              style="position:relative;",
+              loading="lazy"
+            )
+
+  include ../components/sections/cta.pug

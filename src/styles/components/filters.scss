@@ -1,0 +1,223 @@
+.filters {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid $second;
+  $f: &;
+
+  &-tags {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+
+    &__list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+
+      @include respond-to(lg) {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: $second transparent;
+
+        &::-webkit-scrollbar {
+          height: 4px;
+        }
+
+        &::-webkit-scrollbar-track {
+          background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: $second;
+          border-radius: 2px;
+        }
+      }
+
+      @include respond-to(sm) {
+        flex-direction: row;
+        flex-wrap: nowrap;
+      }
+    }
+  }
+
+  &-tag {
+    // Сохраняем базовый transition для hover эффектов
+    // Дополнительные transition только для анимации появления
+    opacity: 1;
+    transform: translateY(0);
+
+    @include respond-to(lg) {
+      flex-shrink: 0;
+    }
+
+    &--hidden {
+      display: none !important;
+    }
+
+    // Для плавного появления при показе
+    &.filters-tag--showing {
+      display: block !important;
+      opacity: 0;
+      transform: translateY(-10px);
+      animation: showTag 0.3s ease forwards;
+    }
+
+    &-more {
+      transition: opacity 0.3s ease;
+      background: none;
+      outline: none;
+      border: none;
+      font-size: 16px;
+      font-weight: 400;
+      color: $prime;
+      line-height: calc(20 / 16);
+      font-family: $font-secondary;
+      width: fit-content;
+      border-bottom: 1px dotted $prime;
+      border-radius: 0;
+      padding: 0;
+      font-family: $font-secondary;
+      text-transform: capitalize;
+    }
+  }
+
+  @keyframes showTag {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  &-sort {
+    flex-shrink: 0;
+    min-width: 280px;
+
+    @include respond-to(lg) {
+      min-width: 240px;
+    }
+
+    @include respond-to(md) {
+      min-width: 200px;
+    }
+
+    .c-select {
+      &__toggle {
+        background: $dark-gold;
+        border: none;
+        border-radius: 32px;
+        padding: 15px 20px;
+        height: auto;
+        min-height: 52px;
+        border-bottom: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        position: relative;
+
+        // Иконка сортировки слева
+        &::before {
+          content: '';
+          display: block;
+          width: 16px;
+          height: 16px;
+          flex-shrink: 0;
+          background: center / contain no-repeat;
+          background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.00092 0.666016C5.82411 0.666016 5.65454 0.736253 5.52952 0.861278C5.40449 0.986302 5.33426 1.15587 5.33426 1.33268V13.0567L3.80559 11.528C3.67985 11.4066 3.51145 11.3394 3.33666 11.3409C3.16186 11.3424 2.99465 11.4125 2.87104 11.5361C2.74744 11.6597 2.67733 11.827 2.67581 12.0017C2.67429 12.1765 2.74148 12.3449 2.86292 12.4707L5.52959 15.1373C5.65458 15.2624 5.82413 15.3326 6.00092 15.3327C6.08856 15.333 6.17537 15.3157 6.25626 15.282C6.37805 15.2315 6.48213 15.146 6.55535 15.0364C6.62856 14.9268 6.66762 14.7979 6.66759 14.666V1.33268C6.66759 1.15587 6.59735 0.986302 6.47233 0.861278C6.3473 0.736253 6.17773 0.666016 6.00092 0.666016ZM13.1389 3.52802L10.4723 0.861349C10.379 0.768143 10.2602 0.704672 10.1309 0.67896C10.0016 0.653248 9.86762 0.66645 9.74582 0.716897C9.62402 0.767344 9.51991 0.85277 9.44665 0.962377C9.3734 1.07198 9.33428 1.20085 9.33426 1.33268V14.666C9.33426 14.8428 9.40449 15.0124 9.52952 15.1374C9.65454 15.2624 9.82411 15.3327 10.0009 15.3327C10.1777 15.3327 10.3473 15.2624 10.4723 15.1374C10.5974 15.0124 10.6676 14.8428 10.6676 14.666V2.94202L12.1963 4.47068C12.322 4.59212 12.4904 4.65932 12.6652 4.6578C12.84 4.65628 13.0072 4.58617 13.1308 4.46256C13.2544 4.33896 13.3245 4.17175 13.326 3.99695C13.3276 3.82215 13.2604 3.65375 13.1389 3.52802Z' fill='%23242D4C'/%3E%3C/svg%3E");
+        }
+      }
+
+      &__value {
+        font-size: 14px;
+        font-weight: 600;
+        font-family: $font-main;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        color: $prime;
+        white-space: nowrap;
+
+        // Добавляем "СОРТИРОВАТЬ ПО: " перед значением
+        &::before {
+          content: 'СОРТИРОВАТЬ ПО: ';
+        }
+
+        &.has-value {
+          color: $prime;
+        }
+      }
+
+      &__caret {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+        background: center / contain no-repeat;
+        background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M2.25118 4.91002C2.09035 5.0663 2 5.27823 2 5.49922C2 5.7202 2.09035 5.93213 2.25118 6.08841L7.39864 11.0887C7.55952 11.2449 7.77769 11.3327 8.00518 11.3327C8.23267 11.3327 8.45084 11.2449 8.61172 11.0887L13.7592 6.08841C13.9154 5.93124 14.0019 5.72072 14 5.50221C13.998 5.28371 13.9078 5.07468 13.7487 4.92017C13.5897 4.76565 13.3745 4.67801 13.1495 4.67611C12.9246 4.67421 12.7079 4.75821 12.5461 4.91002L8.00518 9.32109L3.46427 4.91002C3.30339 4.75378 3.08521 4.66602 2.85773 4.66602C2.63024 4.66602 2.41207 4.75378 2.25118 4.91002Z' fill='%23242D4C'/%3E%3C/svg%3E");
+        transition: transform 0.3s ease;
+      }
+
+      // Поворот стрелки при открытии
+      &.is-open {
+        .c-select__caret {
+          transform: rotate(180deg);
+        }
+      }
+
+      &__dropdown {
+        top: calc(100% + 8px);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(#000, 0.15);
+      }
+
+      &__option {
+        padding: 12px 20px;
+        font-size: 14px;
+        font-weight: 500;
+        font-family: $font-main;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        border-bottom: 1px solid rgba($second, 0.3);
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        &:hover {
+          background: $dark-gold;
+        }
+
+        &.is-selected {
+          background: $prime;
+          color: $second;
+        }
+      }
+    }
+  }
+
+  @include respond-to(lg) {
+    flex-direction: column;
+    gap: 16px;
+
+    &-tags {
+      width: 100%;
+      overflow: hidden;
+
+      &__list {
+        width: 100%;
+        min-width: 0;
+      }
+    }
+
+    &-sort {
+      width: 100%;
+      min-width: auto;
+    }
+  }
+}

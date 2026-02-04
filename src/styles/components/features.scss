@@ -1,0 +1,232 @@
+// Блоки преимуществ отдельной секцией
+.section--features {
+  padding: 100px 0;
+  background-color: $second;
+  color: $second;
+  position: relative;
+
+  @include respond-to(lg) {
+    padding: 80px 0;
+  }
+
+  @include respond-to(md) {
+    padding: 60px 0;
+  }
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  @include respond-to(xl) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  @include respond-to(md) {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  &_content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 32px;
+
+    @include respond-to(xl) {
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @include respond-to(md) {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+
+  &_video {
+    width: 100%;
+    height: 570px;
+    position: sticky;
+    top: 100px;
+
+    @include respond-to(xl) {
+      height: 670px;
+    }
+
+    @include respond-to(md) {
+      height: 800px;
+      position: relative;
+      top: 0;
+    }
+
+    @include respond-to(sm) {
+      height: 500px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &_cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    position: relative;
+
+    @include respond-to(xl) {
+      grid-template-columns: 1fr;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('../../assets/img/smoke.webp') no-repeat center center / contain;
+      opacity: 0.5; // Измените значение по необходимости (0-1)
+      pointer-events: none;
+      z-index: 0;
+
+      @include respond-to(md) {
+        background-size: 330% 130%;
+        animation: smoke 20s linear infinite;
+      }
+
+      @keyframes smoke {
+        0% {
+          background-position: 10% 10%;
+        }
+        50% {
+          background-position: 100% 100%;
+        }
+        100% {
+          background-position: 10% 10%;
+        }
+      }
+    }
+  }
+
+  &_card {
+    position: relative;
+    padding: 28px 20px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+    min-height: 200px;
+    background: url('../../assets/img/card-ornament.svg') rgba($second, 1) no-repeat center center /
+      cover;
+    aspect-ratio: 462 / 327;
+    $f-card: &;
+
+    @include respond-to(md) {
+      padding: 20px 16px;
+      min-height: 160px;
+    }
+
+    &:hover {
+    }
+
+    &_content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+
+      @include respond-to(xl) {
+        gap: 16px;
+      }
+    }
+
+    &_num {
+      font-family: $font-secondary;
+      font-size: 48px;
+      font-weight: 900;
+      color: $prime;
+      line-height: 1;
+      text-shadow: 0 4px 12px rgba($dark-gold, 0.4);
+      letter-spacing: -2px;
+
+      @include respond-to(xl) {
+      }
+
+      @include respond-to(lg) {
+        font-size: 24px;
+      }
+
+      @include respond-to(md) {
+        font-size: 48px;
+      }
+
+      @include respond-to(sm) {
+        font-size: 24px;
+      }
+    }
+
+    &_title {
+      font-family: $font-secondary;
+      font-size: 18px;
+      font-weight: 600;
+      color: $prime;
+      text-transform: uppercase;
+      line-height: 1.3;
+      letter-spacing: 0.8px;
+
+      @include respond-to(xl) {
+        font-size: 20px;
+      }
+
+      @include respond-to(md) {
+        font-size: 24px;
+        letter-spacing: 0.5px;
+      }
+
+      @include respond-to(sm) {
+        font-size: 18px;
+      }
+    }
+
+    &_text {
+      font-size: 14px;
+      color: rgba($prime, 0.75);
+      line-height: 1.4;
+      font-weight: 400;
+      font-family: $font-main;
+
+      @include respond-to(xl) {
+        font-size: 16px;
+      }
+
+      @include respond-to(md) {
+        font-size: 18px;
+      }
+
+      @include respond-to(sm) {
+        font-size: 14px;
+      }
+    }
+
+    &:last-child {
+      grid-column: 1/3;
+      width: calc(50% - 16px);
+      margin: 0 auto;
+
+      @include respond-to(xl) {
+        grid-column: unset;
+        width: 100%;
+      }
+    }
+  }
+}

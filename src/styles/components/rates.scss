@@ -1,0 +1,19 @@
+.rates {
+  &_container {
+    @include respond-to(xl) {
+      padding-right: 0;
+    }
+    @include respond-to(md) {
+      padding-left: 0;
+    }
+  }
+  &_items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+
+    @include respond-to(xl) {
+      gap: 24px;
+    }
+  }
+}

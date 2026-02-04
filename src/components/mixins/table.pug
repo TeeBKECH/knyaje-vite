@@ -1,0 +1,29 @@
+mixin TableItem(props)
+  -
+    const {
+      commercial = true,
+      discount = 'Скидка 20%',
+      postol = '1 x 32 ₽ ',
+      postol2 = '(-8 ₽)',
+      rifle = '1 x 48 ₽ ',
+      rifle2 = '(-12 ₽)',
+      selfGun = '1 600 ₽ ',
+      selfGun2 = '(-400 ₽)',
+      nsp = '6 000 ₽ ',
+      nsp2 = '(-1 500 ₽)',
+    } = props
+  .table_item
+    .table_item_col.table_item_col--alt(class=`${commercial ? 'table_item_col--commercial' : ''}`)
+      p= discount
+    .table_item_col
+      p= postol
+        span= postol2
+    .table_item_col
+      p= rifle 
+        span= rifle2
+    .table_item_col
+      p= selfGun 
+        span= selfGun2
+    .table_item_col
+      p= nsp 
+        span= nsp2

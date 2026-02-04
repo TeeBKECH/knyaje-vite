@@ -1,0 +1,249 @@
+mixin Card(props)
+  - const {type = '', title = '', img = '', badge = false, text = [], price = '', actions = false} = props
+  .card(class=`${type ? 'card--' + type : ''}`)&attributes(attributes)
+    .card_bg
+      .card_bg_img
+        img(src=img, alt=title)
+    .card_content
+      .card_content_box
+        if (badge)
+          .card_badges
+            .card_badge Хит продаж
+        .card_title
+          span.title.title-h3= title
+        if (text)
+          .card_text
+            each txt in text
+              p= txt
+        if (price)
+          .card_price
+            span= price
+      if (actions)
+        .card_actions
+          +Button('Подробнее', ['primary', 'md'])
+          +BtnIcon({
+            icon: `assets/img/svg/icons/cart-2.svg`,
+            styles: ['default', 'md']
+          })
+
+mixin CardEvent(props)
+  - const {title = '', img = '', text = '', label = ''} = props
+  .card.card--event&attributes(attributes)
+    .card_img
+      img(src=img, alt="Счастливые часы")
+    .card_content
+      span.card_label= label
+      p.card_title= title
+      .card_text
+        p= text
+      .card_actions
+        +Button('Подробнее', ['third', 'md'])
+
+mixin CardPromotion(props)
+  - const {label = '', title = '', text = '', img = '', alt = '', link = ''} = props
+  .card.card--promotion&attributes(attributes)
+    if img
+      .card_img
+        if link
+          a.card_img-link(href=link)
+            img(src=img, alt=alt || title)
+            .card_img-overlay
+        else
+          img(src=img, alt=alt || title)
+          .card_img-overlay
+        if label
+          .card_badge= label
+    .card_content
+      if title
+        if link
+          a.card_title-link(href=link)
+            p.card_title= title
+        else
+          p.card_title= title
+      if text
+        .card_text
+          p= text
+      .card_actions
+        +Button('Подробнее', ['primary', 'md'])
+
+//- Миксин для карточки обряда/программы
+//- @param {string} title - название обряда/программы
+//- @param {string} description - описание (опционально)
+//- @param {array} items - массив пунктов программы
+//- @param {string} price - цена
+//- @param {string} duration - длительность (опционально)
+//- @param {string} note - примечание (опционально)
+//- @param {string} img - путь к изображению (опционально)
+//- @param {boolean} featured - является ли карточка featured (горизонтальный вид)
+mixin CardRitual(props)
+  - const {title = '', description = '', items = [], price = '', duration = '', note = '', img = '', featured = false} = props
+  .card.card--ritual(class=featured ? 'card--ritual-featured' : '')&attributes(attributes)
+    if img
+      .card_img
+        img(src=img, alt=title)
+    .card_content
+      if title
+        .card_title
+          h3.title.title-h3= title
+      if description
+        .card_description
+          p= description
+      if items && items.length > 0
+        .card_items
+          each item in items
+            .card_item
+              p= item
+      .card_footer
+        .card_action
+          +Button('заказать звонок', [!featured ? 'primary' : 'secondary', 'lg', featured ? '' : 'fw'])
+        if price || duration || note
+          .card_price
+            if price
+              span.card_price-value= price
+            if duration
+              span.card_price-duration= duration
+            if note
+              span.card_price-note= note
+
+//- Миксин для СПА карточки
+//- @param {string} title - название программы
+//- @param {string} duration - длительность
+//- @param {array} items - массив пунктов программы
+//- @param {string|object} price - цена (может быть строкой или объектом с price1, price2)
+//- @param {string} note - примечание (опционально)
+//- @param {string} description - описание (опционально)
+//- @param {string} img - путь к изображению (опционально)
+mixin SpaCard(props)
+  - const {title = '', duration = '', items = [], price = '', price2 = '', note = '', guests = '', guests2 = '', description = '', img = ''} = props
+  .card.card--spa
+    if img
+      .card_img
+        img(src=img, alt=title)
+        if duration
+          .card_duration= duration
+    .card_content
+      .card_header
+        if title
+          .card_title
+            h3.title.title-h3= title
+      if description
+        .card_description
+          p= description
+      if items && items.length > 0
+        .card_items
+          each item in items
+            .card_item
+              p= item
+      .card_footer
+        if price || price2
+          .card_price
+            if price
+              .card_price-item
+                span.card_price-value= price
+                if guests
+                  span.card_price-guests= guests
+            if price2
+              .card_price-item
+                span.card_price-value= price2
+                if guests2
+                  span.card_price-guests= guests2
+            if note
+              span.card_price-note= note
+        .card_action
+          +Button('заказать звонок', ['primary', 'lg'])
+
+//- Миксин для банного обряда (обертка для CardRitual)
+//- @param {string} title - название обряда
+//- @param {string} description - описание программы
+//- @param {array} items - массив пунктов программы
+//- @param {string} price - цена
+//- @param {string} duration - длительность (опционально)
+//- @param {string} note - примечание (опционально)
+//- @param {string} img - путь к изображению (опционально)
+//- @param {boolean} featured - является ли карточка featured (опционально)
+mixin RitualCard(props)
+  - const {title = '', description = '', items = [], price = '', duration = '', note = '', img = '', featured = false} = props
+  +CardRitual({title, description, items, price, duration, note, img, featured})
+
+//- Миксин для аренды
+//- @param {string} title - название
+//- @param {string} description - описание
+//- @param {string|object} price - цена (может быть строкой или объектом с price1, price2)
+//- @param {string} duration - длительность (опционально)
+//- @param {string} guests - количество гостей (опционально)
+//- @param {string} days - дни недели (опционально)
+//- @param {string} priceNote - дополнительная цена (например, за минуту)
+mixin RentalCard(props)
+  - const {title = '', description = '', price = '', price2 = '', duration = '', guests = '', days = '', days2 = '', priceNote = '', priceNote2 = ''} = props
+  .rental-card
+    +Frame()
+      .rental-card_content
+        if title
+          .rental-card_title
+            h3.title.title-h3= title
+        if description
+          .rental-card_description
+            p= description
+        if price || price2
+          .rental-card_price
+            if price
+              .rental-card_price-item
+                span.rental-card_price-value= price
+                if duration
+                  span.rental-card_price-duration= duration
+                if guests
+                  span.rental-card_price-guests= guests
+                if days
+                  span.rental-card_price-days= days
+                if priceNote
+                  span.rental-card_price-note= priceNote
+            if price2
+              .rental-card_price-item
+                span.rental-card_price-value= price2
+                if duration
+                  span.rental-card_price-duration= duration
+                if guests
+                  span.rental-card_price-guests= guests
+                if days2
+                  span.rental-card_price-days= days2
+                if priceNote2
+                  span.rental-card_price-note= priceNote2
+        .rental-card_action
+          +Button('заказать звонок', ['primary', 'lg'])
+
+//- Миксин для заморского СПА
+//- @param {string} title - название
+//- @param {string} duration - длительность
+//- @param {string} description - описание
+//- @param {string} price - цена
+mixin EasternSpaCard(props)
+  - const {title = '', duration = '', description = '', price = ''} = props
+  .eastern-spa-card
+    +Frame()
+      .eastern-spa-card_content
+        if duration
+          .eastern-spa-card_duration= duration
+        if title
+          .eastern-spa-card_title
+            h3.title.title-h3= title
+        if description
+          .eastern-spa-card_description
+            p= description
+        if price
+          .eastern-spa-card_price
+            span.eastern-spa-card_price-value= price
+        .eastern-spa-card_action
+          +Button('заказать звонок', ['primary', 'lg'])
+
+//- Миксин для дополнительного ритуала
+//- @param {string} title - название
+//- @param {string} price - цена
+//- @param {boolean} isHeader - является ли заголовком секции
+mixin AdditionalRitualItem(props)
+  - const {title = '', price = '', isHeader = false} = props
+  .additional-ritual-item(class=isHeader ? 'additional-ritual-item--header' : '')
+    .additional-ritual-item_title
+      span= title
+    if price
+      .additional-ritual-item_price
+        span= price

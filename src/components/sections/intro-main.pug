@@ -1,0 +1,25 @@
+// Hero-секция
+// Для изменения фона используйте миксин IntroBg с параметрами:
+// - mediaType: 'image' | 'video' | 'iframe'
+// - mediaSrc: путь к изображению/видео или URL для iframe
+// - mediaAlt: альтернативный текст для изображения
+// - videoAttrs: дополнительные атрибуты для video
+//
+// Примеры использования IntroBg:
+// +IntroBg({mediaType: 'image', mediaSrc: 'assets/img/index-bg.jpg'})
+// +IntroBg({mediaType: 'video', mediaSrc: 'assets/video/background.mp4'})
+// +IntroBg({mediaType: 'iframe', mediaSrc: 'https://www.youtube.com/embed/VIDEO_ID?autoplay=1&mute=1&loop=1&controls=0&playlist=VIDEO_ID'})
+section.intro.intro--banya
+  +IntroBg({mediaType: 'iframe', mediaSrc: 'https://kinescope.io/embed/tyJzgYAmK2nciaSwGUKnH1?&muted=true&autoplay=true&autopause=false&loop=true'})
+  .container.intro_container
+    .intro_content
+      .intro_logo
+        +Logo({type: 'intro'})
+      .intro_title
+        h1.title.title-h1 БАННЫЙ КОМПЛЕКС<br>РЯДОМ С МОСКВА-СИТИ
+      .intro_description
+        p ГДЕ ТРАДИЦИИ ВСТРЕЧАЮТСЯ С СОВРЕМЕННОСТЬЮ
+      .intro_actions
+        .intro_actions-group
+          +Button('ЗАБРОНИРОВАТЬ ЦАРСКИЙ СЬЮТ', ['primary', 'lg'])
+          +Button('ПОСЕТИТЬ ОБЩЕСТВЕННУЮ БАНЮ', ['secondary', 'lg'])

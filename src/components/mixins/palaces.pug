@@ -1,0 +1,65 @@
+//- Миксин карточки палаты
+//- @param {string} id - уникальный ID палаты
+//- @param {string} title - название палаты
+//- @param {array} images - массив изображений для галереи
+//- @param {array} tabs - массив табов с данными
+//- @param {number} index - индекс карточки для определения reverse
+mixin PalaceCard(props)
+  - const {id = '', title = '', images = [], text = [], tabs = [], index = 0} = props
+  - const isReverse = index % 2 === 1
+  .palace-card(class=isReverse ? 'palace-card--reverse' : '', data-palace-id=id)
+    .palace-card_gallery
+      +Gallery({
+        items: images,
+        galleryId: `palace-${id}`
+      })
+    +Frame()
+      .palace-card_content
+        .palace-card_title
+          h3.title.title-h3!= title
+        if text.length > 0
+          .palace-card_text
+            each item in text
+              p.palace-card_text-item= item
+        .palace-card_tabs
+          .palace-card_tabs-list
+            each tab, tabIndex in tabs
+              button.palace-card_tab(
+                class=tabIndex === 0 ? 'palace-card_tab--active' : '',
+                data-tab=tab.id || tabIndex,
+                data-palace=id
+              )
+                span= tab.label
+        .palace-card_info
+          each tab, tabIndex in tabs
+            .palace-card_info-item(
+              class=tabIndex === 0 ? 'palace-card_info-item--active' : '',
+              data-tab=tab.id || tabIndex,
+              data-palace=id
+            )
+              if tab.description
+                .palace-card_description
+                  p= tab.description
+              .palace-card_prices
+                each price in tab.prices || []
+                  if price.value && price.value.trim() !== ''
+                    .palace-card_price
+                      span.palace-card_price-value= price.value
+                      if price.note
+                        - const notes = Array.isArray(price.note) ? price.note : [price.note]
+                        .palace-card_price-notes
+                          each noteItem, noteIndex in notes
+                            if noteItem && noteItem.trim() !== ''
+                              span.palace-card_price-note-item= noteItem
+        .palace-card_action
+          +Button('заказать звонок', ['primary', 'lg'])
+
+//- Секция с двумя палатами (Сила и Дух)
+//- @param {array} palaces - массив объектов палат
+mixin PalacesSection(props)
+  - const {palaces = []} = props
+  section.section.section--palaces
+    .container.section_container
+      .palaces_content
+        each palace, index in palaces
+          +PalaceCard({...palace, index: index})

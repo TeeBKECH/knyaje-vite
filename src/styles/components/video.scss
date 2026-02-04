@@ -1,0 +1,72 @@
+.video {
+  &-reviews {
+    &-swiper {
+      &_wrapper {
+        @include respond-to(sm) {
+          padding-right: 0;
+        }
+      }
+
+      &_items {
+        position: relative;
+
+        &.swiper {
+          touch-action: pan-x pan-y;
+          -webkit-touch-callout: none;
+          cursor: grab;
+
+          &.swiper-grab {
+            cursor: grabbing;
+          }
+        }
+
+        .swiper-wrapper {
+          touch-action: pan-x pan-y;
+          -webkit-touch-callout: none;
+          -webkit-user-select: none;
+          user-select: none;
+        }
+
+        .swiper-slide {
+          pointer-events: auto;
+          touch-action: pan-x pan-y;
+          position: relative;
+          transition: opacity 0.3s ease;
+        }
+
+        // Эффект затемнения при наведении на десктопе
+        @include onlyDescHover() {
+          // Когда наводим на любой слайд - затемняем все остальные
+          .swiper-wrapper:has(.swiper-slide:hover) {
+            .swiper-slide:not(:hover) {
+              opacity: 0.4;
+            }
+          }
+        }
+      }
+
+      &_footer {
+        @include respond-to(lg) {
+          display: flex;
+        }
+
+        &-nav {
+          @include respond-to(lg) {
+            display: none;
+          }
+        }
+
+        &-action {
+          @include respond-to(sm) {
+            width: 100%;
+          }
+          .btn {
+            @include respond-to(sm) {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

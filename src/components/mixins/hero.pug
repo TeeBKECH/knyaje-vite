@@ -1,0 +1,47 @@
+mixin Hero(props)
+  -
+    const {
+      images = [],
+      title = '',
+      text = [],
+      list = [],
+      actions = [],
+      total = false
+    } = props
+  section.hero
+    .container.hero-container
+      .hero__images
+        .hero__gallery.hero__gallery--swiper
+          each img in images
+            .hero__gallery-item
+              img(src=img, alt="alt")
+          .swiper_nav.swiper_nav--alt 
+            +BtnIcon({
+              icon: `assets/img/svg/icons/arrow-left-1.svg`,
+              styles: ['default', 'md']
+            })(class=`swiper_nav_item-prev hero__swiper-prev`)
+            +BtnIcon({
+              icon: `assets/img/svg/icons/arrow-right-1.svg`,
+              styles: ['default', 'md']
+            })(class=`swiper_nav_item-next hero__swiper-next`)
+
+      .hero__info
+        if (title)
+          .hero__info-title= title
+        if (text.length > 0)
+          .hero__info-text
+            each txt in text
+              p= txt
+        if (list.length > 0)
+          ul.hero__info-list
+            each li in list
+              li= li
+        .hero__footer
+          if (total)
+            .hero__total
+              span.hero__total-text Стоимость от:
+              span.hero__total-price 6 000 ₽
+          .hero__actions
+            each btn in actions
+              - const btnStyles = btn.type === 'outlined' ? ['secondary', 'md'] : ['primary', 'md']
+              +Button(btn.text, btnStyles)

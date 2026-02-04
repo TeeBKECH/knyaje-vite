@@ -1,0 +1,45 @@
+//- Миксин для отображения прайса в виде таблиц (стиль jarpticabani)
+//- @param {Object} props - Параметры миксина
+//- @param {Array} props.categories - Массив категорий. Каждая категория:
+//-   - title: заголовок категории (над блоком таблиц)
+//-   - sections: массив секций с таблицами
+//- @param {Array} props.categories[].sections - Секции: title, headers, rows, note?, subtitle?
+mixin PriceTable(props = {})
+  -
+    const { categories = [], sections = [] } = props
+    const cats = categories.length ? categories : (sections.length ? [{ sections }] : [])
+  .price-table
+    each category in cats
+      if category && (category.sections || []).length
+        .price-table_category
+          if category.title
+            h2.price-table_category-title.title.title-h2= category.title
+          each section in category.sections
+            if section && (section.headers || section.rows)
+              .price-table_section
+                if section.title
+                  h3.price-table_title.title.title-h3= section.title
+                if section.subtitle
+                  p.price-table_subtitle= section.subtitle
+                .price-table_wrap
+                  table.price-table_table
+                    if section.headers && section.headers.length
+                      - const colCount = section.headers.length
+                      - const firstColWidth = colCount <= 2 ? 55 : 50
+                      - const otherColWidth = colCount > 1 ? (100 - firstColWidth) / (colCount - 1) : 100
+                      colgroup
+                        each _, i in section.headers
+                          col(style=`width: ${i === 0 ? firstColWidth + '%' : otherColWidth + '%'}`)
+                      thead.price-table_head
+                        tr.price-table_row
+                          each header in section.headers
+                            th.price-table_cell.price-table_cell--head= header
+                    if section.rows && section.rows.length
+                      tbody.price-table_body
+                        each row in section.rows
+                          - const cells = Array.isArray(row) ? row : (row.cells || [])
+                          tr.price-table_row
+                            each cell, cellIndex in cells
+                              td.price-table_cell(class=cellIndex === 0 ? 'price-table_cell--name' : '')= cell
+                if section.note
+                  p.price-table_note= section.note

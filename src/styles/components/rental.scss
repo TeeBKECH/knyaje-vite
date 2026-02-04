@@ -1,0 +1,111 @@
+.rental {
+  &_content {
+    width: 100%;
+  }
+
+  &_list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+
+    @include respond-to(lg) {
+      gap: 24px;
+    }
+
+    @include respond-to(md) {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+}
+
+.rental-card {
+  width: 100%;
+
+  &_content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 40px;
+
+    @include respond-to(lg) {
+      padding: 32px;
+      gap: 20px;
+    }
+
+    @include respond-to(md) {
+      padding: 24px;
+      gap: 16px;
+    }
+  }
+
+  &_title {
+    color: $prime;
+  }
+
+  &_description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba($prime, 0.9);
+
+    @include respond-to(md) {
+      font-size: 14px;
+    }
+
+    p {
+      margin: 0;
+      font-size: inherit;
+      line-height: inherit;
+      color: inherit;
+    }
+  }
+
+  &_price {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &_price-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &_price-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: $light-gold;
+    line-height: 1.2;
+
+    @include respond-to(md) {
+      font-size: 24px;
+    }
+  }
+
+  &_price-duration,
+  &_price-guests,
+  &_price-days {
+    font-size: 15px;
+    color: rgba($prime, 0.7);
+    font-weight: 500;
+
+    @include respond-to(md) {
+      font-size: 14px;
+    }
+  }
+
+  &_price-note {
+    font-size: 14px;
+    color: rgba($prime, 0.6);
+    margin-top: 4px;
+
+    @include respond-to(md) {
+      font-size: 13px;
+    }
+  }
+
+  &_action {
+    margin-top: auto;
+  }
+}

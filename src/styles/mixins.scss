@@ -1,0 +1,59 @@
+@use 'variables' as *;
+
+// Миксин для медиа-запросов
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == xs {
+    @media (max-width: $breakpoint-xs) {
+      @content;
+    }
+  }
+  @if $breakpoint == sm {
+    @media (max-width: $breakpoint-sm) {
+      @content;
+    }
+  }
+  @if $breakpoint == md {
+    @media (max-width: $breakpoint-md) {
+      @content;
+    }
+  }
+  @if $breakpoint == lg {
+    @media (max-width: $breakpoint-lg) {
+      @content;
+    }
+  }
+  @if $breakpoint == xl {
+    @media (max-width: $breakpoint-xl) {
+      @content;
+    }
+  }
+  @if $breakpoint == xl-2 {
+    @media (max-width: $breakpoint-xl-2) {
+      @content;
+    }
+  }
+  @if $breakpoint == xl-3 {
+    @media (max-width: $breakpoint-xl-3) {
+      @content;
+    }
+  }
+  @if $breakpoint == alt {
+    @media (min-width: 1921px) {
+      @content;
+    }
+  }
+}
+
+// Миксин для flexbox
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Only Desctop Hover
+@mixin onlyDescHover() {
+  @media (hover: hover), (-ms-high-contrast: none) {
+    @content;
+  }
+}

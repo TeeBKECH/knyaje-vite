@@ -1,0 +1,307 @@
+.price {
+  &-categories {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+
+    @include respond-to(lg) {
+      gap: 40px;
+    }
+
+    @include respond-to(md) {
+      gap: 32px;
+    }
+  }
+
+  &-category {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+
+    @include respond-to(lg) {
+      gap: 40px;
+    }
+
+    @include respond-to(md) {
+      gap: 32px;
+    }
+  }
+
+  &-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    @include respond-to(lg) {
+      gap: 24px;
+    }
+
+    @include respond-to(md) {
+      gap: 20px;
+    }
+
+    &_title {
+      text-align: center;
+      color: $prime;
+      text-transform: uppercase;
+
+      @include respond-to(md) {
+        font-size: 24px;
+      }
+    }
+
+    &_items {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+
+      @include respond-to(lg) {
+        gap: 20px;
+      }
+
+      @include respond-to(md) {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      // Если нечетное количество карточек, последняя занимает 2 столбца
+      .price-item:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+      }
+    }
+  }
+
+  &-item {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    padding: 24px;
+    background: rgba($prime, 0.03);
+    border-radius: 16px;
+    border: 1px solid rgba($prime, 0.1);
+    transition: all 0.3s ease;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+
+    @include respond-to(lg) {
+      padding: 20px;
+      gap: 16px;
+    }
+
+    @include respond-to(md) {
+      gap: 16px;
+      padding: 16px;
+      border-radius: 12px;
+    }
+
+    &:hover {
+      background: rgba($prime, 0.05);
+      border-color: rgba($light-gold, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba($prime, 0.1);
+
+      .price-item_img {
+        img {
+          transform: scale(1.05);
+        }
+      }
+    }
+
+    &_content {
+      width: 100%;
+
+      // На мобильных - вертикальный layout
+      @include respond-to(md) {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      // На десктопе, если есть изображение, используем float для обтекания
+      @media (min-width: 992px) {
+        &:has(.price-item_img) {
+          // Убираем flex, чтобы float работал
+          display: block;
+
+          .price-item_img {
+            float: right;
+            margin-left: 24px;
+            margin-bottom: 16px;
+          }
+
+          .price-item_info {
+            // Убираем flex, чтобы текст обтекал float элемент
+            display: block;
+          }
+        }
+      }
+
+      // На устройствах меньше lg добавляем отступ между фото и текстом
+      @media (max-width: 991px) {
+        &:has(.price-item_img) {
+          .price-item_img {
+            margin-bottom: 16px;
+          }
+        }
+      }
+    }
+
+    &_img {
+      width: 100%;
+      height: 180px;
+      border-radius: 12px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: rgba($prime, 0.05);
+      position: relative;
+
+      // На десктопе делаем квадратным 200x200px (было 300x300px)
+      @media (min-width: 992px) {
+        width: 200px;
+        height: 200px;
+        border-radius: 16px;
+      }
+
+      @include respond-to(lg) {
+        height: 160px;
+        border-radius: 10px;
+      }
+
+      @include respond-to(md) {
+        height: 140px;
+        border-radius: 8px;
+      }
+
+      // На устройствах sm убираем ограничение по высоте
+      @include respond-to(sm) {
+        height: auto;
+        min-height: 140px;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+    }
+
+    &_info {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      @include respond-to(md) {
+        gap: 8px;
+      }
+    }
+
+    &_name {
+      font-size: 20px;
+      font-weight: 600;
+      color: $prime;
+      line-height: 1.3;
+      margin-bottom: 12px;
+
+      @include respond-to(lg) {
+        font-size: 18px;
+      }
+
+      @include respond-to(md) {
+        font-size: 16px;
+        margin-bottom: 8px;
+      }
+
+      span {
+        display: block;
+      }
+    }
+
+    &_description {
+      font-size: 16px;
+      line-height: 1.6;
+      color: rgba($prime, 0.8);
+
+      @include respond-to(md) {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      p {
+        margin: 0;
+      }
+    }
+
+    &_prices {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      width: 100%;
+      clear: both; // Очищаем float, чтобы блок был отдельно
+      margin-top: auto; // Прижимаем к низу карточки
+
+      @include respond-to(lg) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      @include respond-to(md) {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+    }
+
+    &_price {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+      padding: 8px 12px;
+      background: rgba($prime, 0.05);
+      border-radius: 8px;
+      border: 1px solid rgba($prime, 0.1);
+      min-width: 100%;
+
+      @include respond-to(md) {
+        align-items: flex-start;
+        padding: 6px 10px;
+        border-radius: 6px;
+      }
+
+      &-value {
+        font-size: 26px;
+        font-weight: 700;
+        color: $light-gold;
+        white-space: nowrap;
+        font-family: $font-main;
+        line-height: 1.2;
+
+        @include respond-to(lg) {
+          font-size: 24px;
+        }
+
+        @include respond-to(md) {
+          font-size: 22px;
+        }
+      }
+
+      &-note {
+        font-size: 14px;
+        color: rgba($prime, 0.6);
+        font-weight: 400;
+        white-space: nowrap;
+        line-height: 1.3;
+
+        @include respond-to(md) {
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}

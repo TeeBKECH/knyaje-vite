@@ -1,0 +1,35 @@
+mixin Partner(props)
+  -
+    const {
+      title = '',
+      logo = '',
+      tel = '',
+      mail = '',
+      hours = '',
+      address = '',
+      text = [],
+    } = props
+  .partners-item
+    .partners-item__head
+      .partners-item__title.title.title-h3= title
+      .partners-item__logo
+        img(src=logo, alt=title)
+    .partners-item__lines
+      .partners-item__line
+        .partners-item__line-label Телефон:
+        a.partners-item__line-value(href='#')= tel
+      .partners-item__line
+        .partners-item__line-label E-mail:
+        a.partners-item__line-value(href='#')= mail
+      .partners-item__line
+        .partners-item__line-label График работы:
+        .partners-item__line-value= hours
+      .partners-item__line
+        .partners-item__line-label Адрес:
+        .partners-item__line-value= address
+    if (text.length > 0)
+      .partners-item__text
+        each txt in text
+          p= txt
+    .partners-item__action
+      +Button('Подробнее', ['primary', 'md', 'fw'])

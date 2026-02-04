@@ -1,0 +1,187 @@
+.place {
+  &_item {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 24px;
+    animation: fadeIn 0.3s ease;
+    position: relative;
+
+    @include respond-to(lg) {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+
+    &_list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      position: relative;
+      z-index: 5;
+
+      @include respond-to(xl-3) {
+        gap: 8px;
+      }
+
+      &_item {
+        font-size: 16px;
+        line-height: 1.6;
+        color: rgba($second, 0.9);
+        font-weight: 400;
+        font-family: $font-main;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        text-align: center;
+        position: relative;
+
+        @include respond-to(xl-2) {
+          font-size: 14px;
+          gap: 0;
+        }
+
+        &::before {
+          content: '';
+          display: block;
+          width: 20px;
+          height: 20px;
+          background: url('../../assets/img/title-icon-dark.svg') no-repeat center center / contain;
+          border-radius: 50%;
+        }
+      }
+    }
+
+    &_title {
+      font-size: 32px;
+      line-height: 1;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: $light-gold;
+      font-family: $font-secondary;
+      display: inline-block;
+      width: fit-content;
+      position: relative;
+      z-index: 5;
+
+      @include respond-to(xl) {
+        font-size: 24px;
+      }
+
+      @include respond-to(md) {
+        margin-bottom: 24px;
+      }
+
+      &::before,
+      &::after {
+        content: '';
+        width: 25px;
+        height: 25px;
+        background: url('../../assets/img/tab-title-icon.svg') no-repeat center center / contain;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 5;
+      }
+
+      &::before {
+        left: -30px;
+      }
+
+      &::after {
+        right: -30px;
+      }
+
+      &--alt {
+        font-family: $font-main;
+        font-weight: 700;
+        font-size: 24px;
+        color: $second;
+
+        @include respond-to(xl) {
+          font-size: 20px;
+        }
+
+        &::before,
+        &::after {
+          display: none;
+        }
+      }
+    }
+
+    &_text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      position: relative;
+      z-index: 5;
+      width: 90%;
+
+      @include respond-to(xl) {
+        gap: 8px;
+      }
+
+      p {
+        text-align: center;
+        font-size: 16px;
+        line-height: 1.6;
+        color: rgba($second, 0.9);
+
+        @include respond-to(xl) {
+          font-size: 14px;
+        }
+
+        @include respond-to(md) {
+          font-size: 14px;
+        }
+      }
+    }
+
+    &_content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      position: relative;
+      padding: 40px;
+
+      @include respond-to(xl-2) {
+        padding: 24px;
+        gap: 16px;
+      }
+
+      @include respond-to(xl) {
+        padding: 12px;
+        gap: 8px;
+      }
+    }
+
+    &_bg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+
+      @include respond-to(lg) {
+        display: none;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    &_gallery {
+      width: 100%;
+      position: relative;
+      z-index: 5;
+    }
+  }
+}

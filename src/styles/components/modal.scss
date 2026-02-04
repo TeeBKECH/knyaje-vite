@@ -1,0 +1,202 @@
+.modal {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 499;
+  $modal: &;
+
+  &_overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: rgba($second, 0.7);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+
+    @include respond-to(lg) {
+      background: rgba($second, 0.9);
+    }
+  }
+
+  &_cls {
+    cursor: pointer;
+    display: block;
+    width: 20px;
+    min-height: 20px;
+    margin-left: auto;
+    background: center / contain no-repeat;
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 2L18 0L10 8L2 0L0 2L8 10L0 18L2 20L10 12L18 20L20 18L12 10L20 2Z' fill='%23ABABAB'/%3E%3C/svg%3E");
+    position: absolute;
+    right: 44px;
+    top: 44px;
+    z-index: 5;
+
+    @include respond-to(sm) {
+    }
+  }
+
+  &-title,
+  &-subtitle {
+    text-align: center;
+  }
+
+  &-subtitle {
+    @include respond-to(md) {
+      font-size: 14px;
+    }
+
+    @include respond-to(sm) {
+      font-size: 10px;
+    }
+  }
+
+  &_content {
+    width: 100%;
+    max-width: 845px;
+    max-height: 100vh;
+    overflow-y: auto;
+    position: absolute;
+    // padding-bottom: 16px;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) scale(0.95);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    opacity: 0;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
+
+    @include respond-to(lg) {
+      max-width: unset;
+      overflow-y: auto;
+    }
+  }
+
+  &-top {
+    #{$modal}_content {
+      padding-top: 140px;
+
+      @include respond-to(lg) {
+        padding-top: 110px;
+      }
+    }
+  }
+
+  &-form {
+    z-index: 9999;
+
+    .cs-wrap {
+      width: fit-content;
+      margin: 0 auto;
+
+      @include respond-to(md) {
+        padding-right: 0 !important;
+      }
+
+      @include respond-to(sm) {
+        width: 100%;
+        margin: 0;
+      }
+    }
+
+    #{$modal}_cls {
+      @include respond-to(md) {
+        top: 16px;
+        right: 16px;
+        width: 10px;
+        height: 10px;
+      }
+    }
+
+    #{$modal}_content {
+      padding: 48px 40px;
+      gap: 24px;
+      background: $second;
+      max-height: calc(100vh - 120px);
+      position: relative;
+      margin: 120px 0;
+      border-radius: 60px;
+      align-items: center;
+      max-width: 800px;
+      width: calc(100% - 32px);
+
+      @include respond-to(lg) {
+        border-radius: 20px;
+      }
+
+      @include respond-to(md) {
+        padding: 24px 16px;
+        gap: 16px;
+        margin: 40px 0;
+      }
+    }
+  }
+
+  &--mobile {
+    #{$modal}_content {
+      padding-top: 92px;
+      height: 100vh;
+      background: $second;
+
+      @include respond-to(lg) {
+        padding-top: 72px;
+      }
+    }
+  }
+
+  &.open {
+    display: block;
+
+    #{$modal}_overlay {
+      opacity: 1;
+    }
+
+    #{$modal}_content {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+    }
+  }
+}
+
+.video-player {
+  &__container {
+    width: 100%;
+    max-width: 1200px;
+    aspect-ratio: 16 / 9;
+    margin: 0 auto;
+    position: relative;
+    background: $second;
+
+    @include respond-to(lg) {
+      max-width: 100%;
+      width: calc(100% - 40px);
+    }
+
+    @include respond-to(sm) {
+      width: calc(100% - 20px);
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+  }
+}

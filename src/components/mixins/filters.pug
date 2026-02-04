@@ -1,0 +1,45 @@
+mixin Filters(props)
+  -
+    const {
+      tags = [
+        { text: 'ВСЕ', value: 'all', active: true },
+        { text: 'КВАРТИРА В НОВОСТРОЙКЕ', value: 'new-building' },
+        { text: 'КВАРТИРА ВО ВТОРИЧКЕ', value: 'secondary' },
+        { text: 'ДОМ', value: 'house' },
+        { text: 'КОТТЕДЖ', value: 'cottage' },
+        { text: 'ДИЗАЙН', value: 'design' }
+      ],
+      sortOptions = [
+        { value: 'popularity', label: 'ПОПУЛЯРНОСТИ' },
+        { value: 'date', label: 'ДАТЕ' },
+        { value: 'price', label: 'ЦЕНЕ' }
+      ],
+      sortSelected = 'popularity',
+      visibleTagsCount = 4
+    } = props || {}
+  
+  .filters
+    .filters-tags
+      .filters-tags__list
+        each tag, index in tags
+          - const isVisible = index < visibleTagsCount
+          - const isHidden = !isVisible
+          +Button(tag.text, tag.active ? ['primary', 'sm'] : ['secondary', 'sm'])(
+            class=`filters-tag${isHidden ? ' filters-tag--hidden' : ''}`
+            data-value=tag.value
+            data-filter-tag
+          )
+        if tags.length > visibleTagsCount
+          +Button('еще', ['primary', 'sm'])(
+            class='filters-tag-more'
+            data-filter-more
+          )
+    .filters-sort
+      +AppSelect({
+        id: 'blog-sort',
+        name: 'sort',
+        placeholder: '',
+        items: sortOptions,
+        selected: [sortSelected],
+        mode: 'filter'
+      })(class='filters-sort__select')

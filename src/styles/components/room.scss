@@ -1,0 +1,386 @@
+// Страница одной комнаты (подробная)
+.room {
+  $room: &;
+
+  &_content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 40px;
+    align-items: start;
+
+    @include respond-to(lg) {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+
+  &_left {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    min-width: 0;
+
+    @include respond-to(md) {
+      gap: 20px;
+    }
+  }
+
+  &_gallery {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) 1fr;
+    gap: 16px;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+
+    @include respond-to(lg) {
+    }
+
+    @include respond-to(md) {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      border-radius: 12px;
+    }
+
+    &-main {
+      overflow: hidden;
+      border-radius: 12px;
+      aspect-ratio: 4 / 3;
+      justify-self: start;
+
+      @include respond-to(lg) {
+      }
+
+      @include respond-to(md) {
+        grid-row: 1;
+        aspect-ratio: 16 / 10;
+        justify-self: stretch;
+      }
+    }
+
+    &-link {
+      display: block;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+
+      &:focus-visible {
+        outline: 2px solid $light-gold;
+        outline-offset: 2px;
+      }
+    }
+
+    &-main-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    &-list {
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+      gap: 16px;
+      overflow: hidden;
+      min-height: 0;
+      width: 100%;
+
+      @include respond-to(md) {
+        grid-template-rows: 1fr;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        min-height: 100px;
+      }
+    }
+
+    &-thumb {
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      object-fit: cover;
+      display: block;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+  }
+
+  &_video-wrap {
+    display: flex;
+    justify-content: center;
+  }
+
+  &_video-trigger {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: $light-gold;
+    outline: none;
+
+    &:hover {
+      // color: $prime;
+
+      .room_video-circle-svg {
+        // animation-duration: 8s;
+      }
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+
+  &_video-btn {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &_video-circle {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  &_video-circle-svg {
+    width: 100%;
+    height: 100%;
+    animation: room-video-spin 12s linear infinite;
+  }
+
+  &_video-circle-svg text {
+    fill: currentColor;
+    font-size: 12px;
+    font-family: $font-main;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  &_video-play {
+    position: relative;
+    z-index: 2;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba($light-gold, 0.2);
+    border: 2px solid currentColor;
+    transition:
+      background 0.25s ease,
+      transform 0.2s ease;
+
+    .room_video-trigger:hover & {
+      background: rgba($light-gold, 0.35);
+      transform: scale(1.05);
+    }
+  }
+
+  &_video-play-icon {
+    width: 22px;
+    height: 22px;
+    margin-left: 4px;
+  }
+
+  &_body {
+    width: 100%;
+  }
+
+  &_inner {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    @include respond-to(md) {
+      gap: 20px;
+    }
+  }
+
+  &_title {
+    margin: 0;
+    font-family: $font-secondary;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: $light-gold;
+    text-transform: uppercase;
+
+    @include respond-to(md) {
+      font-size: 24px;
+    }
+  }
+
+  &_params {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 16px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &_param {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px 16px;
+    border: 1px solid rgba($light-gold, 0.25);
+    border-radius: 12px;
+    background: rgba($light-gold, 0.04);
+
+    @include respond-to(md) {
+      padding: 12px 14px;
+      gap: 4px;
+    }
+
+    &-icon {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+      opacity: 0.9;
+    }
+
+    &-label {
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba($prime, 0.7);
+      line-height: 1.2;
+    }
+
+    &-value {
+      font-size: 16px;
+      font-weight: 600;
+      color: $prime;
+      line-height: 1.2;
+
+      @include respond-to(md) {
+        font-size: 15px;
+      }
+    }
+  }
+
+  &_text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    p {
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.65;
+      color: rgba($prime, 0.9);
+
+      @include respond-to(md) {
+        font-size: 16px;
+      }
+    }
+  }
+
+  &_features {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    li {
+      position: relative;
+      padding-left: 24px;
+      font-size: 16px;
+      line-height: 1.5;
+      color: rgba($prime, 0.88);
+
+      @include respond-to(md) {
+        font-size: 15px;
+        padding-left: 22px;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.4em;
+        width: 8px;
+        height: 8px;
+        background: $light-gold;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  &_actions {
+    margin-top: 8px;
+
+    .button {
+      min-width: 200px;
+
+      @include respond-to(md) {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@keyframes room-video-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Секция «Другие хоромы» — свайпер с карточками комнат
+.section--room-other {
+  padding-bottom: 80px;
+
+  @include respond-to(lg) {
+    padding-bottom: 48px;
+  }
+}
+
+.room-other_content {
+  position: relative;
+  width: 100%;
+}
+
+.room-other_items {
+  width: 100%;
+
+  .room-other_item {
+    height: auto;
+  }
+
+  &.swiper .swiper-slide {
+    height: auto;
+  }
+}
+
+.room-other_nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 24px;
+
+  @include respond-to(sm) {
+    margin-top: 16px;
+  }
+}

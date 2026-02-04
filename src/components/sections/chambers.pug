@@ -1,0 +1,35 @@
+//- Секция "Наши хоромы"
+section.section.section--chambers(data-aos="fade-up", data-aos-duration="1000")
+  .container.section_container
+    +SectionTitle({
+      title: 'ЗРИ, ГОСТЬ ДОРОГОЙ, ХОРОМЫ НАШИ',
+      size: 'lg',
+      type: 'left'
+    })
+    .chambers_content
+      .chambers_info
+        .chambers_text
+          p 60 ГОСТЕЙ ВСЕЛЬСТВО РАЗМЕСТИТ ЖАРКОЕ СЕРДЦЕ МОЙКИ
+          p КАЖДЫЙ ЧАС НОВЫЙ АРОМАПАР: МЯТА, СМОРОДИНА, ОСИННИК, ПИХТА
+          p НАИМЕРС/ВЫЕ ПАРЕНИЯ - С ВЕНИКАМИ, ДУХОМ И МАСТЕРСТВОМ
+        .chambers_subtitle
+          h3.title.title-h3 КЕДРОВАЯ ПАРНАЯ
+          p Кедровая парная на 60 гостей с уникальной системой аромапаров. Каждый час новый аромат для максимального комфорта и релаксации.
+      .chambers_gallery
+        .chambers_gallery-swiper.swiper
+          .swiper-wrapper
+            .swiper-slide
+              img(src="assets/img/banya/chambers-1.jpg", alt="Кедровая парная")
+            .swiper-slide
+              img(src="assets/img/banya/chambers-2.jpg", alt="Интерьер парной")
+            .swiper-slide
+              img(src="assets/img/banya/chambers-3.jpg", alt="Купели")
+          .swiper_nav
+            +BtnIcon({
+              icon: 'assets/img/svg/icons/arrow-left-1.svg',
+              styles: ['default', 'md']
+            })(class='swiper_nav_item-prev chambers_swiper-prev')
+            +BtnIcon({
+              icon: 'assets/img/svg/icons/arrow-right-1.svg',
+              styles: ['default', 'md']
+            })(class='swiper_nav_item-next chambers_swiper-next')

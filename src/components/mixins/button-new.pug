@@ -1,0 +1,35 @@
+//- Опции для кнопки с иконкой: { type?, icon?, iconAlt?, iconOnly? }
+//- icon — путь к svg/img; iconOnly — только иконка (текст для a11y скрыт визуально)
+mixin Button(text = 'Текст кнопки', styles = ['primary'], typeOrOptions = 'button')
+  - let classes = ''
+  - const defaultSize = 'md'
+  - let hasSize = false
+  - let hasVariant = false
+  - const opts = typeof typeOrOptions === 'object' ? typeOrOptions : { type: typeOrOptions }
+  - const { type = 'button', icon = '', iconAlt = '', iconOnly = false } = opts
+  - if (icon) classes += ' button--icon'
+  - if (iconOnly) classes += ' button--icon-only'
+
+  each item in styles
+    - classes+= ` button--${item}`
+    - if (item === 'sm' || item === 'md' || item === 'lg' || item === 'xl') hasSize = true
+    - if (item === 'primary' || item === 'secondary' || item === 'third' || item === 'nav') hasVariant = true
+
+  - if (!hasSize) classes+= ` button--${defaultSize}`
+  - if (!hasVariant) classes+= ` button--primary`
+
+  - const isLink = attributes.href !== undefined
+  - const tag = isLink ? 'a' : 'button'
+
+  if isLink
+    a(class=`button${classes}`)&attributes(attributes)
+      if icon
+        img.button_icon(src=icon, alt=iconAlt || text)
+      if !iconOnly && text
+        span.button_text= text
+  else
+    button(type=type, class=`button${classes}`)&attributes(attributes)
+      if icon
+        img.button_icon(src=icon, alt=iconAlt || text)
+      if !iconOnly && text
+        span.button_text= text

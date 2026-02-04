@@ -1,0 +1,34 @@
+//- Секция "Льготы честному люду"
+section.section.section--benefits(data-aos="fade-up", data-aos-duration="1000")
+  .container.section_container
+    +SectionTitle({
+      title: 'ЛЬГОТЫ ЧЕСТНОМУ ЛЮДУ',
+      size: 'lg',
+      type: 'center'
+    })
+    .benefits_content
+      .benefits_items
+        +CardPromotion({
+          label: 'Счастливые часы',
+          title: 'Пн-Чт до 15:00: входной билет в Мовню на 3 часа — 3500₽',
+          text: 'Акция не суммируется с другими акциями и предложениями',
+          img: 'assets/img/benefits-1.webp',
+          alt: 'Счастливые часы',
+          link: 'promotion.html'
+        })
+        +CardPromotion({
+          label: 'Скидка 10%',
+          title: 'Каждый вторник скидка 10% для девушек на вход и все услуги',
+          text: 'Акция не суммируется с другими акциями и предложениями',
+          img: 'assets/img/benefits-2.webp',
+          alt: 'Скидка 10%',
+          link: 'promotion.html'
+        })
+        +CardPromotion({
+          label: 'Скидка',
+          title: 'Каждый вторник скидка',
+          text: 'Акция не суммируется с другими акциями и предложениями или вообще не существует, а создана только для проверки вида карточки при разном размере контента',
+          img: 'assets/img/event.webp',
+          alt: 'Скидка 10%',
+          link: 'promotion.html'
+        })

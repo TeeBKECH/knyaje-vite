@@ -1,0 +1,408 @@
+.quiz {
+  position: relative;
+
+  &-wrapper {
+    @include respond-to(md) {
+      padding: 0;
+    }
+  }
+
+  &_card {
+    &--alt {
+      .card_img {
+        aspect-ratio: 1.1 / 1;
+
+        @include respond-to(md) {
+          aspect-ratio: 0.9 / 1;
+        }
+      }
+    }
+  }
+
+  &_step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    pointer-events: none;
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease;
+    $step: &;
+
+    @include respond-to(md) {
+      gap: 24px;
+    }
+
+    &--active {
+      visibility: visible;
+      opacity: 1;
+      position: relative;
+      pointer-events: auto;
+    }
+
+    &--form {
+      border: none;
+      background: transparent;
+      padding: 0;
+      margin-top: 32px;
+    }
+
+    &--success {
+      border: none;
+      background: transparent;
+      padding: 0;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &__title {
+      font-size: 24px;
+      color: $prime;
+      font-weight: 600;
+      text-transform: uppercase;
+
+      @include respond-to(md) {
+        font-size: 16px;
+      }
+    }
+
+    &__options {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      width: 100%;
+
+      @include respond-to(lg) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      @include respond-to(md) {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      &--alt {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    &__content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+
+      @include respond-to(lg) {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 32px;
+      }
+
+      @include respond-to(md) {
+        gap: 24px;
+      }
+    }
+
+    &__left {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    &__right {
+      display: flex;
+      flex-direction: column;
+
+      @include respond-to(md) {
+        padding: 0 16px;
+      }
+    }
+  }
+
+  // Стили для карточек квиза теперь в card.scss (.card--quiz)
+
+  &_summary {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+
+    @include respond-to(md) {
+      gap: 20px;
+    }
+
+    &__item {
+      display: flex;
+      flex-direction: column;
+      border-radius: 20px;
+      overflow: hidden;
+
+      @include respond-to(md) {
+      }
+
+      &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+    }
+
+    &__image {
+      width: 100%;
+      aspect-ratio: 1.7 / 1;
+      border-radius: 20px 20px 0 0;
+      overflow: hidden;
+      background: rgba($light-text, 0.05);
+      position: relative;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      &--size {
+        background: #d4c4b0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        position: relative;
+
+        &::after {
+          content: '2';
+          position: absolute;
+          font-size: 200px;
+          font-weight: 300;
+          color: rgba($light-text, 0.1);
+          z-index: 0;
+          bottom: -20px;
+          left: 50%;
+          transform: translateX(-50%);
+          line-height: 1;
+          font-family: $font-main;
+
+          @include respond-to(md) {
+            font-size: 120px;
+          }
+        }
+      }
+    }
+
+    &__size-value {
+      font-size: 32px;
+      font-weight: 700;
+      color: $prime;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+
+      @include respond-to(md) {
+        font-size: 24px;
+      }
+    }
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 20px 20px 24px;
+      background: #fff;
+      text-align: center;
+      flex: 1;
+
+      @include respond-to(md) {
+        gap: 6px;
+      }
+    }
+
+    &__label {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba($light-text, 0.6);
+      text-transform: uppercase;
+
+      @include respond-to(md) {
+        font-size: 12px;
+      }
+    }
+
+    &__value {
+      font-size: 18px;
+      font-weight: 600;
+      color: $prime;
+
+      @include respond-to(md) {
+        font-size: 16px;
+      }
+    }
+
+    &__change {
+      font-size: 14px;
+      color: $prime;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      transition: color 0.3s ease;
+
+      @include respond-to(md) {
+        font-size: 12px;
+      }
+
+      &:hover {
+        color: rgba($light-text, 0.7);
+      }
+    }
+  }
+
+  &_success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    text-align: center;
+    padding: 60px 40px;
+
+    @include respond-to(md) {
+      padding: 40px 24px;
+      gap: 20px;
+    }
+
+    &__icon {
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba($light-text, 0.3);
+      margin-bottom: 8px;
+
+      @include respond-to(md) {
+        width: 60px;
+        height: 60px;
+      }
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &__title {
+      font-size: 32px;
+      font-weight: 700;
+      color: $prime;
+      text-transform: uppercase;
+      line-height: 1.2;
+
+      @include respond-to(md) {
+        font-size: 24px;
+      }
+    }
+
+    &__text {
+      font-size: 18px;
+      font-weight: 400;
+      color: rgba($light-text, 0.7);
+      line-height: 1.5;
+      margin-top: 8px;
+
+      @include respond-to(md) {
+        font-size: 16px;
+      }
+    }
+  }
+
+  &_footer {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    margin-top: 60px;
+    align-items: flex-end;
+
+    @include respond-to(lg) {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    @include respond-to(md) {
+      padding: 0 16px;
+    }
+  }
+
+  // Скрываем футер на шаге формы и успеха
+  .quiz_step--form.quiz_step--active ~ .quiz_footer,
+  .quiz_step--success.quiz_step--active ~ .quiz_footer {
+    display: none;
+  }
+
+  &_progress {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+
+    &__track {
+      width: 100%;
+      height: 4px;
+      background-color: #fff;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    &__fill {
+      height: 100%;
+      background: $prime;
+      transition: width 0.3s ease;
+      position: relative;
+      width: 0%;
+    }
+
+    &__percentage {
+      position: absolute;
+      bottom: 12px;
+      left: 0;
+      color: $prime;
+      font-size: 14px;
+      font-weight: 500;
+      white-space: nowrap;
+      font-family: $font-secondary;
+
+      @include respond-to(md) {
+        font-size: 12px;
+        bottom: 10px;
+      }
+    }
+  }
+
+  &_actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+
+    @include respond-to(md) {
+      gap: 8px;
+    }
+  }
+
+  &_btn {
+    &.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+}

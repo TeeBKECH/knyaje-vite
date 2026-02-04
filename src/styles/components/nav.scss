@@ -1,0 +1,49 @@
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include respond-to(lg) {
+    display: none;
+  }
+
+  &_contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 0 16px 50px;
+
+    &-list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    &-item {
+      display: flex;
+    }
+
+    &-text {
+      font-size: 16px;
+      color: $prime;
+      font-weight: 400;
+      text-align: center;
+    }
+  }
+
+  &--mobile {
+    flex-direction: column;
+    gap: 32px;
+
+    @include respond-to(lg) {
+      display: flex;
+    }
+  }
+
+  &--bottom {
+    width: 100%;
+    background: $second;
+  }
+}

@@ -1,0 +1,52 @@
+//- Миксин кастомного select
+//- options: { id, name, placeholder, items: [{value,label}], multiple, selected: [value], multiInput }
+mixin AppSelect(options)
+  -
+    const {
+      id = '',
+      name = id || 'select',
+      placeholder = 'Выберите…',
+      items = [],
+      multiple = false,
+      selected = [],
+      multiInput = false,
+      mode = ''
+    } = options || {};
+
+  .c-select(
+    id=id
+    data-component="select"
+    data-multiple=multiple
+    data-name=name
+    data-placeholder=placeholder
+    data-multi-input=multiInput
+    role="combobox"
+    aria-haspopup="listbox"
+    aria-expanded="false"
+    class=mode === 'light' ? 'c-select--light' : ''
+  )
+    if multiple && multiInput
+      .c-select__inputs(data-ref="inputs")
+    else
+      input(type="hidden" data-ref="input" name=name value=(multiple ? selected.join(',') : (selected[0] || '')))
+
+    button.c-select__toggle(type="button" data-ref="toggle" aria-controls=(id ? id + '__list' : undefined))
+      span.c-select__value(data-ref="value")= selected.length ? items.filter(i => selected.includes(i.value)).map(i => i.label).join(', ') : placeholder
+      span.c-select__caret
+
+    .c-select__dropdown(data-ref="dropdown" hidden)
+      ul.c-select__list(
+        id=(id ? id + '__list' : undefined)
+        role="listbox"
+        aria-multiselectable=multiple
+        data-ref="list"
+      )
+        each item in items
+          - const isSel = selected.includes(item.value)
+          li.c-select__option(
+            role="option"
+            data-value=item.value
+            aria-selected=isSel
+            class=isSel ? 'is-selected' : ''
+            tabindex="-1"
+          )= item.label

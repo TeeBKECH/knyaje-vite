@@ -1,0 +1,7 @@
+mixin Link({num = 0, link = '', ver= '', title = ''})
+  if (link)
+    .link
+      .link_num= `${num}.`
+      a(href=link, target="_blank")= link
+      p= `(${title})`
+      span(class=`${ver <= 35 ? 'link-err' : ver > 35 && ver <= 99 ? 'link-warn' : 'link-ok'}`)= `(${ver}%)`

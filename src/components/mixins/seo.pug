@@ -1,0 +1,35 @@
+mixin SeoTextImg(props)
+  - const {sectionClass = 'seo--main', title = 'Сео Текст', text = [], list = [], img = '', more = false} = props
+  section.seo(class=sectionClass)
+    .seo_container
+      .seo_content
+        h2.title.title-h2= title
+        if (text.length > 0)
+          .seo_text
+            each txt in text
+              p= txt
+        if (list.length > 0)
+          .seo_list.content_text
+            ul
+              each li in list
+                li= li
+        if (more)
+          span.seo__more Читать далее...
+      .seo_img
+        img(src=img, alt=title)
+
+mixin SeoBox(props)
+  - const {title = 'Сео Текст', text = [], list = []} = props
+  section.seo.seo--box
+    .container.seo_container
+      .seo_content
+        h2.title.title-h2= title
+        if (text.length > 0)
+          .seo_text
+            each txt in text
+              p= txt
+        if (list.length > 0)
+          .seo_list.content_text
+            ul
+              each li in list
+                li= li

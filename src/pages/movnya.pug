@@ -1,0 +1,274 @@
+//- @title: Мовня - Общественная баня
+//- @description: Мовня - Общественная баня описание
+//- @page_class: movnya
+extends ../layouts/default.pug
+
+block content
+  +IntroVideo({
+    videoSrc: 'https://kinescope.io/embed/tyJzgYAmK2nciaSwGUKnH1?&muted=true&autoplay=true&autopause=false&loop=true',
+    title: 'Мовня',
+    description: 'великая баня на 60 душ',
+    breadcrumbs: ['Мовня'],
+    features: [
+      {label: 'Вмещаемость', value: 'до 60 гостей'},
+      {label: 'Время визита', value: '3 часа (в будни)'},
+      {label: 'Стоимость', value: 'от 5 200 Р.'},
+      {label: 'Безлимит по будням', value: '8 000₽'}
+    ],
+    buttons: [
+      {text: 'Купить билет онлайн', styles: ['primary', 'lg']},
+      {text: 'Расписание паров', styles: ['secondary', 'lg']}
+    ]
+  })
+
+  section.section.section--movnya
+    .container.section_container
+      .movnya_content
+        .movnya_content-text
+          .movnya_content-text-item
+            .movnya_content-text-item-icon
+              img(src="assets/img/movnya-icon-1.svg", alt="Пар, что лечит, а не обжигает")
+            span Пар, что лечит, а не обжигает
+            p — плавный прогрев от 60 °C, идеально и для бывалых, и для новичков
+          .movnya_content-text-item 
+            .movnya_content-text-item-icon
+              img(src="assets/img/movnya-icon-1.svg", alt="Пар, что лечит, а не обжигает")
+            span Аромапары по расписанию
+            p — мята, смородина, пихта… каждые 60 минут новый ритуал
+          .movnya_content-text-item 
+            .movnya_content-text-item-icon
+              img(src="assets/img/movnya-icon-1.svg", alt="Пар, что лечит, а не обжигает")
+            span Крупнейшая купель Москвы
+            p — мгновенный контраст для тонуса и иммунитета
+          .movnya_content-text-item 
+            .movnya_content-text-item-icon
+              img(src="assets/img/movnya-icon-1.svg", alt="Пар, что лечит, а не обжигает")
+            span Семейный формат
+            p — мужчины, женщины и дети парятся вместе (кроме четверга - мужской день)
+
+  +PalacesSection({
+    palaces: [
+      {
+        id: 'sila',
+        title: 'Паримся вместе, как в старину!',
+        images: [
+          'assets/img/ch-1.webp',
+          'assets/img/ch-2.jpg',
+          'assets/img/ch-3.jpg',
+          'assets/img/ch-4.jpg'
+        ],
+        tabs: [
+          {
+            id: 'weekdays',
+            label: 'ПН-ПТ',
+            active: true,
+            description: 'Цена за одного человека на 3 часа, каждая последующая минута 28 руб',
+            prices: [
+              {value: '5 200 ₽', note: ['3 часа']},
+              {value: '28 ₽', note: ['1 минута']},
+            ]
+          },
+          {
+            id: 'weekdays-2',
+            label: 'ПН-ПТ (Безлимит)',
+            active: false,
+            description: 'Без лимита по времени',
+            prices: [
+              {value: '8 000 ₽', note: ['За 1 Человека']},
+            ]
+          },
+          {
+            id: 'weekend',
+            label: 'СБ-ВС',
+            active: false,
+            description: 'Цена за одного человека на 3 часа, каждая последующая минута 33 руб',
+            prices: [
+              {value: '5 800 ₽', note: ['3 часа']},
+              {value: '33 ₽', note: ['1 минута']},
+            ]
+          },
+          {
+            id: 'holidays',
+            label: 'Праздничные дни',
+            active: false,
+            description: 'Цена за одного человека на 3 часа, каждая последующая минута 30 руб',
+            prices: [
+              {value: '5 800 ₽', note: ['3 часа']},
+              {value: '30 ₽', note: ['1 минута']},
+            ]
+          },
+          {
+            id: 'children',
+            label: 'Детский',
+            active: false,
+            description: 'с 3 до 7 лет - БЕСПЛАТНО / с 8 до 14 лет - СКИДКА 50% / с 14 лет - взрослый билет',
+            prices: [
+              {value: 'Бесплатно', note: ['с 3 до 7 лет']},
+              {value: 'СКИДКА 50%', note: ['с 8 до 14 лет']},
+              {value: 'Взрослый билет', note: ['с 14 лет']},
+            ]
+          },
+          {
+            id: 'discount',
+            label: 'Льготная среда с 10:00 до 13:00',
+            active: false,
+            description: 'Льготные билеты при предъявлении удостоверения для ветеранов войн, пенсионеров, многодетных семей',
+            prices: [
+              {value: '2 300 ₽', note: []},
+            ]
+          },
+        ]
+      },
+    ]
+  })
+
+  include ../components/sections/cta.pug
+
+  +Spa({
+    title: 'СПА ПРОГРАММЫ',
+    items: [
+      {
+        title: 'Княжеский отдых',
+        duration: '1,5 часа',
+        img: 'assets/img/spa-1.webp',
+        items: [
+          'Арома-скраб на выбор (смородина, ананас, манго)',
+          'Массаж 40 минут',
+          'Увлажнение тела',
+          'Отдых на сеновале',
+          'Чайная церемония на сеновале'
+        ],
+        price: '9 000 ₽',
+        guests: '1 ГОСТЬ',
+        price2: '16 000 ₽',
+        guests2: '2 ГОСТЯ'
+      },
+      {
+        title: 'ЦАРСКОЕ РАССЛАБЛЕНИЕ',
+        duration: '1,5 часа',
+        img: 'assets/img/spa-2.webp',
+        items: [
+          'Обертывание на выбор (шоколад, ламинария)',
+          'Массаж 40 минут',
+          'Увлажнение тела',
+          'Отдых на сеновале',
+          'Чайная церемония с угощениями'
+        ],
+        price: '10 000 ₽',
+        guests: '1 ГОСТЬ',
+        price2: '18 000₽',
+        guests2: '2 ГОСТЯ'
+      },
+      {
+        title: 'КОРОЛЕВСКОЕ УДОВОЛЬСТВИЕ',
+        duration: '2 часа',
+        img: 'assets/img/spa-3.webp',
+        description: 'Программа для любителей комплексного СПА:',
+        items: [
+          'Арома-скраб на выбор (смородина, ананас, манго)',
+          'Обертывание на выбор (шоколад, ламинария)',
+          'Массаж 40 минут',
+          'Увлажнение тела',
+          'Отдых на сеновале',
+          'Чайная церемония на сеновале'
+        ],
+        price: '15 000₽',
+        guests: '1 ГОСТЬ',
+        price2: '28 000 ₽',
+        guests2: '2 ГОСТЯ'
+      }
+    ]
+  })
+
+  section.section.section--prices(data-aos="fade-up", data-aos-duration="1000")
+    .container.section_container
+      +Tabs({
+        items: [
+          {
+            title: 'Дополнительные ритуалы',
+            contentMixin: 'PriceCategory',
+            contentMixinProps: {
+              category: 'dop',
+              sections: [
+                {
+                  title: 'Дополнительные ритуалы',
+                  items: [
+                    {
+                      name: 'Распаривание ног в кадушке',
+                      price: '1 500₽',
+                    },
+                    {
+                      name: 'Ингаляции из хрена, эвкалипта, пихты и картошки',
+                      price: '1 500₽',
+                    },
+                    {
+                      name: 'Купель с холодной водой и льдом, разнотравье, эвкалиптовая, ромашковая, крымская (3 часа)',
+                      price: '5 000₽',
+                    },
+                    {
+                      name: 'Аромапар на заказ',
+                      price: '3 500₽',
+                    },
+                  ]
+                },
+              ]
+            }
+          },
+          {
+            title: 'Аренда Текстиля',
+            contentMixin: 'PriceCategory',
+            contentMixinProps: {
+              category: 'arenda',
+              sections: [
+                {
+                  title: 'Аренда Текстиля',
+                  items: [
+                    {
+                      name: 'Полотенце',
+                      price: '1 000₽',
+                    },
+                    {
+                      name: 'Простыня',
+                      price: '300₽',
+                    },
+                    {
+                      name: 'Халат',
+                      price: '1 000₽',
+                    },
+                    {
+                      name: 'Банный комплект: халат, простыня, полотенце, шапка, тапочки',
+                      price: '3 000₽',
+                    },
+                  ]
+                },
+              ]
+            }
+          },
+          {
+            title: 'Продажа Текстиля',
+            contentMixin: 'PriceCategory',
+            contentMixinProps: {
+              category: 'sell',
+              sections: [
+                {
+                  title: 'Продажа Текстиля',
+                  items: [
+                    {
+                      name: 'Шапочки для бани',
+                      price: 'от 800₽',
+                    },
+                    {
+                      name: 'Тапочки',
+                      price: '800₽',
+                    },
+                    {
+                      name: 'Халат',
+                      price: '6 000₽',
+                    },
+                  ]
+                },
+              ]
+            }
+          }
+        ]
+      })

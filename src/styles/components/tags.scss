@@ -1,0 +1,27 @@
+.tags {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  &_item {
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: $font-secondary;
+    border-radius: 32px;
+    // border: 1px solid $second;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1;
+    background: rgba(#faf7f0, 0.2);
+    backdrop-filter: blur(20px);
+    color: $second;
+
+    @include respond-to(sm) {
+      padding: 8px 14px;
+      font-size: 12px;
+    }
+  }
+}

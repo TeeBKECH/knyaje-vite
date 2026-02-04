@@ -1,0 +1,14 @@
+//- Миксин декоративной рамки (углы + края, контент поверх)
+//- Оборачивает произвольную вёрстку; контент в потоке, z-index выше рамки
+mixin Frame()
+  .frame
+    .frame_corner.frame_tl
+    .frame_corner.frame_tr
+    .frame_corner.frame_bl
+    .frame_corner.frame_br
+    .frame_edge.frame_top
+    .frame_edge.frame_right
+    .frame_edge.frame_bottom
+    .frame_edge.frame_left
+    .frame_content
+      block

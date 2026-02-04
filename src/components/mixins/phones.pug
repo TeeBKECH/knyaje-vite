@@ -1,0 +1,17 @@
+mixin Phones(props = {tel: '+7 (495) 477-42-92'})
+  .phones&attributes(attributes)
+    a.phones_item(href=`tel:${props.tel}`)= props.tel
+    button.phones_icon
+    .phones-content
+      .phones-content__item
+        .phones-content__icon
+          img(src="assets/img/svg/icons/phone.svg", alt="")
+        a.phones-content__link(href='#') +7(495) 477-42-92
+      .phones-content__item
+        .phones-content__icon
+          img(src="assets/img/svg/icons/wa.svg", alt="")
+        a.phones-content__link(href='#') +7(903) 290-67-00
+      .phones-content__item
+        .phones-content__icon
+          img(src="assets/img/svg/icons/tg.svg", alt="")
+        a.phones-content__link(href='#') @tg-kalibra

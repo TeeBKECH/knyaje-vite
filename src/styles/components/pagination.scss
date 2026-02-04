@@ -1,0 +1,99 @@
+.pagination {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  $pagi: &;
+
+  @include respond-to(lg) {
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  &_list {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+
+    @include respond-to(lg) {
+      margin-left: 0;
+    }
+
+    @include respond-to(md) {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    &_item {
+      flex: auto;
+      &:last-child,
+      &:first-child {
+        @include respond-to(md) {
+          width: 100%;
+        }
+      }
+    }
+
+    &_link,
+    &_current {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+
+      @include respond-to(lg) {
+        width: 38px;
+        height: 38px;
+      }
+    }
+
+    &_text {
+      @include respond-to(lg) {
+      }
+
+      @include respond-to(sm) {
+        display: none;
+      }
+    }
+
+    &_link {
+      @include respond-to(md) {
+        width: 100%;
+      }
+      &:hover {
+      }
+
+      &--prev,
+      &--next {
+        width: fit-content;
+
+        @include respond-to(md) {
+          width: 100%;
+        }
+
+        // padding: 0 16px;
+        // gap: 8px;
+
+        @include respond-to(sm) {
+          // padding: 0;
+          // width: 32px;
+          // height: 32px;
+        }
+      }
+    }
+
+    &_current {
+    }
+  }
+
+  &_more {
+    @include respond-to(sm) {
+      display: none;
+    }
+  }
+}

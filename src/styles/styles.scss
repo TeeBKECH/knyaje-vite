@@ -1,0 +1,179 @@
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import '@fancyapps/ui/dist/fancybox/fancybox.css';
+
+@import '@/styles/fonts';
+
+:root {
+  --height-h: 92px;
+  --vh: 1vh; // Fallback, будет перезаписано JavaScript
+}
+
+// Базовые стили
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-main;
+  font-weight: 400;
+  color: $prime;
+  background-color: $second;
+
+  &.noscroll {
+    overflow-y: hidden;
+  }
+}
+
+a {
+  color: $prime;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+p {
+  font-size: 18px;
+  font-weight: 400;
+  color: $prime;
+  line-height: 1.77;
+
+  @include respond-to(md) {
+    font-size: 16px;
+  }
+}
+
+img {
+  display: block;
+}
+
+textarea {
+  font-family: $font-main;
+}
+
+.links {
+  padding: 140px 0;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  &_items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .link {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    @include respond-to(sm) {
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    &_num {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    a {
+      color: $prime;
+      font-size: 22px;
+      text-decoration: underline;
+      font-weight: 500;
+    }
+
+    p {
+      color: $light-gold;
+      font-size: 18px;
+      font-weight: 400;
+    }
+
+    &-err {
+      color: red;
+    }
+
+    &-warn {
+      color: yellow;
+    }
+
+    &-ok {
+      color: green;
+    }
+  }
+}
+
+@import '@/styles/components/page';
+@import '@/styles/components/title';
+@import '@/styles/components/frame';
+@import '@/styles/components/scroll-bar';
+@import '@/styles/components/container';
+@import '@/styles/components/header';
+@import '@/styles/components/main';
+@import '@/styles/components/section';
+@import '@/styles/components/footer';
+@import '@/styles/components/btn';
+@import '@/styles/components/button';
+@import '@/styles/components/logo';
+@import '@/styles/components/burger';
+@import '@/styles/components/nav';
+@import '@/styles/components/menu';
+@import '@/styles/components/intro';
+@import '@/styles/components/socials';
+@import '@/styles/components/swiper';
+@import '@/styles/components/cta';
+@import '@/styles/components/form';
+@import '@/styles/components/breadcrumbs';
+@import '@/styles/components/modal';
+@import '@/styles/components/choice';
+@import '@/styles/components/gallery';
+@import '@/styles/components/features';
+@import '@/styles/components/tabs';
+@import '@/styles/components/benefits';
+@import '@/styles/components/events';
+@import '@/styles/components/card';
+@import '@/styles/components/rest';
+@import '@/styles/components/pagination';
+@import '@/styles/components/event';
+@import '@/styles/components/place';
+@import '@/styles/components/room';
+@import '@/styles/components/error';
+@import '@/styles/components/recvizity';
+@import '@/styles/components/text-page';
+@import '@/styles/components/promotions';
+@import '@/styles/components/promotion';
+@import '@/styles/components/contacts';
+@import '@/styles/components/price';
+@import '@/styles/components/price-table';
+@import '@/styles/components/tsarpalata';
+@import '@/styles/components/rituals';
+@import '@/styles/components/spa';
+@import '@/styles/components/rental';
+@import '@/styles/components/palaces';
+@import '@/styles/components/rooms';
+@import '@/styles/components/movnya';
+@import '@/styles/components/single';
+@import '@/styles/components/widget';
+@import '@/styles/components/toc';
+@import '@/styles/components/bottom-nav';
+@import '@/styles/components/scroll-to-top';
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}

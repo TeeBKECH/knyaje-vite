@@ -1,0 +1,87 @@
+$frame: 'frame';
+
+.frame {
+  --#{$frame}-thickness: 40px;
+  --#{$frame}-content-padding: 40px;
+
+  position: relative;
+  padding: var(--#{$frame}-content-padding);
+
+  @include respond-to(sm) {
+    --#{$frame}-content-padding: 40px 20px;
+  }
+
+  &_corner {
+    position: absolute;
+    z-index: 0;
+    width: var(--#{$frame}-thickness);
+    height: var(--#{$frame}-thickness);
+    background-size: var(--#{$frame}-thickness) var(--#{$frame}-thickness);
+    background-repeat: no-repeat;
+
+    &.#{$frame}_tl {
+      top: 0;
+      left: 0;
+      background-image: url('@/assets/img/frame-tl.svg');
+    }
+    &.#{$frame}_tr {
+      top: 0;
+      right: 0;
+      background-image: url('@/assets/img/frame-tr.svg');
+    }
+    &.#{$frame}_bl {
+      bottom: 0;
+      left: 0;
+      background-image: url('@/assets/img/frame-bl.svg');
+    }
+    &.#{$frame}_br {
+      bottom: 0;
+      right: 0;
+      background-image: url('@/assets/img/frame-br.svg');
+    }
+  }
+
+  &_edge {
+    position: absolute;
+    z-index: 0;
+    background-size: var(--#{$frame}-thickness) var(--#{$frame}-thickness);
+
+    &.#{$frame}_top {
+      top: 0;
+      left: var(--#{$frame}-thickness);
+      right: var(--#{$frame}-thickness);
+      height: var(--#{$frame}-thickness);
+      background-image: url('@/assets/img/frame-top.svg');
+      background-repeat: repeat-x;
+    }
+    &.#{$frame}_bottom {
+      bottom: 0;
+      left: var(--#{$frame}-thickness);
+      right: var(--#{$frame}-thickness);
+      height: var(--#{$frame}-thickness);
+      background-image: url('@/assets/img/frame-bottom.svg');
+      background-repeat: repeat-x;
+    }
+    &.#{$frame}_left {
+      left: 0;
+      top: var(--#{$frame}-thickness);
+      bottom: var(--#{$frame}-thickness);
+      width: var(--#{$frame}-thickness);
+      background-image: url('@/assets/img/frame-left.svg');
+      background-repeat: repeat-y;
+    }
+    &.#{$frame}_right {
+      right: 0;
+      top: var(--#{$frame}-thickness);
+      bottom: var(--#{$frame}-thickness);
+      width: var(--#{$frame}-thickness);
+      background-image: url('@/assets/img/frame-right.svg');
+      background-repeat: repeat-y;
+    }
+  }
+
+  &_content {
+    position: relative;
+    z-index: 1;
+  }
+}

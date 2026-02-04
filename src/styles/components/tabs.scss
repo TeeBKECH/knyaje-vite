@@ -1,0 +1,137 @@
+.section--tabs {
+  padding: 200px 0;
+  background: url('../../assets/img/tabs-bg.svg') no-repeat top center / cover;
+  color: $second;
+
+  @include respond-to(lg) {
+    padding: 120px 0 60px;
+  }
+
+  .title {
+    color: $second;
+  }
+}
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+
+  @include respond-to(xl) {
+    gap: 24px;
+  }
+
+  &_buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    @include respond-to(lg) {
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; // Firefox
+      -ms-overflow-style: none; // IE и Edge
+      padding-bottom: 8px;
+
+      &::-webkit-scrollbar {
+        display: none; // Chrome, Safari, Opera
+      }
+    }
+
+    @include respond-to(md) {
+      gap: 12px;
+    }
+  }
+
+  &_button {
+    padding: 12px 20px;
+    color: $second;
+    border: 1px solid $second;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 20px;
+    opacity: 0.6;
+    flex: none;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &--active {
+      background: $second;
+      color: $prime;
+      opacity: 1;
+    }
+  }
+
+  &_item {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+
+    &--active {
+      display: flex;
+    }
+  }
+}
+
+// Стили для страницы прайса
+.page--price,
+.page--price-2 {
+  .section--tabs {
+    background: transparent;
+    color: $prime;
+    padding: 40px 0 80px;
+
+    @include respond-to(lg) {
+      padding: 20px 0 40px;
+    }
+
+    .title {
+      color: $prime;
+    }
+  }
+
+  .tabs {
+    &_button {
+      color: $prime;
+      border-color: $prime;
+
+      &:hover {
+        opacity: 0.8;
+      }
+
+      &--active {
+        background: $prime;
+        color: $second;
+        opacity: 1;
+      }
+    }
+
+    &_item {
+      &--active {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

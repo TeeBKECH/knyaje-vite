@@ -1,0 +1,115 @@
+//- @title: Кедровая парная — Хоромы наши
+//- @description: Кедровая парная в банном комплексе «Княже»: общая баня с кедровой отделкой и мягким паром.
+//- @page_class: room
+extends ../layouts/default.pug
+
+block content
+  +Intro({
+    title: 'Кедровая парная',
+    breadcrumbs: ['Хоромы наши', 'Кедровая парная']
+  })
+
+  section.section.section--room
+    .container.section_container
+      .room
+        .room_content
+          .room_left
+            .room_gallery
+              .room_gallery-main
+                a.room_gallery-link(href='assets/img/ch-1.webp', data-fancybox='room-gallery', data-caption='Кедровая парная')
+                  img.room_gallery-main-img(src='assets/img/ch-1.webp', alt='Кедровая парная')
+              .room_gallery-list
+                a.room_gallery-link(href='assets/img/ch-2.jpg', data-fancybox='room-gallery', data-caption='Кедровая парная — интерьер')
+                  img.room_gallery-thumb(src='assets/img/ch-2.jpg', alt='Кедровая парная — интерьер')
+                a.room_gallery-link(href='assets/img/ch-3.jpg', data-fancybox='room-gallery', data-caption='Кедровая парная — полки')
+                  img.room_gallery-thumb(src='assets/img/ch-3.jpg', alt='Кедровая парная — полки')
+                a.room_gallery-link(href='assets/img/ch-4.jpg', data-fancybox='room-gallery', data-caption='Кедровая парная — зона отдыха')
+                  img.room_gallery-thumb(src='assets/img/ch-4.jpg', alt='Кедровая парная — зона отдыха')
+            .room_video-wrap
+              button.room_video-trigger(type='button', data-modal='video-player-modal', data-video-url='https://kinescope.io/embed/tyJzgYAmK2nciaSwGUKnH1', aria-label='Смотреть видео')
+                .room_video-btn
+                  .room_video-circle(aria-hidden='true')
+                    svg.room_video-circle-svg(viewBox='0 0 100 100', xmlns='http://www.w3.org/2000/svg')
+                      defs
+                        path#room-video-path(d='M 50,50 m -42,0 a 42,42 0 1,1 84,0 a 42,42 0 1,1 -84,0')
+                      text(textLength='264', lengthAdjust='spacing')
+                        textPath(href='#room-video-path') Смотреть Видео • Смотреть Видео • Смотреть Видео •
+                  .room_video-play(aria-hidden='true')
+                    svg.room_video-play-icon(viewBox='0 0 24 24', fill='currentColor', aria-hidden='true')
+                      path(d='M8 5v14l11-7z')
+          .room_body
+            +Frame()
+              .room_inner
+                h1.room_title Кедровая парная
+                ul.room_params
+                  li.room_param
+                    img.room_param-icon(src='assets/img/location.svg', alt='')
+                    span.room_param-label Тип:
+                    span.room_param-value Общая баня
+                  li.room_param
+                    img.room_param-icon(src='assets/img/calendar.svg', alt='')
+                    span.room_param-label Гостей:
+                    span.room_param-value до 8 человек
+                  li.room_param
+                    img.room_param-icon(src='assets/img/location.svg', alt='')
+                    span.room_param-label Площадь:
+                    span.room_param-value 45 м²
+                .room_text
+                  p Кедровая парная — сердце нашей общей бани. Отделка из сибирского кедра создаёт неповторимый аромат и мягкий, целебный пар. Здесь комфортно и большой компании друзей, и тем, кто любит спокойную атмосферу.
+                  p Высокие полки, удобные лежаки и продуманная вентиляция позволяют каждому найти свой угол. После парной — купель с прохладной водой и зона отдыха с чаем и мёдом.
+                ul.room_features
+                  li Кедровая вагонка и полки
+                  li Два уровня полков
+                  li Купель рядом с парной
+                  li Зона отдыха с чаем
+                .room_actions
+                  +Button('Забронировать', ['primary', 'lg'])(data-modal='modal-form' data-modal-action='toggle')
+
+  -
+    const otherRooms = [
+      {
+        title: 'Глиняная парная',
+        description: 'Индивидуальная баня с глиняными стенами и особым микроклиматом.',
+        img: 'assets/img/ch-2.jpg',
+        imgAlt: 'Глиняная парная',
+        params: [
+          { icon: 'assets/img/location.svg', text: 'Индивидуальная баня' },
+          { icon: 'assets/img/calendar.svg', text: 'до 4 гостей' }
+        ],
+        link: 'room.html'
+      },
+      {
+        title: 'СЬЮТ «СИЛА»',
+        description: 'Просторный сьют с собственной парной и зоной отдыха для приватного отдыха.',
+        img: 'assets/img/ch-3.jpg',
+        imgAlt: 'СЬЮТ «СИЛА»',
+        params: [
+          { icon: 'assets/img/location.svg', text: 'Индивидуальная баня' },
+          { icon: 'assets/img/calendar.svg', text: 'до 6 гостей' }
+        ],
+        link: 'room.html'
+      },
+      {
+        title: 'Сеновал',
+        description: 'Уютная баня в духе русской деревни с ароматом сена и натуральными материалами.',
+        img: 'assets/img/ch-4.jpg',
+        imgAlt: 'Сеновал',
+        params: [
+          { icon: 'assets/img/location.svg', text: 'Индивидуальная баня' },
+          { icon: 'assets/img/calendar.svg', text: 'до 4 гостей' }
+        ],
+        link: 'room.html'
+      },
+      {
+        title: '3D-хаммам',
+        description: 'Современный хаммам с объёмной подсветкой и мозаикой для полного релакса.',
+        img: 'assets/img/ch-alt-1.webp',
+        imgAlt: '3D-хаммам',
+        params: [
+          { icon: 'assets/img/location.svg', text: 'Индивидуальная баня' },
+          { icon: 'assets/img/calendar.svg', text: 'до 4 гостей' }
+        ],
+        link: 'room.html'
+      }
+    ];
+  +RoomsSwiper({ items: otherRooms, title: 'Другие хоромы' })

@@ -1,0 +1,9 @@
+mixin TxtLined(props, alt = false)
+  - const {key = '', value = ''} = props
+  .txt_line_wrapper(class=`${alt ? '.txt_line_wrapper--alt' : ''}`)&attributes(attributes)
+    .txt_line_left
+      span= key
+    .txt_line
+    .txt_line_right
+      span= value
+      

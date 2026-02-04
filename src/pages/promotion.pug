@@ -1,0 +1,99 @@
+//- @title: Акция
+//- @description: Акция описание
+//- @page_class: promotion
+extends ../layouts/default.pug
+
+block content
+  +Intro({
+    title: 'Скидка 10%',
+    breadcrumbs: ['Акции', 'Скидка 10%']
+  })
+
+  section.section.section--promotion(data-aos="fade-up", data-aos-duration="1000")
+    .container.section_container
+      .promotion_content
+        .promotion_img
+          img(src='assets/img/benefits-2.webp', alt='Скидка 10%')
+          .promotion_badge Скидка 10%
+        .promotion_body
+          +Frame()
+            .promotion_info
+              .promotion_title
+                h2.title.title-h2 Каждый вторник скидка 10% для девушек на вход и все услуги
+              .promotion_info_list
+                .promotion_info_item
+                  span.promotion_info_item_label Дни действия:
+                  span.promotion_info_item_value Каждый вторник
+                .promotion_info_item
+                  span.promotion_info_item_label Для кого:
+                  span.promotion_info_item_value Девушки
+                .promotion_info_item
+                  span.promotion_info_item_label Размер скидки:
+                  span.promotion_info_item_value 10%
+                .promotion_info_item
+                  span.promotion_info_item_label Применяется:
+                  span.promotion_info_item_value Вход и все услуги
+              .promotion_text
+                p Акция не суммируется с другими акциями и предложениями
+                p Предложение действует только при предъявлении документа, удостоверяющего личность. Скидка применяется автоматически при оплате в кассе банного комплекса.
+              .promotion_details
+                .promotion_details_title Условия акции:
+                ul.promotion_details_list
+                  li.promotion_details_item Скидка действует только по вторникам
+                  li.promotion_details_item Применяется ко всем услугам комплекса
+                  li.promotion_details_item Не суммируется с другими акциями
+                  li.promotion_details_item Требуется предъявление документа
+              .promotion_actions
+                +Button('Записаться', ['primary', 'lg', 'fw'])
+                +Button('Позвонить', ['secondary', 'lg', 'fw'])
+
+  section.section.section--other-promotions(data-aos="fade-up", data-aos-duration="1000")
+    .container.section_container
+      +SectionTitle({
+        title: 'Другие акции',
+        size: 'lg',
+        type: 'center'
+      })
+    .other-promotions_content.container
+      .other-promotions_items
+        +CardPromotion({
+          label: 'Счастливые часы',
+          title: 'Пн-Чт до 15:00: входной билет в Мовню на 3 часа — 3500₽',
+          text: 'Акция не суммируется с другими акциями и предложениями',
+          img: 'assets/img/benefits-1.webp',
+          alt: 'Счастливые часы',
+          link: 'promotion.html'
+        })(class='other-promotions_item')
+        +CardPromotion({
+          label: 'Скидка',
+          title: 'Каждый вторник скидка',
+          text: 'Акция не суммируется с другими акциями и предложениями или вообще не существует, а создана только для проверки вида карточки при разном размере контента',
+          img: 'assets/img/event.webp',
+          alt: 'Скидка 10%',
+          link: 'promotion.html'
+        })(class='other-promotions_item')
+        +CardPromotion({
+          label: 'Скидка 10%',
+          title: 'Каждый вторник скидка 10% для девушек на вход и все услуги',
+          text: 'Акция не суммируется с другими акциями и предложениями',
+          img: 'assets/img/benefits-2.webp',
+          alt: 'Скидка 10%',
+          link: 'promotion.html'
+        })(class='other-promotions_item')
+        +CardPromotion({
+          label: 'Специальное предложение',
+          title: 'Выходные дни: скидка 15% на все услуги',
+          text: 'Действует только в субботу и воскресенье. Не суммируется с другими акциями.',
+          img: 'assets/img/benefits-1.webp',
+          alt: 'Специальное предложение',
+          link: 'promotion.html'
+        })(class='other-promotions_item')
+      .swiper_nav.other-promotions_nav
+        +BtnIcon({
+          icon: 'assets/img/arrow_left.svg',
+          styles: ['swiper_nav--light', 'lg']
+        })(class='swiper_nav_item-prev other-promotions_nav-prev')
+        +BtnIcon({
+          icon: 'assets/img/arrow_right.svg',
+          styles: ['swiper_nav--light', 'lg']
+        })(class='swiper_nav_item-next other-promotions_nav-next')

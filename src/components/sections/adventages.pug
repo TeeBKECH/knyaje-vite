@@ -1,0 +1,92 @@
+// Adventages
+if (page.page_class === 'design')
+  section.section.section--adventages(data-aos="fade-up", data-aos-duration="1000")
+    .container.section_container
+      .adventages.adventages--design
+        .adventages_content
+          .adventages_header
+            h2.title.title-h2.adventages_title ДИЗАЙН ОТ АКСЕНОВ СЕРВИС – ЭТО
+            p.adventages_intro Не просто уход от стандартов, это способ создать пространство, которое отражает вашу индивидуальность и образ жизни.
+          
+          .adventages_items
+            +AdventagesItem({
+              text: 'РАЗРАБОТКА ПЛАНИРОВОЧНЫХ РЕШЕНИЙ',
+              icon: '1'
+            })
+            +AdventagesItem({
+              text: 'УПРАВЛЕНИЕ БЮДЖЕТОМ ПРОЕКТА',
+              icon: '2'
+            })
+            +AdventagesItem({
+              text: '3D ВИЗУАЛИЗАЦИЯ',
+              icon: '3'
+            })
+            +AdventagesItem({
+              text: 'ПОДБОР ЧИСТОВЫХ МАТЕРИАЛОВ',
+              icon: '4'
+            })
+            +AdventagesItem({
+              text: 'АВТОРСКИЙ НАДЗОР ПРОЕКТА',
+              icon: '5'
+            })
+            +AdventagesItem({
+              text: 'КОМПЛЕКТАЦИЯ ПРОЕКТА',
+              icon: '6'
+            })
+          
+          .adventages_description
+            .adventages_text
+              p Мы начинаем с разработки профессионального дизайн-проекта, который:
+              ul.list
+                li.list_item Подберёт идеальные цветовые решения для вашего интерьера.
+                li.list_item Оптимизирует использование пространства с учётом технических и инженерных особенностей вашего помещения.
+                li.list_item Распределит мебель так, чтобы подчеркнуть достоинства и скрыть недостатки планировки.
+            .adventages_text
+              p.adventages_text-normal Ремонт без неожиданностей и лишних затрат
+            .adventages_text
+              p С нашим дизайн-проектом вы заранее получите:
+              ul.list
+                li.list_item Полное видение вашего будущего интерьера.
+                li.list_item Подробный расчёт стоимости всех этапов ремонта, включая отделочные материалы и мебель.
+            .adventages_footer
+              p Продуманный до мелочей интерьер, который станет вашей гордостью.
+else
+  section.section.section--adventages(data-aos="fade-up", data-aos-duration="1000")
+    .container.section_container
+      +SectionTitle({
+        title: 'Наши преимущества',
+        size: 'sm',
+      })
+      .adventages_items
+        +AdventagesItem({
+          text: 'По договору',
+          icon: '1'
+        })
+        +AdventagesItem({
+          text: 'Фиксированная стоимость',
+          icon: '2'
+        })
+        +AdventagesItem({
+          text: 'Без скрытых платежей и доплат',
+          icon: '3'
+        })
+        +AdventagesItem({
+          text: 'Прозрачные условия оплаты',
+          icon: '4'
+        })
+        +AdventagesItem({
+          text: 'Внутренний контроль качества на всех этапах',
+          icon: '5'
+        })
+        +AdventagesItem({
+          text: 'Технический консалтинг',
+          icon: '6'
+        })
+        +AdventagesItem({
+          text: 'Опытные мастера',
+          icon: '7'
+        })
+        +AdventagesItem({
+          text: 'Гарантия на ремонт 1 год',
+          icon: '8'
+        })

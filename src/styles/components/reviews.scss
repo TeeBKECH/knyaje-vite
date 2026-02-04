@@ -1,0 +1,316 @@
+.reviews {
+  &_container {
+    @include respond-to(lg) {
+      padding-right: 20px !important;
+    }
+
+    @include respond-to(md) {
+      padding-right: 8px !important;
+    }
+  }
+
+  &_content {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+
+    @include respond-to(lg) {
+      gap: 20px;
+    }
+  }
+
+  &_top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 24px 28px 32px;
+    padding: 24px 28px 32px;
+    border-radius: 20px;
+    border: 1px solid $dark-gold;
+    box-shadow: 0 4px 32px rgba(#000, 0.04);
+
+    @include respond-to(lg) {
+      padding: 24px;
+    }
+
+    @include respond-to(md) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @include respond-to(xs) {
+      padding: 16px;
+    }
+
+    &_item {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+
+      @include respond-to(md) {
+        gap: 14px;
+      }
+    }
+
+    &--alt {
+      margin-right: 0;
+    }
+  }
+
+  &_service {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    @include respond-to(md) {
+      gap: 7px;
+      width: 100%;
+    }
+
+    @include respond-to(sm) {
+      align-items: center;
+    }
+
+    &_logo {
+      @include respond-to(md) {
+        // height: 13px;
+      }
+
+      @include respond-to(sm) {
+        height: auto;
+      }
+
+      img {
+        height: 100%;
+      }
+    }
+
+    &_rating {
+      @include respond-to(md) {
+        gap: 7px !important;
+      }
+
+      .stars {
+        &_items {
+          @include respond-to(md) {
+            gap: 4px !important;
+          }
+        }
+
+        &_item {
+          @include respond-to(md) {
+            width: 10px !important;
+            height: 10px !important;
+          }
+        }
+
+        &_text {
+          span {
+            @include respond-to(md) {
+              font-size: 10.8px !important;
+            }
+          }
+        }
+      }
+    }
+
+    &_total {
+      display: inline-block;
+      width: fit-content;
+      color: $second;
+      font-size: 14px;
+      font-weight: 500;
+      border-bottom: 1px dotted $second;
+      font-family: $font-secondary;
+
+      @include respond-to(md) {
+        margin-top: 0;
+        font-size: 10.8px;
+      }
+
+      @include respond-to(sm) {
+        font-size: 8.4px;
+      }
+    }
+  }
+
+  &_items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+
+    @include respond-to(xl) {
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @include respond-to(lg) {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+
+  &_item {
+    padding: 32px 28px;
+    background: $second;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    border-radius: 20px;
+    border: 1px solid $dark-gold;
+    box-shadow: 0 4px 32px rgba(#000, 0.04);
+
+    @include respond-to(md) {
+      padding: 24px 16px;
+      gap: 12px;
+    }
+
+    &_top {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      @include respond-to(sm) {
+        gap: 8px;
+      }
+    }
+
+    &_name {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      &-label {
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 1;
+        font-family: $font-secondary;
+        color: $prime;
+
+        @include respond-to(sm) {
+          font-size: 14px;
+        }
+      }
+
+      &-social {
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: $second;
+
+        img {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+
+    &_project {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      &-label {
+        font-weight: 550;
+        font-size: 14px;
+        line-height: 1;
+        font-family: $font-secondary;
+        color: $prime;
+
+        @include respond-to(sm) {
+          font-size: 12px;
+        }
+      }
+
+      &-link {
+        font-family: $font-secondary;
+        font-size: 14px;
+        font-weight: 400;
+        color: $prime;
+        display: inline-block;
+        width: fit-content;
+        border-bottom: 1px dotted $prime;
+      }
+    }
+
+    &_stars {
+      .stars {
+        &_items {
+          gap: 4px;
+
+          @include respond-to(sm) {
+            gap: 3px;
+          }
+        }
+
+        &_item {
+          width: 16px !important;
+          height: 16px !important;
+
+          @include respond-to(sm) {
+            width: 12px !important;
+            height: 12px !important;
+          }
+        }
+      }
+    }
+
+    &_title {
+      color: $prime;
+      text-transform: uppercase;
+
+      @include respond-to(md) {
+        font-size: 18px;
+      }
+    }
+
+    &_content {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      @include respond-to(sm) {
+        gap: 4px;
+      }
+    }
+
+    &_text {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      p {
+        font-size: 16px;
+        font-weight: 450;
+        color: rgba($light-text, 0.72);
+        line-height: calc(26 / 16);
+        font-family: $font-secondary;
+
+        @include respond-to(md) {
+          color: $prime;
+          line-height: 1.5;
+          font-weight: 450;
+        }
+      }
+    }
+
+    &-more {
+      background: none;
+      outline: none;
+      border: none;
+      font-size: 16px;
+      font-weight: 500;
+      color: $prime;
+      line-height: calc(20 / 16);
+      font-family: $font-secondary;
+      width: fit-content;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}

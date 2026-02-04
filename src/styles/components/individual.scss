@@ -1,0 +1,38 @@
+.individual {
+  &-horizontal {
+
+    &_wrapper {
+      @include respond-to(lg) {
+        padding: 0;
+      }
+    }
+
+    &_items {
+      display: flex;
+      flex-direction: column;
+      gap: 120px;
+    }
+
+    // Отключаем AOS на мобильных устройствах (меньше 992px)
+    @include respond-to(lg) {
+      &_item[data-aos] {
+        visibility: visible !important;
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
+  }
+
+  &-swiper {
+    &_wrapper {
+      margin-top: 8px;
+    }
+
+    &_item {
+      &:hover {
+        cursor: default;
+      }
+    }
+  }
+}

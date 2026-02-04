@@ -1,0 +1,35 @@
+.page {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  &_intro {
+    padding: 48px 0;
+
+    &_content {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    &_actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 40px;
+    }
+  }
+
+  &--banner {
+    .modal[aria-hidden='false'] {
+      position: fixed;
+      inset: var(--ad-safe-top, 0px) 0 0 0; /* top right bottom left */
+    }
+  }
+
+  &--certificate {
+    margin: 0 0 !important;
+    max-width: unset !important;
+  }
+}

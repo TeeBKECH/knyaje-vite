@@ -1,0 +1,11 @@
+mixin OrderTab(props)
+  - const {title = '', items = [], name = ''} = props
+  .order-tab
+    h3.order-tab__title.title.title-h3= title
+    .order-tab__items
+      each item, index in items
+        label.order-tab__item(for=`${name}-${index}`)
+          input.order-tab__item-input(id=`${name}-${index}`, type='radio', name=name, checked=index === 1 ? true : false )
+          .order-tab__item-view
+            span.order-tab__item-name= item.name
+            p.order-tab__item-text= item.text

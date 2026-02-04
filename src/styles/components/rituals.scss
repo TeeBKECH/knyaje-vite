@@ -1,0 +1,81 @@
+.rituals {
+  &_content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    @include respond-to(lg) {
+      gap: 32px;
+    }
+
+    @include respond-to(md) {
+      gap: 24px;
+    }
+  }
+
+  &_list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+
+    @include respond-to(lg) {
+      gap: 24px;
+    }
+
+    @include respond-to(md) {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+
+  &_featured {
+    width: 100%;
+  }
+
+  &_slider {
+    width: 100%;
+    position: relative;
+  }
+
+  &_slider-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  &_items {
+    display: flex;
+    gap: 32px;
+    width: 100%;
+
+    @include respond-to(lg) {
+      gap: 24px;
+    }
+
+    @include respond-to(md) {
+      gap: 20px;
+    }
+
+    &.swiper-wrapper {
+      display: flex;
+    }
+  }
+
+  &_nav {
+    justify-content: center;
+  }
+
+  &_item {
+    width: 100%;
+    min-width: 0;
+    height: auto;
+
+    &.swiper-slide {
+      height: auto;
+      display: flex;
+    }
+  }
+}

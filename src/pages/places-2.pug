@@ -1,0 +1,14 @@
+//- @title: Хоромы наши
+//- @description: Хоромы наши описание
+//- @page_class: rooms
+extends ../layouts/default.pug
+
+block content
+  +Intro({
+    title: 'Хоромы наши',
+    breadcrumbs: ['Хоромы наши']
+  })
+
+  section.section.section--rooms(data-aos="fade-up", data-aos-duration="1000")
+    .container.section_container
+      +RoomsAlt()

@@ -1,0 +1,200 @@
+.seo {
+  width: 100%;
+  $seo: &;
+
+  &--main {
+    #{$seo}_container {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 845px 1fr;
+      position: relative;
+
+      @include respond-to(xl-2) {
+        grid-template-columns: 645px 1fr;
+      }
+
+      @include respond-to(xl) {
+        grid-template-columns: 545px 1fr;
+      }
+
+      @include respond-to(lg) {
+        grid-template-columns: 1fr;
+      }
+    }
+    #{$seo}_content {
+      padding: 100px 68px 140px;
+      background: $second;
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+
+      @include respond-to(xl-2) {
+        padding: 80px 48px 80px;
+      }
+
+      @include respond-to(lg) {
+        background: rgba($second, 0.9);
+        position: relative;
+        z-index: 2;
+        padding: 48px 32px;
+        gap: 24px;
+      }
+
+      @include respond-to(md) {
+        padding: 24px 12px;
+      }
+    }
+    #{$seo}_text {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      p {
+        font-size: 16px;
+
+        @include respond-to(md) {
+          font-size: 14px;
+        }
+      }
+    }
+    #{$seo}_img {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+
+      @include respond-to(lg) {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+
+      img {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  &__more {
+    color: $dark-gold;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+  }
+
+  &_text {
+    &_container {
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+
+      @include respond-to(lg) {
+        gap: 40px;
+      }
+
+      @include respond-to(md) {
+        gap: 24px;
+      }
+    }
+
+    &_content {
+      width: 100%;
+      max-width: 1184px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      p {
+        @include respond-to(md) {
+          font-size: 14px;
+        }
+      }
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+
+        li {
+          font-size: 18px;
+          font-weight: 500;
+          color: $prime;
+          line-height: 1.3;
+          padding-left: 20px;
+          position: relative;
+
+          &::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            background: $dark-gold;
+            border-radius: 50%;
+            position: absolute;
+            top: 9px;
+            left: 0;
+          }
+        }
+      }
+    }
+
+    &_cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+
+      @include respond-to(lg) {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      &--alt {
+        grid-template-columns: repeat(3, 1fr);
+
+        @include respond-to(lg) {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+      }
+    }
+  }
+
+  &--box {
+    #{$seo}_container {
+    }
+
+    #{$seo}_content {
+      padding: 60px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      border: 1px solid $grey-dark;
+
+      @include respond-to(md) {
+        padding: 24px 12px;
+        gap: 16px;
+      }
+    }
+    #{$seo}_text {
+      margin-top: 20px;
+
+      @include respond-to(md) {
+        margin-top: 0;
+      }
+
+      p,
+      li {
+        @include respond-to(md) {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

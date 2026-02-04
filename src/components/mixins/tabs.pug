@@ -1,0 +1,141 @@
+//- Гибкий миксин для табов с произвольным контентом
+//- @param {Object} props - Параметры миксина
+//- @param {Array} props.items - Массив объектов с табами. Каждый объект должен иметь title
+//-   Каждый item может иметь:
+//-     - title: заголовок таба (обязательно)
+//-     - contentMixin: имя миксина для рендеринга контента (например, 'MenuCategory')
+//-     - contentMixinProps: параметры для миксина контента
+//-     - object, description, list, gallery: для обратной совместимости со старым форматом
+//- 
+//- Использование с contentMixin (рекомендуется для гибкости):
+//-   +Tabs({
+//-     items: [
+//-       { 
+//-         title: 'Таб 1',
+//-         contentMixin: 'MenuCategory',
+//-         contentMixinProps: { category: 'Супы', dishes: [...] }
+//-       },
+//-       { 
+//-         title: 'Таб 2',
+//-         contentMixin: 'MenuCategory',
+//-         contentMixinProps: { category: 'Салаты', dishes: [...] }
+//-       }
+//-     ]
+//-   })
+//- 
+//- Использование для обратной совместимости:
+//-   +Tabs({
+//-     items: [
+//-       { title: 'Таб 1', object: 'Объект', description: 'Описание', list: ['Пункт 1'], gallery: [...] }
+//-     ]
+//-   })
+mixin Tabs(props = {})
+  - const { items = [], theme = 'dark' } = props
+  .tabs(data-component="tabs")
+    .tabs_buttons
+      each item, index in items
+        - const inactiveVariant = theme === 'light' ? 'third' : 'primary'
+        - const activeVariant = 'secondary'
+        - const currentVariant = index === 0 ? activeVariant : inactiveVariant
+        - const tabStyles = index === 0 ? ['secondary', 'md'] : [inactiveVariant, 'md']
+        - const isActive = index === 0
+        +Button(item.title, tabStyles)(data-tab-button data-tab-index=index data-tab-active=isActive data-tab-variant=currentVariant data-tab-inactive-variant=inactiveVariant)
+    .tabs_content
+      each item, index in items
+        .tabs_item(class=index === 0 ? 'tabs_item--active' : '', data-tab-content=index data-tab-active=index === 0)
+          if item.contentMixin
+            //- Если указан contentMixin, вызываем его с параметрами
+            - const mixinName = item.contentMixin
+            - const mixinProps = item.contentMixinProps || {}
+            case mixinName
+              when 'MenuCategory'
+                .menu-categories
+                  +MenuCategory(mixinProps)
+              when 'MenuAllCategories'
+                .menu-categories
+                  +MenuAllCategories(mixinProps)
+              when 'PriceCategory'
+                .price-categories
+                  +PriceCategory(mixinProps)
+              when 'PriceTable'
+                .price-table-categories
+                  +PriceTable(mixinProps)
+              default
+                //- Если миксин не найден, используем стандартный контент
+                +TabsItemContent(item, index)
+          else
+            //- Стандартный контент для обратной совместимости
+            +TabsItemContent(item, index)
+
+//- Вспомогательный миксин для стандартного контента таба (для обратной совместимости)
+mixin TabsItemContent(item, index)
+  .place_item
+    +Frame()
+      .place_item_content
+        if item.object
+          p.place_item_title= item.object
+        if item.title
+          .place_item_text
+            span.place_item_title.place_item_title--alt= item.title
+            p Изразцовая печь с чугунным ядром и нефритовой облицовкой даёт идеально мягкий пар. Здесь не обжигает — здесь лечит. Пар, как по-старорусски: на здоровье, не на выносливость
+        ul.place_item_list
+          li.place_item_list_item 60 гостей вольготно разместит жаркое сердце Мовни
+          li.place_item_list_item Каждый час — новый аромапар: мята, смородина, донник, пихта...
+          li.place_item_list_item Иммерсивные парения — с вениками, духом и мастерством
+    .place_item_gallery
+      +Gallery({
+        items: [
+          'assets/img/ch-alt-1.webp',
+          'assets/img/ch-alt-2.webp',
+          'assets/img/ch-alt-3.jpg',
+        ],
+        galleryId: 'place-gallery-' + index
+      })
+
+//- Миксин для отображения категории прайса с услугами
+//- @param {Object} props - Параметры категории
+//- @param {string} props.category - Тип категории (individual, public, additional)
+//- @param {Array} props.sections - Массив секций с услугами
+mixin PriceCategory(props = {})
+  - const { category = '', sections = [] } = props
+  .price-category
+    if sections && sections.length > 0
+      each section in sections
+        .price-section
+          if section.title
+            h3.price-section_title.title.title-h3= section.title
+          if section.items && section.items.length > 0
+            .price-section_items
+              each item in section.items
+                .price-item
+                  .price-item_content
+                    if item.img
+                      .price-item_img
+                        img(src=item.img, alt=item.name)
+                    .price-item_info
+                      .price-item_name
+                        span= item.name
+                      if item.description
+                        .price-item_description
+                          p= item.description
+                  .price-item_prices
+                    if item.price
+                      .price-item_price
+                        span.price-item_price-value= item.price
+                        if item.note
+                          span.price-item_price-note= item.note
+                    if item.price2
+                      .price-item_price
+                        span.price-item_price-value= item.price2
+                        if item.note2
+                          span.price-item_price-note= item.note2
+                    if item.price3
+                      .price-item_price
+                        span.price-item_price-value= item.price3
+                        if item.note3
+                          span.price-item_price-note= item.note3
+                    if item.price4
+                      .price-item_price
+                        span.price-item_price-value= item.price4
+                        if item.note4
+                          span.price-item_price-note= item.note4
