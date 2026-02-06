@@ -14,33 +14,46 @@ block content
       .room
         .room_content
           .room_left
-            .room_gallery
-              .room_gallery-main
-                a.room_gallery-link(href='assets/img/ch-1.webp', data-fancybox='room-gallery', data-caption='Кедровая парная')
-                  img.room_gallery-main-img(src='assets/img/ch-1.webp', alt='Кедровая парная')
-              .room_gallery-list
-                a.room_gallery-link(href='assets/img/ch-2.jpg', data-fancybox='room-gallery', data-caption='Кедровая парная — интерьер')
-                  img.room_gallery-thumb(src='assets/img/ch-2.jpg', alt='Кедровая парная — интерьер')
-                a.room_gallery-link(href='assets/img/ch-3.jpg', data-fancybox='room-gallery', data-caption='Кедровая парная — полки')
-                  img.room_gallery-thumb(src='assets/img/ch-3.jpg', alt='Кедровая парная — полки')
-                a.room_gallery-link(href='assets/img/ch-4.jpg', data-fancybox='room-gallery', data-caption='Кедровая парная — зона отдыха')
-                  img.room_gallery-thumb(src='assets/img/ch-4.jpg', alt='Кедровая парная — зона отдыха')
-            .room_video-wrap
-              button.room_video-trigger(type='button', data-modal='video-player-modal', data-video-url='https://kinescope.io/embed/tyJzgYAmK2nciaSwGUKnH1', aria-label='Смотреть видео')
-                .room_video-btn
-                  .room_video-circle(aria-hidden='true')
-                    svg.room_video-circle-svg(viewBox='0 0 100 100', xmlns='http://www.w3.org/2000/svg')
-                      defs
-                        path#room-video-path(d='M 50,50 m -42,0 a 42,42 0 1,1 84,0 a 42,42 0 1,1 -84,0')
-                      text(textLength='264', lengthAdjust='spacing')
-                        textPath(href='#room-video-path') Смотреть Видео • Смотреть Видео • Смотреть Видео •
-                  .room_video-play(aria-hidden='true')
-                    svg.room_video-play-icon(viewBox='0 0 24 24', fill='currentColor', aria-hidden='true')
-                      path(d='M8 5v14l11-7z')
+            .room_left-inner
+              .room_gallery(data-fancybox-group='room-gallery')
+                - const roomGalleryImages = ['assets/img/ch-1.webp', 'assets/img/ch-2.jpg', 'assets/img/ch-3.jpg', 'assets/img/ch-4.jpg']
+                .room_gallery-main.swiper.room-gallery-main
+                  .swiper-wrapper
+                    each _, idx in Array(10)
+                      - const img = roomGalleryImages[idx % roomGalleryImages.length]
+                      .swiper-slide
+                        a.room_gallery-link(href=img, data-fancybox='room-gallery', data-caption='Кедровая парная')
+                          img.room_gallery-main-img(src=img, alt='Кедровая парная')
+                  .room_gallery-main_nav.swiper_nav
+                    +BtnIcon({ icon: 'assets/img/arrow_left.svg', styles: ['swiper_nav--light', 'lg'] })(class='swiper_nav_item-prev room_gallery-main_nav-prev')
+                    +BtnIcon({ icon: 'assets/img/arrow_right.svg', styles: ['swiper_nav--light', 'lg'] })(class='swiper_nav_item-next room_gallery-main_nav-next')
+                .room_gallery-bottom
+                  .room_gallery-thumbs.swiper.room-gallery-thumbs
+                    .swiper-wrapper
+                      each _, idx in Array(10)
+                        - const img = roomGalleryImages[idx % roomGalleryImages.length]
+                        .swiper-slide
+                          .room_gallery-thumb-link
+                            img.room_gallery-thumb(src=img, alt='Кедровая парная')
+                    .room_gallery-thumbs_nav.swiper_nav
+                      +BtnIcon({ icon: 'assets/img/arrow_left.svg', styles: ['swiper_nav--light'] })(class='swiper_nav_item-prev room_gallery-thumbs_nav-prev')
+                      +BtnIcon({ icon: 'assets/img/arrow_right.svg', styles: ['swiper_nav--light'] })(class='swiper_nav_item-next room_gallery-thumbs_nav-next')
+                  .room_video-wrap
+                    button.room_video-trigger(type='button', data-modal='video-player-modal', data-video-url='https://kinescope.io/embed/tyJzgYAmK2nciaSwGUKnH1', aria-label='Смотреть видео')
+                      .room_video-btn
+                        .room_video-circle(aria-hidden='true')
+                          svg.room_video-circle-svg(viewBox='0 0 100 100', xmlns='http://www.w3.org/2000/svg')
+                            defs
+                              path#room-video-path(d='M 50,50 m -42,0 a 42,42 0 1,1 84,0 a 42,42 0 1,1 -84,0')
+                            text(textLength='264', lengthAdjust='spacing')
+                              textPath(href='#room-video-path') Смотреть Видео • Смотреть Видео • Смотреть Видео •
+                        .room_video-play(aria-hidden='true')
+                          svg.room_video-play-icon(viewBox='0 0 24 24', fill='currentColor', aria-hidden='true')
+                            path(d='M8 5v14l11-7z')
           .room_body
             +Frame()
               .room_inner
-                h1.room_title Кедровая парная
+                p.room_title.title.title-h3 Кедровая парная
                 ul.room_params
                   li.room_param
                     img.room_param-icon(src='assets/img/location.svg', alt='')

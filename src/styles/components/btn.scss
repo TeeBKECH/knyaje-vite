@@ -171,7 +171,7 @@
     }
 
     &#{$btn}--swiper_nav {
-      border-radius: 50%;
+      // border-radius: 50%;
       border: 1px solid $second;
       background: $second;
 
@@ -184,7 +184,7 @@
       }
 
       &--light {
-        border-radius: 50%;
+        // border-radius: 50%;
         background: rgba($second, 0.2);
         backdrop-filter: blur(20px);
 
@@ -272,7 +272,7 @@
     font-size: 18px;
     font-weight: 600;
     padding: 20px 45px;
-    border-radius: 50px;
+    // border-radius: 50px;
     background: linear-gradient(135deg, rgba(175, 146, 71, 1) 0%, rgba(214, 182, 101, 1) 100%);
     color: $prime;
     border: none;
@@ -321,7 +321,7 @@
     font-size: 15px;
     font-weight: 500;
     padding: 14px 32px;
-    border-radius: 0;
+    // border-radius: 0;
     background: transparent;
     color: $prime;
     border: 3px solid $prime;
@@ -368,7 +368,7 @@
     font-size: 16px;
     font-weight: 550;
     padding: 16px 38px;
-    border-radius: 12px;
+    // border-radius: 12px;
     background: $second;
     color: $prime;
     border: 2px solid $second;
@@ -384,7 +384,7 @@
       left: 50%;
       width: 0;
       height: 0;
-      border-radius: 50%;
+      // border-radius: 50%;
       background: rgba($prime, 0.15);
       transform: translate(-50%, -50%);
       transition:
@@ -424,7 +424,7 @@
     font-size: 14px;
     font-weight: 500;
     padding: 12px 28px;
-    border-radius: 8px;
+    // border-radius: 8px;
     background: $prime;
     color: $dark-gold;
     border: 2px solid $dark-gold;
@@ -440,7 +440,7 @@
       width: 0;
       height: 4px;
       background: $light-gold;
-      border-radius: 2px;
+      // border-radius: 2px;
       transform: translateX(-50%);
       transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -474,7 +474,7 @@
     font-size: 17px;
     font-weight: 600;
     padding: 18px 42px;
-    border-radius: 6px;
+    // border-radius: 6px;
     background: linear-gradient(135deg, rgba(64, 46, 0, 0.95) 0%, rgba(16, 16, 16, 0.98) 100%);
     color: $prime;
     border: 2px solid $light-gold;
@@ -492,7 +492,7 @@
       left: 50%;
       width: 0;
       height: 0;
-      border-radius: 50%;
+      // border-radius: 50%;
       background: rgba($light-gold, 0.25);
       transform: translate(-50%, -50%);
       transition:
@@ -504,7 +504,7 @@
       content: '';
       position: absolute;
       inset: -2px;
-      border-radius: 6px;
+      // border-radius: 6px;
       padding: 2px;
       background: linear-gradient(135deg, $light-gold, transparent, $light-gold);
       -webkit-mask:

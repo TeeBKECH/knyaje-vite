@@ -138,7 +138,7 @@
           width: 8px;
           height: 8px;
           background: $dark-gold;
-          border-radius: 50%;
+          // border-radius: 50%;
           position: absolute;
           top: 9px;
           left: 0;
@@ -280,13 +280,13 @@
       padding: 24px 20px;
       background: rgba($prime, 0.05);
       border: 1px solid rgba($prime, 0.15);
-      border-radius: 16px;
+      // border-radius: 16px;
       backdrop-filter: blur(10px);
       transition: all 0.3s ease;
 
       @include respond-to(lg) {
         padding: 20px 16px;
-        border-radius: 12px;
+        // border-radius: 12px;
       }
 
       @include respond-to(md) {
@@ -295,7 +295,7 @@
 
       @include respond-to(sm) {
         padding: 12px 8px;
-        border-radius: 8px;
+        // border-radius: 8px;
       }
 
       @include onlyDescHover() {
@@ -468,7 +468,7 @@
 
   &_smoke-particle {
     position: absolute;
-    border-radius: 50%;
+    // border-radius: 50%;
     pointer-events: none;
     will-change: transform, opacity, width, height;
     mix-blend-mode: screen;
@@ -521,7 +521,7 @@
       justify-content: center;
       width: 60px;
       height: 60px;
-      border-radius: 50%;
+      // border-radius: 50%;
       // background: rgba($prime, 0.1);
       backdrop-filter: blur(4px);
       border: 1px solid rgba($prime, 0.1);
@@ -545,7 +545,7 @@
         left: 50%;
         width: 0;
         height: 0;
-        border-radius: 50%;
+        // border-radius: 50%;
         background: rgba($prime, 0.2);
         transform: translate(-50%, -50%);
         transition:

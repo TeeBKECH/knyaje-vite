@@ -41,7 +41,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    border-radius: 20px;
+    // border-radius: 20px;
     overflow: hidden;
 
     #{$card}_img {
@@ -126,12 +126,12 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    border-radius: 20px;
+    // border-radius: 20px;
     overflow: hidden;
     height: auto;
 
     @include respond-to(md) {
-      border-radius: 12px;
+      // border-radius: 12px;
     }
 
     @include onlyDescHover() {
@@ -187,7 +187,7 @@
       padding: 8px 16px;
       background: rgba($prime, 0.95);
       backdrop-filter: blur(10px);
-      border-radius: 8px;
+      // border-radius: 8px;
       font-size: 14px;
       font-weight: 600;
       color: $dark-gold;
@@ -289,12 +289,12 @@
   &--ritual {
     width: 100%;
     background: lighten($second, 5);
-    border-radius: 20px;
+    // border-radius: 20px;
     overflow: hidden;
     position: relative;
 
     @include respond-to(md) {
-      border-radius: 12px;
+      // border-radius: 12px;
     }
 
     #{$card}_img {
@@ -401,7 +401,7 @@
       padding: 4px 8px;
       background: rgba($prime, 0.03);
       // border: 1px solid rgba($light-gold, 0.2);
-      border-radius: 8px;
+      // border-radius: 8px;
       transition: all 0.3s ease;
       flex: 0 1 auto;
       min-width: fit-content;
@@ -409,7 +409,7 @@
       @include respond-to(md) {
         font-size: 14px;
         padding: 8px 14px;
-        border-radius: 6px;
+        // border-radius: 6px;
       }
 
       p {
@@ -432,12 +432,12 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
-      border-radius: 16px;
+      // border-radius: 16px;
       position: relative;
 
       @include respond-to(md) {
         gap: 8px;
-        border-radius: 12px;
+        // border-radius: 12px;
       }
 
       &-value {
@@ -486,7 +486,7 @@
       align-items: stretch;
       gap: 0;
       background: rgba($prime, 0.02);
-      border-radius: 20px;
+      // border-radius: 20px;
       overflow: hidden;
 
       @include respond-to(lg) {
@@ -495,7 +495,7 @@
       }
 
       @include respond-to(md) {
-        border-radius: 12px;
+        // border-radius: 12px;
       }
 
       #{$card}_img {
@@ -566,7 +566,7 @@
       #{$card}_item {
         font-size: 16px;
         padding: 10px 16px;
-        border-radius: 6px;
+        // border-radius: 6px;
         border: none;
       }
 
@@ -587,7 +587,7 @@
 
   &--spa {
     background: $second;
-    border-radius: 20px;
+    // border-radius: 20px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -596,7 +596,7 @@
     transition: box-shadow 0.3s ease;
 
     @include respond-to(md) {
-      border-radius: 12px;
+      // border-radius: 12px;
     }
 
     &:hover {
@@ -636,7 +636,7 @@
       padding: 8px 16px;
       background: rgba($prime, 0.95);
       backdrop-filter: blur(10px);
-      border-radius: 8px;
+      // border-radius: 8px;
       font-size: 14px;
       font-weight: 600;
       color: $dark-gold;
@@ -741,7 +741,7 @@
         top: 8px;
         width: 6px;
         height: 6px;
-        border-radius: 50%;
+        // border-radius: 50%;
         background: $light-gold;
       }
 
@@ -781,11 +781,11 @@
         min-width: 0;
         padding: 8px;
         background: rgba($prime, 0.02);
-        border-radius: 8px;
+        // border-radius: 8px;
 
         @include respond-to(md) {
           padding: 6px;
-          border-radius: 6px;
+          // border-radius: 6px;
         }
       }
 

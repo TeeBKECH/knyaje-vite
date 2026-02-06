@@ -25,7 +25,7 @@
     align-items: center;
     flex: none;
     padding: 12px 20px;
-    border-radius: 100px;
+    // border-radius: 100px;
     border: 1px solid $second;
 
     @include respond-to(lg) {

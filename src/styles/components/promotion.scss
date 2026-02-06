@@ -19,7 +19,7 @@
       height: 100%;
       max-height: 600px;
       position: relative;
-      border-radius: 20px;
+      // border-radius: 20px;
       overflow: hidden;
 
       @include respond-to(lg) {
@@ -29,7 +29,7 @@
 
       @include respond-to(md) {
         max-height: 400px;
-        border-radius: 12px;
+        // border-radius: 12px;
       }
 
       img {
@@ -54,7 +54,7 @@
       padding: 12px 24px;
       background: rgba($prime, 0.95);
       backdrop-filter: blur(10px);
-      border-radius: 12px;
+      // border-radius: 12px;
       font-size: 18px;
       font-weight: 700;
       color: $dark-gold;
@@ -67,7 +67,7 @@
         left: 16px;
         padding: 10px 20px;
         font-size: 16px;
-        border-radius: 8px;
+        // border-radius: 8px;
       }
     }
 
@@ -98,11 +98,7 @@
     &_title {
       text-align: center;
       width: 100%;
-
-      .title {
-        color: $prime;
-        text-transform: uppercase;
-      }
+      color: $light-gold;
     }
 
     &_info_list {
@@ -126,14 +122,14 @@
       gap: 8px;
       padding: 16px;
       background: rgba($prime, 0.05);
-      border-radius: 12px;
+      // border-radius: 12px;
       border: 1px solid rgba($prime, 0.1);
       transition: all 0.3s ease;
 
       @include respond-to(md) {
         padding: 12px;
         gap: 6px;
-        border-radius: 8px;
+        // border-radius: 8px;
       }
 
       &:hover {
@@ -199,13 +195,13 @@
       gap: 16px;
       padding: 24px;
       background: rgba($prime, 0.03);
-      border-radius: 16px;
+      // border-radius: 16px;
       border: 1px solid rgba($prime, 0.1);
 
       @include respond-to(md) {
         padding: 20px 16px;
         gap: 12px;
-        border-radius: 12px;
+        // border-radius: 12px;
       }
 
       &_title {
@@ -255,7 +251,7 @@
           width: 8px;
           height: 8px;
           background: $light-gold;
-          border-radius: 50%;
+          // border-radius: 50%;
 
           @include respond-to(md) {
             width: 6px;

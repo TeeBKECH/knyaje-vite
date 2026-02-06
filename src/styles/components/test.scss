@@ -1,0 +1,88 @@
+// Структура под choice.pug (секция выбора Царская палата / Мовня)
+// Модификатор секции &--choice — в section.scss
+
+.choice {
+  $choice: &;
+
+  &_content {
+    display: block;
+  }
+
+  &_cards {
+    display: block;
+  }
+
+  &_card {
+    display: block;
+
+    &_gallery {
+      display: block;
+    }
+
+    &_content {
+      display: block;
+    }
+
+    &_title {
+      display: block;
+    }
+
+    &_list {
+      display: block;
+    }
+
+    &_item {
+      display: block;
+    }
+
+    &_action {
+      display: block;
+    }
+
+    &--suite {
+      #{$choice}_card {
+        &_gallery {
+          display: block;
+        }
+        &_content {
+          display: block;
+        }
+        &_title {
+          display: block;
+        }
+        &_list {
+          display: block;
+        }
+        &_item {
+          display: block;
+        }
+        &_action {
+          display: block;
+        }
+      }
+    }
+
+    &--public {
+      #{$choice}_card {
+        &_gallery {
+          display: block;
+        }
+        &_content {
+          display: block;
+        }
+        &_title {
+          display: block;
+        }
+        &_list {
+          display: block;
+        }
+        &_item {
+          display: block;
+        }
+        &_action {
+          display: block;
+        }
+      }
+    }
+  }
+}

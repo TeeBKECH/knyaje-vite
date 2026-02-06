@@ -32,7 +32,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 3px;
-    color: $prime;
+    color: $light-gold;
 
     @include respond-to(lg) {
       font-size: 40px;

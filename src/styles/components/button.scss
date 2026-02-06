@@ -84,7 +84,7 @@
   // Primary кнопка (для темного фона)
   &--primary {
     font-weight: 500;
-    border-radius: 6px;
+    // border-radius: 6px;
     background: linear-gradient(
       180deg,
       rgba($prime, 0.25) 0%,
@@ -120,7 +120,7 @@
   // Third кнопка (для светлого фона)
   &--third {
     font-weight: 500;
-    border-radius: 6px;
+    // border-radius: 6px;
     background: linear-gradient(
       180deg,
       rgba($prime, 0.25) 0%,
@@ -158,7 +158,7 @@
   // Secondary кнопка
   &--secondary {
     font-weight: 700;
-    border-radius: 6px;
+    // border-radius: 6px;
     background: linear-gradient(135deg, rgba(175, 146, 71, 0.9) 0%, rgba(214, 182, 101, 0.9) 100%);
     color: $prime;
     border: none;

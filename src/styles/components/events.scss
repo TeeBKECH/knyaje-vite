@@ -1,17 +1,17 @@
-.section--events {
-  width: 100%;
-  padding: 80px 0;
-  position: relative;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 60px;
+// .section--events {
+//   width: 100%;
+//   padding: 80px 0;
+//   position: relative;
+//   display: flex;
+//   align-items: center;
+//   flex-direction: column;
+//   gap: 60px;
 
-  @include respond-to(lg) {
-    padding: 40px 0;
-    gap: 24px;
-  }
-}
+//   @include respond-to(lg) {
+//     padding: 40px 0;
+//     gap: 24px;
+//   }
+// }
 
 .events {
   &_filters {

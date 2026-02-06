@@ -124,13 +124,13 @@
       max-height: calc(100vh - 120px);
       position: relative;
       margin: 120px 0;
-      border-radius: 60px;
+      // border-radius: 60px;
       align-items: center;
       max-width: 800px;
       width: calc(100% - 32px);
 
       @include respond-to(lg) {
-        border-radius: 20px;
+        // border-radius: 20px;
       }
 
       @include respond-to(md) {

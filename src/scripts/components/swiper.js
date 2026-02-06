@@ -1,6 +1,7 @@
-// responsiveSwiper.js (silent, with grouping, breakpoints and safe remount)
+// responsiveSwiper.js (silent, with grouping, breakpoints, thumbs and safe remount)
 // Работает и с ESM (import Swiper from 'swiper'; import { Navigation } from 'swiper/modules')
 // и с CDN (window.Swiper). Ничего не «роняет», если контейнер/элементы отсутствуют.
+// При options.thumbs — режим галереи: root с готовой разметкой swiper, связанный с thumbs-слайдером.
 
 /**
  * @typedef {Object} PaginationOption
@@ -33,8 +34,14 @@
  * @property {boolean} [watchOverflow=true]
  * @property {(swiperInstance:any)=>void} [onInit]
  * @property {()=>void} [onDestroy]
+ * @property {Object} [thumbs] — режим галереи: главный + миниатюры. root должен иметь готовую swiper-разметку.
+ * @property {string|HTMLElement} thumbs.container — контейнер миниатюр (селектор или элемент)
+ * @property {string|HTMLElement} [thumbs.scope] — область поиска container (по умолчанию root.parentElement)
+ * @property {Object|(root:HTMLElement)=>Object} [thumbs.options] — опции для thumbs swiper
  * // + любые другие опции Swiper (speed, effect, autoplay, ...)
  */
+
+import { Thumbs as ThumbsModule } from 'swiper/modules'
 
 // ---------- Утилиты ----------
 function isEl(x) {
@@ -139,7 +146,22 @@ export function initResponsiveSwiper(container, opts = {}) {
 
   /** @type {import('swiper').Swiper | null} */
   let swiper = null
+  let thumbsSwiper = null
   let wrapper = null
+
+  const thumbsOpt = options.thumbs
+  const isThumbsMode = !!thumbsOpt
+
+  function resolveThumbsContainer() {
+    if (!thumbsOpt?.container) return null
+    const container = thumbsOpt.container
+    const scope = thumbsOpt.scope
+      ? typeof thumbsOpt.scope === 'string'
+        ? root.closest(thumbsOpt.scope)
+        : thumbsOpt.scope
+      : root.parentElement
+    return resolveElRelative(container, scope || document.body) || resolveEl(container)
+  }
 
   let internalPaginationEl = null
   let internalNavPrev = null
@@ -273,8 +295,60 @@ export function initResponsiveSwiper(container, opts = {}) {
     strayWrapper.remove()
   }
 
+  function mountSwiperThumbs() {
+    if (swiper) return
+    const thumbsEl = resolveThumbsContainer()
+    if (!thumbsEl) {
+      root.dataset.rsMounted = 'false'
+      return
+    }
+    const { merged: eff } = resolveEffectiveOptions(options)
+    const SwiperClass = eff.Swiper || (typeof window !== 'undefined' ? window.Swiper : undefined)
+    if (!SwiperClass) {
+      root.dataset.rsMounted = 'false'
+      return
+    }
+    const thumbsOptions =
+      typeof thumbsOpt.options === 'function' ? thumbsOpt.options(root) : thumbsOpt.options || {}
+    thumbsSwiper = new SwiperClass(thumbsEl, thumbsOptions)
+    const { config: navigationCfg } = buildNavigationConfig(eff)
+    const {
+      itemsSelector: _is,
+      breakpoint: _bp,
+      pagination: _p,
+      navigation: _n,
+      extendSwiperOptions,
+      modules,
+      Swiper: _Swiper,
+      onInit: _oi,
+      thumbs: _th,
+      ...passThrough
+    } = eff
+    const mainModules = [...(Array.isArray(modules) ? modules : []), ThumbsModule]
+    let mainOpts = {
+      grabCursor: true,
+      watchOverflow: passThrough.watchOverflow ?? true,
+      ...passThrough,
+      modules: mainModules,
+      thumbs: { swiper: thumbsSwiper },
+    }
+    if (navigationCfg) {
+      mainOpts.navigation = { enabled: true, ...navigationCfg }
+    }
+    mainOpts = extendSwiperOptions?.(mainOpts) || mainOpts
+    root.classList.add('swiper')
+    swiper = new SwiperClass(root, mainOpts)
+    root.dataset.rsMounted = 'true'
+    options.onInit?.(swiper)
+  }
+
   function mountSwiper() {
     if (swiper) return
+
+    if (isThumbsMode) {
+      mountSwiperThumbs()
+      return
+    }
 
     unwrapAnyWrapperIfExists()
 
@@ -389,17 +463,35 @@ export function initResponsiveSwiper(container, opts = {}) {
   }
 
   function unmountSwiper() {
+    if (swiper && typeof swiper.destroy === 'function') {
+      swiper.destroy(true, true)
+    }
+    swiper = null
+    if (thumbsSwiper && typeof thumbsSwiper.destroy === 'function') {
+      thumbsSwiper.destroy(true, true)
+    }
+    thumbsSwiper = null
+
+    if (isThumbsMode) {
+      root.classList.remove(
+        'swiper',
+        'swiper-initialized',
+        'swiper-horizontal',
+        'swiper-vertical',
+        'swiper-backface-hidden',
+      )
+      root.removeAttribute('style')
+      root.dataset.rsMounted = 'false'
+      options.onDestroy?.()
+      return
+    }
+
     const w =
       wrapper && wrapper.isConnected ? wrapper : root.querySelector(':scope > .swiper-wrapper')
 
     if (w) {
       w.querySelectorAll('.swiper-slide-duplicate').forEach((n) => n.remove())
     }
-
-    if (swiper && typeof swiper.destroy === 'function') {
-      swiper.destroy(true, true)
-    }
-    swiper = null
 
     if (w) {
       const slides = Array.from(w.children)

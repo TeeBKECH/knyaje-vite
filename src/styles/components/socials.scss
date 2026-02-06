@@ -17,12 +17,14 @@
     @include respond-to(lg) {
       width: 48px;
       height: 48px;
-      border-radius: 50%;
+      // border-radius: 50%;
       // border: 1px solid $second;
     }
   }
 
   &_icon {
+    transition: all 0.2s linear;
+
     @include respond-to(lg) {
       width: 24px;
       height: 24px;
@@ -76,6 +78,9 @@
       #{$socials}_text {
         color: #fff;
       }
+      #{$socials}_icon {
+        transform: translateY(-2px);
+      }
     }
   }
 
@@ -97,7 +102,7 @@
       align-items: center;
       justify-content: center;
       opacity: 0.9;
-      transition: opacity 0.2s ease;
+      transition: all 0.2s ease;
 
       img {
         width: 100%;

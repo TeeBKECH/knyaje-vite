@@ -2,7 +2,7 @@
 section.section.section--choice(data-aos="fade-up", data-aos-duration="1000")
   .container.section_container
     +SectionTitle({
-      title: 'ПО-БОЯРСКИ В СЬЮТЕ ИЛИ <br />С ЧЕСТНЫМ ЛЮДОМ В МОВНЕ',
+      title: 'ПО-БОЯРСКИ В СЬЮТЕ ИЛИ С ЧЕСТНЫМ ЛЮДОМ В МОВНЕ',
       subtitle: ' - ВЫБИРАЙТЕ, СУДАРЬ',
       size: 'lg',
       type: 'center'
@@ -30,8 +30,10 @@ section.section.section--choice(data-aos="fade-up", data-aos-duration="1000")
                 li.choice_card_item Комната диковин
                 li.choice_card_item 3D-хаммам
                 li.choice_card_item Сеновал
+                li.choice_card_item Приватные купели
               .choice_card_action
                 +Button('Забронировать Царский Сьют', ['primary', 'lg'])
+                +Button('Подробнее', ['secondary', 'lg'])
         
         // Мовня
         .choice_card.choice_card--public
@@ -45,6 +47,7 @@ section.section.section--choice(data-aos="fade-up", data-aos-duration="1000")
                 li.choice_card_item ГРАНД-КИТЕЛ - САМАЯ БОЛЬШАЯ В МОСКВЕ
               .choice_card_action
                 +Button('ЗАБРОНИРОВАТЬ', ['primary', 'lg'])
+                +Button('Подробнее', ['secondary', 'lg'])
           .choice_card_gallery
             +Gallery({
               items: [

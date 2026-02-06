@@ -360,6 +360,47 @@ document.addEventListener('DOMContentLoaded', (e) => {
     }
   })
 
+  // Room gallery (главный + миниатюры с Thumbs)
+  initResponsiveSwiperAll('.room-gallery-main', (root) => {
+    const gallery = root.closest('.room_gallery')
+    const thumbsEl = gallery?.querySelector('.room-gallery-thumbs')
+    const mainPrevEl = root.querySelector('.room_gallery-main_nav-prev')
+    const mainNextEl = root.querySelector('.room_gallery-main_nav-next')
+    const thumbsPrevEl = thumbsEl?.querySelector('.room_gallery-thumbs_nav-prev')
+    const thumbsNextEl = thumbsEl?.querySelector('.room_gallery-thumbs_nav-next')
+    return {
+      Swiper,
+      modules: [Navigation],
+      breakpoint: '(max-width: 9999px)',
+      thumbs: {
+        container: '.room-gallery-thumbs',
+        scope: '.room_gallery',
+        options: {
+          modules: [Navigation],
+          navigation: {
+            prevEl: thumbsPrevEl,
+            nextEl: thumbsNextEl,
+            createInside: false,
+          },
+          spaceBetween: 16,
+          slidesPerView: 3.5,
+          freeMode: true,
+          watchSlidesProgress: true,
+          slideToClickedSlide: true,
+          breakpoints: {
+            320: { slidesPerView: 3.5, spaceBetween: 12 },
+            768: { slidesPerView: 3.5, spaceBetween: 16 },
+          },
+        },
+      },
+      slidesPerView: 1,
+      spaceBetween: 0,
+      navigation: { prevEl: mainPrevEl, nextEl: mainNextEl, createInside: false },
+      speed: 500,
+      grabCursor: true,
+    }
+  })
+
   // Room other (Другие хоромы) swiper
   initResponsiveSwiperAll('.room-other_items', (root) => {
     const section = root.closest('.room-other_content')

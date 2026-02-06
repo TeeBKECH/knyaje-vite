@@ -19,7 +19,7 @@
   &_img {
     aspect-ratio: 1.4 / 1;
     overflow: hidden;
-    border-radius: 20px;
+    // border-radius: 20px;
     position: relative;
 
     @include respond-to(xl) {

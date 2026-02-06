@@ -72,7 +72,7 @@
   &_img {
     aspect-ratio: 1.4 / 1;
     overflow: hidden;
-    border-radius: 20px;
+    // border-radius: 20px;
     position: relative;
 
     @include respond-to(xl) {
@@ -113,12 +113,12 @@
 
   &_member_img {
     aspect-ratio: 1 / 1;
-    border-radius: 20px;
+    // border-radius: 20px;
     overflow: hidden;
     position: relative;
 
     @include respond-to(md) {
-      border-radius: 16px;
+      // border-radius: 16px;
     }
 
     img {

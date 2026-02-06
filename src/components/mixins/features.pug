@@ -6,6 +6,7 @@ mixin Features(items = [])
         .features_card_num= item.num
         .features_card_content
           if item.title
-            .features_card_title= item.title
+            .features_card_title!= item.title
           if item.text
             .features_card_text= item.text
+      

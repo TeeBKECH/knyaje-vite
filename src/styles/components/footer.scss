@@ -74,7 +74,7 @@
 
   &_title {
     font-size: 32px;
-    color: #fff;
+    color: $light-gold;
     font-weight: 700;
     line-height: 1;
     text-transform: uppercase;
@@ -187,6 +187,7 @@
         }
         &_item {
           font-family: $font-secondary;
+          color: $light-gold;
         }
       }
     }
@@ -217,7 +218,7 @@
             border-bottom: none;
             font-size: 48px;
             flex: none;
-            color: $light-gold;
+            // color: $light-gold;
 
             @include respond-to(xl) {
               font-size: 24px;
