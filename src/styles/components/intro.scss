@@ -62,6 +62,21 @@
         border: none;
         pointer-events: none;
       }
+
+      // Разные источники для мобильных и десктопа (модификаторы задаются в IntroBg)
+      &--mobile {
+        @media (min-width: $breakpoint-lg) {
+          display: none;
+        }
+      }
+
+      &--desktop {
+        display: none;
+
+        @media (min-width: $breakpoint-lg) {
+          display: block;
+        }
+      }
     }
 
     &_overlay {

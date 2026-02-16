@@ -1,0 +1,28 @@
+.section.section--banya(data-aos="fade-up", data-aos-duration="1000")
+  .container.section_container
+    +SectionTitle({
+      title: 'Общественная баня',
+      size: 'lg',
+      type: 'gold'
+    })
+    .banya_content
+      .banya_info
+        .banya_text
+          p 60 ГОСТЕЙ ВСЕЛЬСТВО РАЗМЕСТИТ ЖАРКОЕ СЕРДЦЕ МОЙКИ
+          p КАЖДЫЙ ЧАС НОВЫЙ АРОМАПАР: МЯТА, СМОРОДИНА, ОСИННИК, ПИХТА
+          p НАИМЕРС/ВЫЕ ПАРЕНИЯ - С ВЕНИКАМИ, ДУХОМ И МАСТЕРСТВОМ
+        .banya_subtitle
+          h3.title.title-h3 КЕДРОВАЯ ПАРНАЯ
+          p Кедровая парная на 60 гостей с уникальной системой аромапаров. Каждый час новый аромат для максимального комфорта и релаксации.
+      .banya_gallery
+        +Gallery({
+            items: [
+              'assets/img/banya-1.webp',
+              'assets/img/banya-2.webp',
+              'assets/img/banya-3.webp',
+              'assets/img/banya-4.webp',
+              'assets/img/banya-5.webp',
+              'assets/img/banya-6.webp',
+            ],
+            galleryId: 'banya-gallery'
+          })

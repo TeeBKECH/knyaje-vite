@@ -5,7 +5,7 @@ extends ../layouts/default.pug
 
 block content
   +IntroVideo({
-    videoSrc: 'https://kinescope.io/embed/tyJzgYAmK2nciaSwGUKnH1?&muted=true&autoplay=true&autopause=false&loop=true',
+    videoSrc: 'assets/video/video-bg.mp4',
     title: 'БАННЫЙ КОМПЛЕКС<br>РЯДОМ С МОСКВА-СИТИ',
     description: 'ГДЕ ТРАДИЦИИ ВСТРЕЧАЮТСЯ С СОВРЕМЕННОСТЬЮ',
     buttons: [
@@ -16,6 +16,8 @@ block content
   })
 
   include ../components/sections/features.pug
+
+  //- include ../components/sections/banya.pug
 
   include ../components/sections/choice.pug
 

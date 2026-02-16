@@ -19,7 +19,9 @@ section.section.section--features
     })
     .features_content
       .features_video(data-aos="fade-up", data-aos-duration="1000")
-        iframe(src='https://kinescope.io/embed/ckbhMbwnRjK36cyWLdJ9Sc?&muted=true&autoplay=true&autopause=false', frameborder="0", allow="autoplay; encrypted-media", allowfullscreen)
+        //- iframe(src='https://kinescope.io/embed/ckbhMbwnRjK36cyWLdJ9Sc?&muted=true&autoplay=true&autopause=false', frameborder="0", allow="autoplay; encrypted-media", allowfullscreen)
+        video(autoplay, loop, muted, playsinline)
+          source(src="assets/video/video-bg.mp4", type="video/mp4")
       +Features([
         {
           title: 'Общественные<br />и индивидуальные зоны',

@@ -1,6 +1,6 @@
 //- Миксин для фона intro секции
 //- @param {string} mediaType - тип медиа: 'image', 'video', 'iframe' (по умолчанию 'image')
-//- @param {string|array} mediaSrc - источник медиа (путь к изображению, видео или URL для iframe). Для video можно передать массив объектов [{src: 'path.mp4', type: 'video/mp4'}, {src: 'path.webm', type: 'video/webm'}]
+//- @param {string|array|object} mediaSrc - источник: строка (одно для всех), массив source-объектов для video, или { desktop: '...', mobile: '...' } для разных устройств (одно значение = для всех)
 //- @param {string} mediaAlt - альтернативный текст для изображения (по умолчанию 'intro bg')
 //- @param {object} videoAttrs - дополнительные атрибуты для тега video (autoplay, loop, muted, playsinline и т.д.)
 //- @param {boolean} overlay - показывать ли оверлей (по умолчанию true)
@@ -10,28 +10,47 @@ mixin IntroBg(props)
   - const finalMediaType = mediaType || (img ? 'image' : 'image')
   - const finalMediaSrc = mediaSrc || img
   - const defaultVideoAttrs = {autoplay: true, loop: true, muted: true, playsinline: true, ...videoAttrs}
-  - const isVideoSourcesArray = Array.isArray(finalMediaSrc)
+  - let mediaList = []
+  - if (finalMediaSrc) { if (typeof finalMediaSrc === 'string' || Array.isArray(finalMediaSrc)) { mediaList = [{ value: finalMediaSrc, modifier: '' }]; } else { const hasD = finalMediaSrc.desktop !== undefined && finalMediaSrc.desktop !== ''; const hasM = finalMediaSrc.mobile !== undefined && finalMediaSrc.mobile !== ''; if (hasD && hasM) mediaList = [{ value: finalMediaSrc.desktop, modifier: '--desktop' }, { value: finalMediaSrc.mobile, modifier: '--mobile' }]; else if (hasD) mediaList = [{ value: finalMediaSrc.desktop, modifier: '' }]; else if (hasM) mediaList = [{ value: finalMediaSrc.mobile, modifier: '' }]; } }
   .intro_bg
-    .intro_bg_img
-      if finalMediaType === 'image'
-        if finalMediaSrc
-          img(src=finalMediaSrc, alt=mediaAlt)
-      else if finalMediaType === 'video'
-        video&attributes(defaultVideoAttrs)
-          if isVideoSourcesArray
-            each source in finalMediaSrc
-              source(src=source.src, type=source.type)
-          else
-            source(src=finalMediaSrc, type="video/mp4")
-          | Ваш браузер не поддерживает видео.
-      else if finalMediaType === 'iframe'
-        iframe(src=finalMediaSrc, frameborder="0", allow="autoplay; encrypted-media", allowfullscreen)
+    if finalMediaType === 'iframe'
+      - const iframeSrc = typeof finalMediaSrc === 'string' ? finalMediaSrc : (finalMediaSrc && (finalMediaSrc.desktop || finalMediaSrc.mobile) || '')
+      .intro_bg_img
+        if iframeSrc
+          iframe(src=iframeSrc, frameborder="0", allow="autoplay; encrypted-media", allowfullscreen)
+    else
+      each item in (mediaList.length ? mediaList : [{ value: '', modifier: '' }])
+        - const modClass = item.modifier ? `intro_bg_img${item.modifier}` : ''
+        .intro_bg_img(class=modClass)
+          if finalMediaType === 'image'
+            if item.value
+              img(src=item.value, alt=mediaAlt)
+          else if finalMediaType === 'video' && item.value
+            - const isSourcesArray = Array.isArray(item.value)
+            video&attributes(defaultVideoAttrs)
+              if isSourcesArray
+                each source in item.value
+                  source(src=source.src, type=source.type)
+              else
+                source(src=item.value, type="video/mp4")
+              | Ваш браузер не поддерживает видео.
     if overlay
       .intro_bg_overlay.intro_bg_overlay--radial
       .intro_bg_overlay.intro_bg_overlay--fill
 
-//- Миксин для интро секции с видео фоном
-//- @param {string} videoSrc - URL видео для фона (iframe)
+//- Миксин для интро секции с медиа-фоном (видео, фото или iframe)
+//- Фон задаётся через media (полный контроль) или через videoSrc (обратная совместимость).
+//-
+//- media (объект) — передаётся в IntroBg. Варианты:
+//-   type: 'iframe', src: 'https://...' — встройка с стороннего ресурса (одна ссылка для всех)
+//-   type: 'video', src: 'path.mp4' — одно видео для всех; или desktop/mobile для разных устройств
+//-   type: 'video', desktop: 'path-d.mp4', mobile: 'path-m.mp4' — разное видео для десктопа и мобилок
+//-   type: 'image', src: 'path.jpg' — одно фото; или desktop/mobile для разных устройств
+//-   В media можно передать videoAttrs, overlay, mediaAlt
+//- videoSrc (строка) — устаревший параметр: если media не передан, то http(s)-ссылка → iframe, иначе → video (одно для всех)
+//-
+//- @param {object} media - тип и источники фона (см. выше)
+//- @param {string} videoSrc - устаревший: URL iframe или путь к видео (если нет media)
 //- @param {string} title - заголовок
 //- @param {string} description - описание (опционально)
 //- @param {array} breadcrumbs - массив хлебных крошек (опционально)
@@ -39,9 +58,13 @@ mixin IntroBg(props)
 //- @param {array} buttons - массив кнопок [{text: '', styles: []}] (опционально)
 //- @param {boolean} showLogo - показывать ли логотип (по умолчанию true)
 mixin IntroVideo(props)
-  - const {videoSrc = '', title = '', description = '', breadcrumbs = [], features = [], buttons = [], showLogo = true} = props
+  - const {media, videoSrc = '', title = '', description = '', breadcrumbs = [], features = [], buttons = [], showLogo = true} = props
+  - let bgProps = media
+  - if (!bgProps && videoSrc !== '') { const isIframe = /^https?:\/\//i.test(videoSrc); bgProps = { mediaType: isIframe ? 'iframe' : 'video', mediaSrc: videoSrc }; }
+  - if (!bgProps) bgProps = {}
+  - const { mediaType = 'image', mediaSrc = '', mediaAlt = 'intro bg', videoAttrs = {}, overlay = true } = bgProps
   section.intro.intro--banya
-    +IntroBg({mediaType: 'iframe', mediaSrc: videoSrc})
+    +IntroBg({ mediaType, mediaSrc, mediaAlt, videoAttrs, overlay })
     .container.intro_container
       if breadcrumbs && breadcrumbs.length > 0
         .intro_footer

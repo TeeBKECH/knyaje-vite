@@ -1,0 +1,12 @@
+.banya {
+  &_content {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 1fr);
+    gap: 40px;
+
+    @include respond-to(md) {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+}
