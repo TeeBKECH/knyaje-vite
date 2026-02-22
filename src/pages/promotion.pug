@@ -5,36 +5,33 @@ extends ../layouts/default.pug
 
 block content
   +Intro({
-    title: 'Скидка 10%',
-    breadcrumbs: ['Акции', 'Скидка 10%']
+    title: 'Царский мальчишник',
+    breadcrumbs: ['Акции', 'Царский мальчишник']
   })
 
   section.section.section--promotion(data-aos="fade-up", data-aos-duration="1000")
     .container.section_container
       .promotion_content
-        .promotion_img
-          img(src='assets/img/benefits-2.webp', alt='Скидка 10%')
-          .promotion_badge Скидка 10%
+        .promotion_box
+          .promotion_img
+            img(src='assets/img/cta-bg.webp', alt='Скидка 10%')
+            .promotion_badge Скидка 10%
+          .promotion_text
+            p Путь от городской суеты к тишине и обновлению — четыре часа, в которых собраны проверенные традиции русской бани. Чесночный пар открывает дорогу в баню: первый вдох прогревает дыхание и готовит тело к парению. Дубовые веники — классика жанра. Удары лёгкие и точные разгоняют кровь и разогревают мышцы. Ледяные шайбы дают первый контраст: тело отвечает приятным жаром, сосуды тренируются, а голова становится яснее. Второй заход в парную с натиранием мёдом — мягкий жар, аромат, который согревает и смягчает кожу. Можжевеловая выкатка — старинный обряд с хвойным ароматом и волнами пара. Тело расслабляется, а голова очищается от лишних мыслей. Обливание пивом даёт свежий контраст: прохлада, лёгкий хмельной аромат и ощущение лёгкости. Отдых на сеновале — время просто полежать, слушать тишину и чувствовать тепло после парной. Ингаляция с хреном завершает банный цикл и бережно прогревает дыхательные пути. Чаепитие — финал. Тёплый чай, разговоры и мягкое возвращение в обычный ритм.
         .promotion_body
           +Frame()
             .promotion_info
-              p.promotion_title.title.title-h3 Каждый вторник скидка 10% для девушек на вход и все услуги
+              p.promotion_title.title.title-h3 Царский мальчишник
               .promotion_info_list
                 .promotion_info_item
-                  span.promotion_info_item_label Дни действия:
-                  span.promotion_info_item_value Каждый вторник
+                  span.promotion_info_item_label Время:
+                  span.promotion_info_item_value 4 часа
                 .promotion_info_item
-                  span.promotion_info_item_label Для кого:
-                  span.promotion_info_item_value Девушки
+                  span.promotion_info_item_label Гости:
+                  span.promotion_info_item_value До 4
                 .promotion_info_item
-                  span.promotion_info_item_label Размер скидки:
-                  span.promotion_info_item_value 10%
-                .promotion_info_item
-                  span.promotion_info_item_label Применяется:
-                  span.promotion_info_item_value Вход и все услуги
-              .promotion_text
-                p Акция не суммируется с другими акциями и предложениями
-                p Предложение действует только при предъявлении документа, удостоверяющего личность. Скидка применяется автоматически при оплате в кассе банного комплекса.
+                  span.promotion_info_item_label Цена:
+                  span.promotion_info_item_value 110 000 ₽
               .promotion_details
                 .promotion_details_title Условия акции:
                 ul.promotion_details_list

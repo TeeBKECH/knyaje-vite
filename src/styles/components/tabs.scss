@@ -1,6 +1,6 @@
 .section--tabs {
   padding: 200px 0;
-  background: url('../../assets/img/tabs-bg.svg') no-repeat top center / cover;
+  background: url('@/assets/img/tabs-bg.svg') no-repeat top center / cover;
   color: $second;
 
   @include respond-to(lg) {

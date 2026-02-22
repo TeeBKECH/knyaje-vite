@@ -53,6 +53,42 @@ block content
   section.section.section--rest
     .container.section_container
       .section_content
-        +Tabs({
-          items: tabsItems
+        //- +Tabs({
+        //-   items: tabsItems
+        //- })
+        +SectionTitle({
+          title: 'МЕНЮ',
+          size: 'lg',
+          type: 'center'
         })
+        .dishes
+          .dishes_items
+            .dishes_item(data-fancybox="dish-image", data-src="assets/img/rest-dish-1.webp")
+              .dishes_item-img
+                img(src='assets/img/placeholder.png', alt='Салаты')
+              .dishes_item-text 
+                p Салаты
+            .dishes_item(data-fancybox="dish-image", data-src="assets/img/rest-dish-2.webp")
+              .dishes_item-img
+                img(src='assets/img/placeholder.png', alt='Супы')
+              .dishes_item-text 
+                p Супы
+            .dishes_item(data-fancybox="dish-image", data-src="assets/img/rest-dish-3.webp")
+              .dishes_item-img
+                img(src='assets/img/placeholder.png', alt='Десерты')
+              .dishes_item-text 
+                p Десерты
+            .dishes_item(data-fancybox="dish-image", data-src="assets/img/rest-dish-3.webp")
+              .dishes_item-img
+                img(src='assets/img/placeholder.png', alt='ГРИЛЬ МЕНЮ')
+              .dishes_item-text 
+                p ГРИЛЬ МЕНЮ
+          .swiper_nav.dishes_nav
+            +BtnIcon({
+              icon: 'assets/img/arrow_left.svg',
+              styles: ['swiper_nav--light', 'lg']
+            })(class='swiper_nav_item-prev dishes_nav-prev')
+            +BtnIcon({
+              icon: 'assets/img/arrow_right.svg',
+              styles: ['swiper_nav--light', 'lg']
+            })(class='swiper_nav_item-next dishes_nav-next')

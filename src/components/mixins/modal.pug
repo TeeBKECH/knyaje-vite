@@ -9,7 +9,7 @@ mixin Modal(modalId = '', pos = 'top')
         block
 
 mixin ModalVideoPlayer(modalId = 'video-player-modal')
-  .modal(id=modalId, class='modal-top')&attributes(attributes)
+  .modal(id=modalId, class='modal--video-player')&attributes(attributes)
     .modal_overlay(data-close='')
     .modal_content
       .modal_cls(data-close='')

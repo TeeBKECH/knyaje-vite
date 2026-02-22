@@ -1,0 +1,55 @@
+.dishes {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  $dishes: &;
+
+  &_item {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    cursor: pointer;
+
+    &-img {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+
+        @include onlyDescHover() {
+          #{$dishes}_item:hover & {
+            transform: scale(1.05);
+          }
+        }
+      }
+    }
+
+    &-text {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background: linear-gradient(
+        to top,
+        $second 0%,
+        rgba($second, 0.5) 70%,
+        rgba($second, 0.2) 100%
+      );
+      padding: 16px;
+      text-align: center;
+      color: $prime;
+      font-size: 18px;
+      font-weight: 600;
+      font-family: $font-main;
+    }
+  }
+
+  &_nav {
+    display: flex;
+    justify-content: center;
+  }
+}

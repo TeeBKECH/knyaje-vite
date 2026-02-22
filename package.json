@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
+    "build:wp": "BUILD_TARGET=wp vite build",
+    "sync:wp": "rsync -av build/assets/ ../../wp/knyaje/test/wp-content/themes/knyaje/assets/",
     "preview": "vite preview --open"
   },
   "type": "module",

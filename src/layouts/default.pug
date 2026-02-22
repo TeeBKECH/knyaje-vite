@@ -42,6 +42,7 @@ include ../components/mixins/palaces.pug
 include ../components/mixins/rooms.pug
 include ../components/sections/rituals.pug
 include ../components/mixins/spa.pug
+include ../components/mixins/form.pug
 
 
 doctype html
@@ -50,6 +51,11 @@ html(lang="ru")
   +Head(page)
 
   body.body
+
+    // Modal Form
+    +Modal('modal-form')(class='modal--form')
+      .modal_cls(data-close='')
+      +FormModal()
 
     // Modal Mobile Menu
     +Modal('mobile-menu')(class='modal--mobile')
@@ -171,6 +177,7 @@ html(lang="ru")
     +NavBottom({items: [
       {icon: 'tg', text: 'Telegram'},
       {icon: 'wa', text: 'WhatsApp'},
+      {icon: 'vk', text: 'Vkonakte'},
       {icon: 'calendar', text: 'Забронировать'},
       {icon: 'pin', text: 'Навигатор'},
     ]})

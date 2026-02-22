@@ -148,6 +148,8 @@ export function initResponsiveSwiper(container, opts = {}) {
   let swiper = null
   let thumbsSwiper = null
   let wrapper = null
+  /** @type {HTMLElement | null} */
+  let watchOverflowNavContainer = null
 
   const thumbsOpt = options.thumbs
   const isThumbsMode = !!thumbsOpt
@@ -339,6 +341,18 @@ export function initResponsiveSwiper(container, opts = {}) {
     root.classList.add('swiper')
     swiper = new SwiperClass(root, mainOpts)
     root.dataset.rsMounted = 'true'
+    if (passThrough.watchOverflow && navigationCfg?.prevEl && navigationCfg?.nextEl) {
+      const prev = Array.isArray(navigationCfg.prevEl) ? navigationCfg.prevEl[0] : navigationCfg.prevEl
+      const next = Array.isArray(navigationCfg.nextEl) ? navigationCfg.nextEl[0] : navigationCfg.nextEl
+      if (prev?.parentElement && prev.parentElement === next?.parentElement) {
+        watchOverflowNavContainer = prev.parentElement
+        const update = () =>
+          watchOverflowNavContainer?.classList.toggle('swiper-nav-hidden', swiper.isLocked)
+        swiper.on?.('lock', update)
+        swiper.on?.('unlock', update)
+        update()
+      }
+    }
     options.onInit?.(swiper)
   }
 
@@ -443,6 +457,19 @@ export function initResponsiveSwiper(container, opts = {}) {
     swiper = new SwiperClass(root, swiperOptions)
     root.dataset.rsMounted = 'true'
 
+    if (passThrough.watchOverflow && navigationCfg?.prevEl && navigationCfg?.nextEl) {
+      const prev = Array.isArray(navigationCfg.prevEl) ? navigationCfg.prevEl[0] : navigationCfg.prevEl
+      const next = Array.isArray(navigationCfg.nextEl) ? navigationCfg.nextEl[0] : navigationCfg.nextEl
+      if (prev?.parentElement && prev.parentElement === next?.parentElement) {
+        watchOverflowNavContainer = prev.parentElement
+        const update = () =>
+          watchOverflowNavContainer?.classList.toggle('swiper-nav-hidden', swiper.isLocked)
+        swiper.on?.('lock', update)
+        swiper.on?.('unlock', update)
+        update()
+      }
+    }
+
     options.onInit?.(swiper)
 
     swiper.on?.('breakpoint', () => {
@@ -467,6 +494,8 @@ export function initResponsiveSwiper(container, opts = {}) {
       swiper.destroy(true, true)
     }
     swiper = null
+    watchOverflowNavContainer?.classList.remove('swiper-nav-hidden')
+    watchOverflowNavContainer = null
     if (thumbsSwiper && typeof thumbsSwiper.destroy === 'function') {
       thumbsSwiper.destroy(true, true)
     }

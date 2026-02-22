@@ -187,6 +187,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
       loop: false,
       slidesOffsetAfter: 16,
       slidesOffsetBefore: 16,
+      watchOverflow: true,
       navigation: {
         prevEl,
         nextEl,
@@ -437,6 +438,50 @@ document.addEventListener('DOMContentLoaded', (e) => {
         },
         992: {
           slidesPerView: 3,
+          spaceBetween: 32,
+          slidesOffsetAfter: 0,
+          slidesOffsetBefore: 0,
+        },
+      },
+      extendSwiperOptions: (opts) => ({
+        ...opts,
+        speed: 500,
+      }),
+    }
+  })
+
+  // Dishes swiper
+  initResponsiveSwiperAll('.dishes_items', (root) => {
+    const section = root.closest('.dishes')
+    const prevEl = section?.querySelector('.dishes_nav-prev')
+    const nextEl = section?.querySelector('.dishes_nav-next')
+    return {
+      Swiper,
+      modules: [Navigation],
+      itemsSelector: '.dishes_item',
+      breakpoint: '(max-width: 9999px)',
+      slidesPerView: 1.5,
+      spaceBetween: 16,
+      loop: false,
+      navigation: {
+        prevEl,
+        nextEl,
+        createInside: false,
+      },
+      pagination: false,
+      breakpoints: {
+        320: {
+          slidesPerView: 1.2,
+          spaceBetween: 16,
+          slidesOffsetAfter: 16,
+          slidesOffsetBefore: 16,
+        },
+        768: {
+          slidesPerView: 2.2,
+          spaceBetween: 24,
+        },
+        992: {
+          slidesPerView: 3.2,
           spaceBetween: 32,
           slidesOffsetAfter: 0,
           slidesOffsetBefore: 0,

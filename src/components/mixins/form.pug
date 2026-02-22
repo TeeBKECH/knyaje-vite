@@ -1,0 +1,26 @@
+mixin FormModal()
+  .cb-form
+    .cb-form_header
+      .cb-form_title
+        h2.title.title-h2 Оставьте заявку
+        p Мы свяжемся с вами в ближайшее время
+    .cb-form_content
+      .cb-form_form
+        form.form(action="#")
+          .form_controls.form_controls--alt
+            .form_control
+              input.form_input(type='text', name='name', placeholder='Ваше имя...', )
+            .form_control
+              input.form_input.form_input-tel(type='tel', name='tel', placeholder='+7 (___) ___-__-__',)
+            .form_control
+              textarea.form_input.form_input-text(name='message', placeholder='Ваше сообщение...',)
+            .form_control
+              +Button('Заказать Звонок', ['secondary', 'lg', 'fw'], 'submit')(class='form_submit')
+          .form_controls.form_controls--alt
+            .form_control
+              label.form_privacy
+                input.form_privacy-checkbox(type='checkbox', name='privacy', required)
+                span.form_privacy-text
+                  | Я согласен(а) с 
+                  a(href='privacy.html') политикой конфиденциальности
+                  |  и даю согласие на обработку персональных данных

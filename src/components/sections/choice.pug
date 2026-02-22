@@ -32,7 +32,7 @@ section.section.section--choice(data-aos="fade-up", data-aos-duration="1000")
                 li.choice_card_item Сеновал
                 li.choice_card_item Приватные купели
               .choice_card_action
-                +Button('Забронировать Царский Сьют', ['primary', 'lg'])
+                +Button('Забронировать Царский Сьют', ['primary', 'lg'])(data-modal="modal-form" data-modal-action="toggle")
                 +Button('Подробнее', ['secondary', 'lg'])
         
         // Мовня
@@ -46,7 +46,7 @@ section.section.section--choice(data-aos="fade-up", data-aos-duration="1000")
                 li.choice_card_item ВЕДРА ИВЕНЬ
                 li.choice_card_item ГРАНД-КИТЕЛ - САМАЯ БОЛЬШАЯ В МОСКВЕ
               .choice_card_action
-                +Button('ЗАБРОНИРОВАТЬ', ['primary', 'lg'])
+                +Button('ЗАБРОНИРОВАТЬ', ['primary', 'lg'])(data-modal="modal-form" data-modal-action="toggle")
                 +Button('Подробнее', ['secondary', 'lg'])
           .choice_card_gallery
             +Gallery({

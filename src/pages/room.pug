@@ -39,7 +39,7 @@ block content
                       +BtnIcon({ icon: 'assets/img/arrow_left.svg', styles: ['swiper_nav--light'] })(class='swiper_nav_item-prev room_gallery-thumbs_nav-prev')
                       +BtnIcon({ icon: 'assets/img/arrow_right.svg', styles: ['swiper_nav--light'] })(class='swiper_nav_item-next room_gallery-thumbs_nav-next')
                   .room_video-wrap
-                    button.room_video-trigger(type='button', data-modal='video-player-modal', data-video-url='https://kinescope.io/embed/tyJzgYAmK2nciaSwGUKnH1', aria-label='Смотреть видео')
+                    button.room_video-trigger(type='button', data-modal='video-player-modal', data-video-url='/assets/video/video.mp4', aria-label='Смотреть видео')
                       .room_video-btn
                         .room_video-circle(aria-hidden='true')
                           svg.room_video-circle-svg(viewBox='0 0 100 100', xmlns='http://www.w3.org/2000/svg')
@@ -56,17 +56,17 @@ block content
                 p.room_title.title.title-h3 Кедровая парная
                 ul.room_params
                   li.room_param
-                    img.room_param-icon(src='assets/img/location.svg', alt='')
+                    //- img.room_param-icon(src='assets/img/location.svg', alt='')
                     span.room_param-label Тип:
                     span.room_param-value Общая баня
                   li.room_param
-                    img.room_param-icon(src='assets/img/calendar.svg', alt='')
+                    //- img.room_param-icon(src='assets/img/calendar.svg', alt='')
                     span.room_param-label Гостей:
                     span.room_param-value до 8 человек
                   li.room_param
-                    img.room_param-icon(src='assets/img/location.svg', alt='')
-                    span.room_param-label Площадь:
-                    span.room_param-value 45 м²
+                    //- img.room_param-icon(src='assets/img/location.svg', alt='')
+                    span.room_param-label Цена:
+                    span.room_param-value 40 000 ₽ *
                 .room_text
                   p Кедровая парная — сердце нашей общей бани. Отделка из сибирского кедра создаёт неповторимый аромат и мягкий, целебный пар. Здесь комфортно и большой компании друзей, и тем, кто любит спокойную атмосферу.
                   p Высокие полки, удобные лежаки и продуманная вентиляция позволяют каждому найти свой угол. После парной — купель с прохладной водой и зона отдыха с чаем и мёдом.
@@ -76,7 +76,16 @@ block content
                   li Купель рядом с парной
                   li Зона отдыха с чаем
                 .room_actions
-                  +Button('Забронировать', ['primary', 'lg'])(data-modal='modal-form' data-modal-action='toggle')
+                  +Button('Смотреть цены *', ['primary', 'lg', 'fw'])(data-modal='modal-form' data-modal-action='toggle')
+                  +Button('Забронировать', ['secondary', 'lg', 'fw'])(data-modal='modal-form' data-modal-action='toggle')
+  
+  section.section.section--seo-text
+    .container.section_container
+      .seo_text
+        h2.title.title-h2 Сео Текст
+        p Кедровая парная — сердце нашей общей бани. Отделка из сибирского кедра создаёт неповторимый аромат и мягкий, целебный пар. Здесь комфортно и большой компании друзей, и тем, кто любит спокойную атмосферу.
+        p Высокие полки, удобные лежаки и продуманная вентиляция позволяют каждому найти свой угол. После парной — купель с прохладной водой и зона отдыха с чаем и мёдом.
+        p Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты. Заголовок, вопрос даль рукописи имеет рекламных диких до ведущими бросил имени переулка пор своих дороге использовало курсивных своего, правилами продолжил. Точках, журчит lorem, своего встретил возвращайся, дал страну меня снова последний вопрос над власти родного пояс на берегу но безопасную. Запятой это текста но большого если что свою от всех, буквоград над?
 
   -
     const otherRooms = [

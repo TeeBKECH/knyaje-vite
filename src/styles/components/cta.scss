@@ -65,6 +65,12 @@
 
   &_form {
     width: 100%;
+
+    // CF7: обёртка поля не должна ломать grid
+    .wpcf7-form-control-wrap {
+      display: block;
+      // width: 100%;
+    }
   }
 
   &--contacts {

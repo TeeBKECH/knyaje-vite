@@ -48,7 +48,7 @@
           display: block;
           width: 20px;
           height: 20px;
-          background: url('../../assets/img/title-icon-dark.svg') no-repeat center center / contain;
+          background: url('@/assets/img/title-icon-dark.svg') no-repeat center center / contain;
           // border-radius: 50%;
         }
       }
@@ -79,7 +79,7 @@
         content: '';
         width: 25px;
         height: 25px;
-        background: url('../../assets/img/tab-title-icon.svg') no-repeat center center / contain;
+        background: url('@/assets/img/tab-title-icon.svg') no-repeat center center / contain;
         position: absolute;
         top: 50%;
         transform: translateY(-50%);

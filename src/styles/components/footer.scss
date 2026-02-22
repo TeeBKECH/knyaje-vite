@@ -79,6 +79,7 @@
     line-height: 1;
     text-transform: uppercase;
     font-family: $font-secondary;
+    letter-spacing: 2px;
 
     @include respond-to(lg) {
       // display: none;

@@ -262,6 +262,25 @@ function pugMpaPlugin({ injectWebpOnProd = false, prettifyOnProd = true } = {}) 
   }
 }
 
+// Только для build:wp: заменяет url(/assets/...) на относительные пути (../fonts/, ../media/),
+// чтобы при подключении из WP-темы (assets/css/...) шрифты и картинки грузились корректно.
+function cssRelativeAssetsPlugin() {
+  return {
+    name: 'css-relative-assets',
+    apply: 'build',
+    generateBundle(_, bundle) {
+      if (process.env.BUILD_TARGET !== 'wp') return
+      for (const item of Object.values(bundle)) {
+        if (item.type === 'asset' && item.fileName?.endsWith('.css') && typeof item.source === 'string') {
+          item.source = item.source
+            .replace(/url\(\/assets\/fonts\//g, 'url(../fonts/')
+            .replace(/url\(\/assets\/media\//g, 'url(../media/')
+        }
+      }
+    },
+  }
+}
+
 // Плагин для разрешения @ алиаса в CSS url()
 function cssAliasPlugin() {
   return {
@@ -300,6 +319,7 @@ function cssAliasPlugin() {
 
 export default defineConfig(({ mode }) => {
   const isProd = mode === 'production'
+  const isWpBuild = process.env.BUILD_TARGET === 'wp'
 
   return {
     // Если используете public/assets — отключите плагин копирования ниже
@@ -316,6 +336,7 @@ export default defineConfig(({ mode }) => {
         // noErrorOnMissing: true можно не указывать — поведение по умолчанию
       }),
 
+      cssRelativeAssetsPlugin(),
       cssAliasPlugin(),
 
       // Для старых браузеров можно раскомментировать:
@@ -371,15 +392,16 @@ export default defineConfig(({ mode }) => {
           app: MAIN_ENTRY,
         },
         output: {
-          entryFileNames: 'assets/js/[name].[hash].js',
-          chunkFileNames: 'assets/js/[name].[hash].js',
+          entryFileNames: isWpBuild ? 'assets/js/[name].js' : 'assets/js/[name].[hash].js',
+          chunkFileNames: isWpBuild ? 'assets/js/[name].js' : 'assets/js/[name].[hash].js',
           assetFileNames: (assetInfo) => {
             const ext = path.extname(assetInfo.name || '').toLowerCase()
-            if (ext === '.css') return 'assets/css/[name].[hash][extname]'
-            if (/\.(woff2?|ttf|eot|otf)$/.test(ext)) return 'assets/fonts/[name].[hash][extname]'
+            const hashPart = isWpBuild ? '' : '.[hash]'
+            if (ext === '.css') return `assets/css/[name]${hashPart}[extname]`
+            if (/\.(woff2?|ttf|eot|otf)$/.test(ext)) return `assets/fonts/[name]${hashPart}[extname]`
             if (/\.(png|jpe?g|webp|svg|gif|avif)$/.test(ext))
-              return 'assets/media/[name].[hash][extname]'
-            return 'assets/[name].[hash][extname]'
+              return `assets/media/[name]${hashPart}[extname]`
+            return `assets/[name]${hashPart}[extname]`
           },
         },
       },

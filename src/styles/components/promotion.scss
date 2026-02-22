@@ -7,6 +7,7 @@
       grid-template-columns: 1fr 1fr;
       gap: 32px;
       align-items: start;
+      position: relative;
 
       @include respond-to(lg) {
         grid-template-columns: 1fr;
@@ -72,19 +73,8 @@
     }
 
     &_body {
-      // Переопределение переменных рамки при использовании +Frame()
-      // .frame {
-      //   --frame-thickness: 125px;
-      //   --frame-content-padding: 60px;
-
-      //   @include respond-to(lg) {
-      //     --frame-content-padding: 40px;
-      //   }
-
-      //   @include respond-to(sm) {
-      //     --frame-content-padding: 50px 20px;
-      //   }
-      // }
+      position: sticky;
+      top: 110px;
     }
 
     &_info {
@@ -104,11 +94,11 @@
     &_info_list {
       width: 100%;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 16px;
 
       @include respond-to(md) {
-        grid-template-columns: 1fr;
+        // grid-template-columns: 1fr;
         gap: 8px;
       }
     }
@@ -121,9 +111,9 @@
       text-align: center;
       gap: 8px;
       padding: 16px;
-      background: rgba($prime, 0.05);
+      // background: rgba($prime, 0.05);
       // border-radius: 12px;
-      border: 1px solid rgba($prime, 0.1);
+      // border: 1px solid rgba($prime, 0.1);
       transition: all 0.3s ease;
 
       @include respond-to(md) {
@@ -163,19 +153,24 @@
       }
     }
 
+    &_box {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
     &_text {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 16px;
-      text-align: center;
+      gap: 12px;
       width: 100%;
 
       @include respond-to(md) {
         gap: 12px;
       }
 
-      p {
+      p,
+      li {
         color: rgba($prime, 0.85);
         font-size: 18px;
         line-height: 1.77;
@@ -194,9 +189,9 @@
       flex-direction: column;
       gap: 16px;
       padding: 24px;
-      background: rgba($prime, 0.03);
+      // background: rgba($prime, 0.03);
       // border-radius: 16px;
-      border: 1px solid rgba($prime, 0.1);
+      border-top: 1px solid rgba($prime, 0.1);
 
       @include respond-to(md) {
         padding: 20px 16px;
@@ -208,7 +203,6 @@
         font-size: 20px;
         font-weight: 600;
         color: $prime;
-        text-align: center;
         text-transform: uppercase;
         letter-spacing: 0.5px;
 

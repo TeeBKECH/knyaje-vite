@@ -115,5 +115,17 @@
         padding: 0 0 60px;
       }
     }
+
+    .section--seo-text {
+      padding: 0 0 80px;
+    }
+
+    .section--room-other {
+      padding-bottom: 80px;
+
+      @include respond-to(lg) {
+        padding-bottom: 48px;
+      }
+    }
   }
 }

@@ -314,6 +314,7 @@
     line-height: 1.2;
     color: $light-gold;
     text-transform: uppercase;
+    text-align: center;
 
     @include respond-to(md) {
       font-size: 24px;
@@ -322,7 +323,7 @@
 
   &_params {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 16px;
     list-style: none;
     margin: 0;
@@ -332,11 +333,12 @@
   &_param {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 6px;
     padding: 14px 16px;
-    border: 1px solid rgba($light-gold, 0.25);
+    // border: 1px solid rgba($light-gold, 0.25);
     // border-radius: 12px;
-    background: rgba($light-gold, 0.04);
+    // background: rgba($light-gold, 0.04);
 
     @include respond-to(md) {
       padding: 12px 14px;
@@ -351,20 +353,26 @@
     }
 
     &-label {
-      font-size: 13px;
-      font-weight: 400;
+      font-size: 14px;
       color: rgba($prime, 0.7);
+      font-weight: 400;
       line-height: 1.2;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+
+      @include respond-to(md) {
+        font-size: 12px;
+      }
     }
 
     &-value {
-      font-size: 16px;
+      font-size: 20px;
+      color: $light-gold;
       font-weight: 600;
-      color: $prime;
       line-height: 1.2;
 
       @include respond-to(md) {
-        font-size: 15px;
+        font-size: 16px;
       }
     }
   }
@@ -420,6 +428,9 @@
   }
 
   &_actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
     margin-top: 8px;
 
     .button {
@@ -442,13 +453,6 @@
 }
 
 // Секция «Другие хоромы» — свайпер с карточками комнат
-.section--room-other {
-  padding-bottom: 80px;
-
-  @include respond-to(lg) {
-    padding-bottom: 48px;
-  }
-}
 
 .room-other_content {
   position: relative;
