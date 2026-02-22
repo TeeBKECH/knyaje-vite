@@ -1,0 +1,130 @@
+//- Миксины для страницы прайса в стиле ognivobani (версия 3)
+//- @file price-alt.pug
+
+//- Категория прайса (секция верхнего уровня: Мужская баня, Индивидуальная баня)
+mixin PriceAltCategory(title)
+  .price-alt_category
+    h2.price-alt_category-title.title.title-h2= title
+    block
+
+//- Подсекция с заголовком и опциональной кнопкой «Забронировать»
+mixin PriceAltSubsection(title, showBook = false)
+  .price-alt_subsection
+    .price-alt_subsection-header
+      h4.price-alt_subsection-title= title
+      if showBook
+        +Button('Забронировать', ['secondary', 'sm'])(data-modal='modal-form' data-modal-action='toggle')
+    block
+
+//- Таблица с временными слотами (поддержка любого числа столбцов)
+//- slots: [{ period: 'Чт-Пт 3 ч', columns: [{ time: '09:00–12:00', price: '2 900 ₽' }] }]
+mixin PriceAltTimeTable(slots = [])
+  -
+    const firstSlot = slots[0]
+    const columns = firstSlot && firstSlot.columns ? firstSlot.columns : []
+  .price-alt_time-wrap
+    table.price-alt_time-table
+      thead.price-alt_time-head
+        tr.price-alt_time-row
+          th.price-alt_time-cell.price-alt_time-cell--head
+          each col in columns
+            th.price-alt_time-cell.price-alt_time-cell--head(data-label=col.time)
+              .price-alt_time-col
+                span.price-alt_time-label= col.time
+                span.price-alt_time-price= col.price
+      tbody.price-alt_time-body
+        each slot in slots
+          tr.price-alt_time-row
+            td.price-alt_time-cell.price-alt_time-cell--period(data-label='Период')= slot.period
+            each col, ci in (slot.columns || [])
+              td.price-alt_time-cell.price-alt_time-price-cell(data-label=columns[ci] ? columns[ci].time : '')= col.price
+
+//- Карточка кабинета/номера (название, подзаголовок, сетка слотов, кнопка)
+//- card: { name, subtitle, slots: [{ period, price }] }
+mixin PriceAltCard(card = {}, showBook = true)
+  .price-alt_card
+    .price-alt_card-header
+      h5.price-alt_card-title= card.name
+      if card.subtitle
+        span.price-alt_card-subtitle= card.subtitle
+    .price-alt_card-slots
+      each slot in (card.slots || [])
+        .price-alt_card-slot
+          span.price-alt_card-period= slot.period
+          span.price-alt_card-price= slot.price
+    if showBook
+      .price-alt_card-footer
+        +Button('Забронировать', ['secondary', 'sm'])(data-modal='modal-form' data-modal-action='toggle')
+
+//- Grid-таблица прайса (div вместо table)
+//- @param {Object} opts - { headers, rows, note?, conditions? }
+//-   headers: ['Услуга', 'col1', ...], rows: [{ cells: [...] }]
+//-   note: строка (опц.) — сноска внизу
+//-   conditions: [{ label, value }] (опц.) — особые условия под таблицей
+mixin PriceAltTable(opts = {})
+  -
+    const { headers = [], rows = [], note = '', conditions = [] } = opts
+    const DATA_COLS = 5
+    const nameHeader = headers[0] || ''
+    const dataHeaders = (headers.slice(1) || []).slice(0, DATA_COLS)
+    const padLeft = (arr, len, val = '') => Array(Math.max(0, len - arr.length)).fill(val).concat(arr)
+    const paddedHeaders = padLeft(dataHeaders, DATA_COLS)
+    const fullHeaders = [nameHeader, ...paddedHeaders]
+    const hasConditions = conditions && conditions.length
+    const hasNote = note && String(note).trim()
+    const hasFooter = hasConditions || hasNote
+  .price-alt_table-wrap
+    .price-alt_table-grid(role='table', style='--cols: 6')
+      if fullHeaders.length
+        .price-alt_table-header(role='rowgroup')
+          .price-alt_table-row(role='row')
+            each h, i in fullHeaders
+              .price-alt_table-cell.price-alt_table-cell--head(role='columnheader')= h
+      if rows.length
+        .price-alt_table-body(role='rowgroup')
+          each row in rows
+            - const raw = Array.isArray(row) ? row : (row.cells || [])
+            - const nameCell = raw[0] || ''
+            - const dataCells = raw.slice(1).slice(0, DATA_COLS)
+            - const paddedCells = padLeft(dataCells, DATA_COLS)
+            - const fullCells = [nameCell, ...paddedCells]
+            .price-alt_table-row(role='row')
+              each cell, i in fullCells
+                - const label = fullHeaders[i] || ''
+                - const isEmpty = i > 0 && !cell && !String(cell).trim()
+                .price-alt_table-cell(
+                  class=[i === 0 ? 'price-alt_table-cell--name' : '', isEmpty ? 'price-alt_table-cell--empty' : ''].filter(Boolean).join(' '),
+                  role='cell',
+                  data-label=i > 0 && label ? label : ''
+                )= cell
+    if hasFooter
+      .price-alt_table-footer
+        if hasConditions
+          .price-alt_table-conditions
+            span.price-alt_table-conditions-title Особые условия
+            ul.price-alt_list
+              each item in conditions
+                - const hasValue = item.value && String(item.value).trim()
+                li.price-alt_list-item(class=!hasValue ? 'price-alt_list-item--note' : '')
+                  span.price-alt_list-label= item.label
+                  if hasValue
+                    span.price-alt_list-value= item.value
+        if hasNote
+          p.price-alt_table-note= note
+
+//- Простой список (лейбл — значение): [{ label: 'До 7 лет', value: 'Бесплатно' }]
+mixin PriceAltList(items = [])
+  .price-alt_list-wrap
+    ul.price-alt_list
+      each item in items
+        - const hasValue = item.value && String(item.value).trim()
+        li.price-alt_list-item(class=!hasValue ? 'price-alt_list-item--note' : '')
+          span.price-alt_list-label= item.label
+          if hasValue
+            span.price-alt_list-value= item.value
+
+//- Сетка карточек кабинетов
+mixin PriceAltCards(cards = [], showBook = true)
+  .price-alt_cards
+    each card in cards
+      +PriceAltCard(card, showBook)

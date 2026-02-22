@@ -1,0 +1,132 @@
+//- Миксин секции «Заповеди княжеской бани» — блог
+//- @param {array} items - массив статей: { title, description, img, imgAlt, params: [{ icon, text }], link }
+//- params: просмотры (views.svg), время прочтения (clock.svg), дата (calendar.svg)
+mixin Blog(props = {})
+  -
+    const defaultItems = [
+      {
+        title: 'Польза кедровой парной для здоровья',
+        description: 'Разбираем, чем кедр полезен в бане: эфирные масла, антисептические свойства и создание особого микроклимата.',
+        img: 'assets/img/ch-1.webp',
+        imgAlt: 'Кедровая парная',
+        params: [
+          { icon: 'assets/img/views.svg', text: '2 450 просмотров' },
+          { icon: 'assets/img/clock.svg', text: '6 мин' },
+          { icon: 'assets/img/calendar.svg', text: '12 января 2025' }
+        ],
+        link: '/single.html'
+      },
+      {
+        title: 'Русская баня: традиции и ритуалы',
+        description: 'От чёрной бани до современных парных — как складывались традиции русской бани и что сохранилось до наших дней.',
+        img: 'assets/img/ch-2.jpg',
+        imgAlt: 'Русская баня',
+        params: [
+          { icon: 'assets/img/views.svg', text: '3 120 просмотров' },
+          { icon: 'assets/img/clock.svg', text: '8 мин' },
+          { icon: 'assets/img/calendar.svg', text: '8 января 2025' }
+        ],
+        link: '/single.html'
+      },
+      {
+        title: 'Как правильно париться: советы новичкам',
+        description: 'Температура, влажность, время захода — базовые правила, которые помогут получить удовольствие от первой парной.',
+        img: 'assets/img/ch-3.jpg',
+        imgAlt: 'Парная',
+        params: [
+          { icon: 'assets/img/views.svg', text: '4 890 просмотров' },
+          { icon: 'assets/img/clock.svg', text: '5 мин' },
+          { icon: 'assets/img/calendar.svg', text: '5 января 2025' }
+        ],
+        link: '/single.html'
+      },
+      {
+        title: 'Глиняная баня — древний способ оздоровления',
+        description: 'Почему глина ценилась веками: природная регуляция влажности и создание мягкого пара для кожи и лёгких.',
+        img: 'assets/img/ch-4.jpg',
+        imgAlt: 'Глиняная парная',
+        params: [
+          { icon: 'assets/img/views.svg', text: '1 780 просмотров' },
+          { icon: 'assets/img/clock.svg', text: '7 мин' },
+          { icon: 'assets/img/calendar.svg', text: '28 декабря 2024' }
+        ],
+        link: '/single.html'
+      },
+      {
+        title: 'Хаммам vs русская баня: что выбрать',
+        description: 'Сравниваем турецкий хаммам и русскую парную — температуру, влажность, процедуры и эффект для организма.',
+        img: 'assets/img/ch-alt-1.webp',
+        imgAlt: 'Хаммам',
+        params: [
+          { icon: 'assets/img/views.svg', text: '2 340 просмотров' },
+          { icon: 'assets/img/clock.svg', text: '9 мин' },
+          { icon: 'assets/img/calendar.svg', text: '22 декабря 2024' }
+        ],
+        link: '/single.html'
+      },
+      {
+        title: 'Веники для бани: какие выбрать и как запарить',
+        description: 'Берёза, дуб, эвкалипт — чем они отличаются, как правильно запарить веник и когда какой использовать.',
+        img: 'assets/img/ch-alt-2.webp',
+        imgAlt: 'Банный веник',
+        params: [
+          { icon: 'assets/img/views.svg', text: '5 670 просмотров' },
+          { icon: 'assets/img/clock.svg', text: '6 мин' },
+          { icon: 'assets/img/calendar.svg', text: '15 декабря 2024' }
+        ],
+        link: '/single.html'
+      },
+      {
+        title: 'Контрастные процедуры: купель после парной',
+        description: 'Зачем окунаться в холодную воду и как правильно делать контраст — без вреда для сердца и сосудов.',
+        img: 'assets/img/ch-alt-3.jpg',
+        imgAlt: 'Купель',
+        params: [
+          { icon: 'assets/img/views.svg', text: '2 190 просмотров' },
+          { icon: 'assets/img/clock.svg', text: '5 мин' },
+          { icon: 'assets/img/calendar.svg', text: '10 декабря 2024' }
+        ],
+        link: '/single.html'
+      },
+      {
+        title: 'Баня и здоровье: противопоказания и рекомендации',
+        description: 'Когда баня полезна, а когда лучше воздержаться — обзор состояний и правил безопасности в парной.',
+        img: 'assets/img/rest-bg.webp',
+        imgAlt: 'Баня и здоровье',
+        params: [
+          { icon: 'assets/img/views.svg', text: '6 230 просмотров' },
+          { icon: 'assets/img/clock.svg', text: '7 мин' },
+          { icon: 'assets/img/calendar.svg', text: '1 декабря 2024' }
+        ],
+        link: '/single.html'
+      }
+    ];
+    const items = props.items !== undefined ? props.items : defaultItems;
+
+  .blog
+    ul.blog_list
+      each item in items
+        li.blog_item
+          +BlogCard(item)
+
+//- Карточка статьи блога: фото, название, описание, параметры (просмотры, время, дата), кнопка
+//- @param {object} item - { title, description, img, imgAlt, params: [{ icon, text }], link }
+mixin BlogCard(item)
+  article.blog-card
+    .blog-card_img
+      a.blog-card_img-link(href=item.link)
+        img(src=item.img, alt=item.imgAlt || item.title)
+    .blog-card_content
+      h2.blog-card_title
+        a.blog-card_title-link(href=item.link)= item.title
+      if item.description
+        p.blog-card_description= item.description
+      if item.params && item.params.length
+        ul.blog-card_params
+          each param in item.params
+            li.blog-card_param
+              if param.icon
+                img.blog-card_param-icon(src=param.icon, alt="")
+              span.blog-card_param-text= param.text
+      .blog-card_actions
+        +Button('Подробнее', ['primary', 'md'])(href=item.link)

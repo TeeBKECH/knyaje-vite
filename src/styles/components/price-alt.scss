@@ -1,0 +1,622 @@
+.price-alt {
+  $price-alt: &;
+
+  &_intro {
+    font-size: 18px;
+    line-height: 1.6;
+    color: rgba($prime, 0.85);
+    max-width: 720px;
+    padding-bottom: 40px;
+
+    @include respond-to(md) {
+      font-size: 16px;
+    }
+  }
+
+  &_category {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    @include respond-to(lg) {
+      gap: 32px;
+    }
+
+    @include respond-to(md) {
+      gap: 24px;
+    }
+
+    &:not(:first-child) {
+      padding-top: 48px;
+      border-top: 1px solid rgba($prime, 0.1);
+
+      @include respond-to(md) {
+        padding-top: 32px;
+      }
+    }
+  }
+
+  &_category-title {
+    text-align: left;
+    margin-bottom: 0;
+  }
+
+  &_subsection {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    @include respond-to(md) {
+      gap: 16px;
+    }
+  }
+
+  &_subsection-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  &_subsection-title {
+    font-family: $font-secondary;
+    font-size: 26px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: $prime;
+    margin: 0;
+
+    @include respond-to(md) {
+      font-size: 20px;
+    }
+  }
+
+  &_time-wrap {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid rgba($prime, 0.15);
+
+    @include respond-to(md) {
+      overflow-x: visible;
+      border: none;
+    }
+  }
+
+  &_time-table {
+    width: 100%;
+    table-layout: auto;
+    border-collapse: collapse;
+
+    th,
+    td {
+      white-space: nowrap;
+      box-sizing: border-box;
+    }
+
+    .price-alt_time-cell--period {
+      white-space: normal;
+    }
+
+    @include respond-to(md) {
+      display: block;
+
+      thead {
+        display: none;
+      }
+
+      tbody {
+        display: block;
+      }
+
+      tr {
+        display: block;
+        margin-bottom: 16px;
+        border: 1px solid rgba($prime, 0.15);
+        background: rgba($prime, 0.02);
+        padding: 12px;
+      }
+
+      th,
+      td {
+        display: block;
+        white-space: normal;
+        padding: 8px 0;
+        border: none;
+        border-bottom: 1px solid rgba($prime, 0.06);
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        &::before {
+          content: attr(data-label);
+          display: inline-block;
+          font-weight: 600;
+          color: rgba($prime, 0.8);
+          margin-right: 8px;
+
+          @include respond-to(sm) {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 12px;
+          }
+        }
+      }
+
+      .price-alt_time-cell--period {
+        font-weight: 600;
+        padding-top: 0;
+
+        &::before {
+          content: none;
+        }
+      }
+
+      .price-alt_time-price-cell {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+
+        &::before {
+          flex-shrink: 0;
+        }
+      }
+    }
+  }
+
+  &_time-head {
+    background: rgba($light-gold, 0.12);
+  }
+
+  &_time-body {
+    tr:nth-child(even) {
+      background: rgba($prime, 0.03);
+    }
+
+    tr:hover {
+      background: rgba($light-gold, 0.06);
+    }
+  }
+
+  &_time-row {
+    border-bottom: 1px solid rgba($prime, 0.1);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &_time-cell {
+    padding: 14px 16px;
+    font-size: 15px;
+    color: $prime;
+    vertical-align: middle;
+
+    @include respond-to(md) {
+      padding: 12px;
+      font-size: 14px;
+    }
+
+    &--head {
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      color: rgba($prime, 0.9);
+    }
+
+    &--period {
+      font-weight: 500;
+      width: 35%;
+    }
+
+    &-price-cell {
+      text-align: right;
+      font-weight: 600;
+      color: $light-gold;
+    }
+  }
+
+  &_time-col {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: flex-end;
+  }
+
+  &_time-label {
+    font-size: 11px;
+    color: rgba($prime, 0.7);
+    font-weight: 500;
+  }
+
+  &_time-price {
+    font-weight: 600;
+    color: $light-gold;
+  }
+
+  &_cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+
+    @include respond-to(md) {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+
+  &_card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba($prime, 0.15);
+    background: rgba($prime, 0.02);
+    padding: 24px;
+    gap: 20px;
+
+    @include respond-to(md) {
+      padding: 20px;
+    }
+  }
+
+  &_card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &_card-title {
+    font-family: $font-secondary;
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: $light-gold;
+    margin: 0;
+  }
+
+  &_card-subtitle {
+    font-size: 14px;
+    color: rgba($prime, 0.7);
+  }
+
+  &_card-slots {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &_card-slot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba($prime, 0.08);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &_card-period {
+    font-size: 15px;
+    color: rgba($prime, 0.9);
+  }
+
+  &_card-price {
+    font-weight: 600;
+    color: $light-gold;
+  }
+
+  &_card-footer {
+    margin-top: auto;
+  }
+
+  &_table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid rgba($prime, 0.15);
+
+    @include respond-to(md) {
+      overflow-x: visible;
+      border: none;
+    }
+  }
+
+  &_table-grid {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &_table-header {
+    background: rgba($light-gold, 0.12);
+  }
+
+  &_table-header &_table-row {
+    display: grid;
+    grid-template-columns: 1fr repeat(5, 0.4fr);
+  }
+
+  &_table-header &_table-cell:not(:first-child) {
+    text-align: right;
+  }
+
+  &_table-body &_table-row {
+    display: grid;
+    grid-template-columns: 1fr repeat(5, 0.4fr);
+    transition: background 0.2s ease;
+    border-bottom: 1px solid rgba($prime, 0.1);
+
+    &:nth-child(even) {
+      background: rgba($prime, 0.03);
+    }
+
+    &:hover {
+      background: rgba($light-gold, 0.06);
+    }
+
+    @include respond-to(md) {
+      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 16px;
+      padding: 12px;
+      border: 1px solid rgba($prime, 0.15);
+      border-bottom: 1px solid rgba($prime, 0.1);
+      background: rgba($prime, 0.02);
+
+      &:nth-child(even),
+      &:hover {
+        background: rgba($prime, 0.02);
+      }
+    }
+  }
+
+  &_table-cell {
+    padding: 14px 16px;
+    text-align: left;
+    vertical-align: middle;
+    color: $prime;
+    word-wrap: break-word;
+    font-size: 22px;
+
+    @include respond-to(lg) {
+      font-size: 20px;
+    }
+
+    @include respond-to(md) {
+      font-size: 18px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba($prime, 0.06);
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &[data-label='']::before {
+        content: none;
+      }
+
+      &[data-label]:not([data-label=''])::before {
+        content: attr(data-label);
+        display: inline-block;
+        font-weight: 600;
+        color: rgba($prime, 0.8);
+        margin-right: 8px;
+
+        @include respond-to(sm) {
+          display: block;
+          margin-bottom: 4px;
+          font-size: 12px;
+        }
+      }
+
+      &.price-alt_table-cell--name {
+        font-weight: 600;
+        padding-top: 0;
+        border-bottom: 1px solid rgba($prime, 0.06);
+        color: $light-gold;
+
+        &::before {
+          content: none;
+        }
+      }
+
+      &:not(.price-alt_table-cell--name) {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 8px;
+
+        &[data-label]:not([data-label=''])::before {
+          flex-shrink: 0;
+        }
+      }
+
+      &.price-alt_table-cell--empty {
+        display: none;
+      }
+    }
+  }
+
+  &_table-header &_table-cell {
+    @include respond-to(md) {
+      display: none;
+    }
+  }
+
+  &_table-cell {
+    &--head {
+      font-weight: 600;
+      color: rgba($prime, 0.95);
+      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+
+      @include respond-to(lg) {
+        font-size: 12px;
+      }
+    }
+
+    &--name {
+      font-weight: 500;
+    }
+
+    &:not(&--name):not(&--head) {
+      text-align: right;
+      font-weight: 600;
+      color: $light-gold;
+    }
+  }
+
+  &_table-footer {
+    padding: 16px;
+    border-top: 1px solid rgba($prime, 0.12);
+
+    @include respond-to(md) {
+      margin: 16px 12px 0;
+      padding-top: 16px;
+    }
+  }
+
+  &_table-conditions {
+    margin-bottom: 16px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &_table-conditions-title {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba($light-gold, 0.85);
+  }
+
+  &_table-conditions &_list {
+    gap: 0;
+  }
+
+  &_table-conditions &_list-item {
+    padding: 8px 0;
+    font-size: 17px;
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    @include respond-to(md) {
+      font-size: 16px;
+      padding: 6px 0;
+    }
+  }
+
+  &_table-note {
+    font-size: 12px;
+    color: rgba($prime, 0.5);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  &_list-wrap {
+    margin-top: 20px;
+    padding: 20px 24px;
+    background: linear-gradient(135deg, rgba($light-gold, 0.06) 0%, rgba($light-gold, 0.02) 100%);
+    border: 1px solid rgba($light-gold, 0.2);
+
+    @include respond-to(md) {
+      padding: 16px 20px;
+      margin-top: 16px;
+    }
+  }
+
+  &_list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  &_list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    font-size: 18px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba($prime, 0.08);
+    line-height: 1.4;
+
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    &--note {
+      .price-alt_list-label {
+        flex: 1;
+      }
+    }
+
+    @include respond-to(md) {
+      font-size: 16px;
+      padding: 12px 0;
+      flex-wrap: wrap;
+    }
+  }
+
+  &_list-label {
+    color: rgba($prime, 0.95);
+    font-weight: 500;
+  }
+
+  &_list-value {
+    font-weight: 700;
+    color: $light-gold;
+    flex-shrink: 0;
+    padding: 6px 14px;
+    background: rgba($light-gold, 0.12);
+    border-radius: 6px;
+    font-size: 17px;
+
+    @include respond-to(md) {
+      font-size: 16px;
+      padding: 5px 12px;
+    }
+  }
+
+  &_note {
+    font-size: 13px;
+    color: rgba($prime, 0.6);
+    margin: 8px 0 0;
+  }
+}
+
+.section--price-alt {
+  @include respond-to(lg) {
+  }
+
+  @include respond-to(md) {
+  }
+
+  .section_container {
+    gap: 48px;
+
+    @include respond-to(lg) {
+      gap: 32px;
+    }
+  }
+}

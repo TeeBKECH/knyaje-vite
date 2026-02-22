@@ -38,6 +38,7 @@ mixin CardEvent(props)
         p= text
       .card_actions
         +Button('Подробнее', ['third', 'md'])
+        +Button('Забронировать', ['secondary', 'md'])(data-modal='modal-form' data-modal-action='toggle')
 
 mixin CardPromotion(props)
   - const {label = '', title = '', text = '', img = '', alt = '', link = ''} = props

@@ -1,0 +1,16 @@
+//- @title: Заповеди княжеской бани
+//- @description: Заповеди княжеской бани описание
+//- @page_class: blog
+extends ../layouts/default.pug
+
+block content
+  +Intro({
+    title: 'Заповеди княжеской бани',
+    breadcrumbs: ['Заповеди княжеской бани']
+  })
+
+  section.section.section--blog(data-aos="fade-up", data-aos-duration="1000")
+    .container.section_container
+      +Blog()
+      .section_footer
+        +Pagination({})
